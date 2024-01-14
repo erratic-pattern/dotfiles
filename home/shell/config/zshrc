@@ -1,0 +1,27 @@
+
+if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+    . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+fi
+
+# Define PATH
+export PATH=$HOME/.local/share/bin:$PATH
+
+# Editor settings
+export EDITOR="vim"
+
+# Always color ls and group directories
+alias ls='ls --color=auto'
+
+# Enable Docker BuildKit
+export DOCKER_BUILDKIT=1
+
+# add homebrew shell env (TODO: remove this after setting up nix-homebrew)
+eval "$(/opt/homebrew/bin/brew shellenv)"    
+
+# alias to work with home git repo
+alias home='git --work-tree=$HOME --git-dir=$HOME/.dotfiles'
+
+# bind delete key
+bindkey "^[[3~" delete-char
+
