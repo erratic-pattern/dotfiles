@@ -10,7 +10,7 @@
 
   fonts = {
     fontDir.enable = true;
-    fonts = [ pkgs.fira-code ];
+    fonts = [ pkgs.fira-code pkgs.fira-code-nerdfont ];
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
