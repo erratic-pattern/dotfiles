@@ -1,19 +1,4 @@
-{ pkgs, ... }:
-let
-  # unstable = import <nixos-unstable> {};
-  # installs a vim plugin from git with a given tag / branch
-  # pluginGit = ref: repo: unstable.vimUtils.buildVimPlugin {
-  #   pname = "${lib.strings.sanitizeDerivationName repo}";
-  #   version = ref;
-  #   src = builtins.fetchGit {
-  #     url = "https://github.com/${repo}.git";
-  #     ref = ref;
-  #   };
-  # };
-  # always installs latest version
-  # plugin = pluginGit "HEAD";
-
-in {
+{ pkgs, ... }: {
   # install packer plugin manager
   home.file.".local/share/nvim/site/pack/packer/start/packer.nvim" = {
       recursive = true;
@@ -33,6 +18,7 @@ in {
 
       withNodeJs = true; # used by copilot
       extraPackages = with pkgs; [
+          tree-sitter # for autoinstalling parsers
           ripgrep # used by telescope
           rustup # for rust-analyzer 
           luarocks # for Lua LSP
