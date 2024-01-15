@@ -1,7 +1,7 @@
 { ... } : {
   imports = [
-    ./alacritty.nix
     ./git.nix
+    ./kitty.nix
     ./nvim.nix
     ./packages.nix
     ./tmux.nix
