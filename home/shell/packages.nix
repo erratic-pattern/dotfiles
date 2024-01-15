@@ -29,6 +29,7 @@
     # vscode
 
     # Fonts
+    fira-code
     fira-code-nerdfont
   ];
 }
