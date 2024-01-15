@@ -2,7 +2,7 @@
   programs.kitty = {
     enable = true;
     settings = {
-      font_family = "Fira Code";
+      font_family = "FiraCode Nerd Font";
       font_size = 14;
       disable_ligatures = "cursor";
       cursor_shape = "block";
