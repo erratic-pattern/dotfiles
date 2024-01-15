@@ -1,0 +1,5 @@
+;; extends
+[
+  "mod"
+  "use"
+] @keyword
