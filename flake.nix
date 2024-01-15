@@ -34,54 +34,73 @@
     };
   };
   outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-garden, home-manager, nixpkgs} @inputs:
-    with nixpkgs.lib;
-    let
-      user = "adam";
-      darwinSystems = [ "aarch64-darwin" ];
+  let
+    defaultUser = "adam";
+    defaultDarwinSystem = "aarch64-darwin";
+    mkApp = scriptName: system: {
+      type = "app";
+      program = "${self}/apps/${system}/${scriptName}";
+    };
 
-      mkApp = scriptName: system: {
-        type = "app";
-        program = "${self}/apps/${system}/${scriptName}";
+    mkDarwinApps = system: {
+      "switch" = mkApp "switch" system;
+    };
+    mkDarwinMachine = {
+      user ? defaultUser,
+      system ? defaultDarwinSystem,
+      extraTaps ? [],
+      extraModules ? [], }:
+      let
+        specialArgs = (inputs // {user = user; system = system;});
+        taps = {
+          "homebrew/core" = homebrew-core;
+          "homebrew/cask" = homebrew-cask;
+          "homebrew/bundle" = homebrew-bundle;
+        };
+        modules = [
+          home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              user = user;
+              taps = taps // extraTaps;
+              mutableTaps = false;
+              autoMigrate = true;
+            };
+          }
+        ];
+      in
+      darwin.lib.darwinSystem {
+        system = system;
+        specialArgs = specialArgs;
+        modules = modules ++ extraModules;
       };
+  in
+  {
+    apps =
+      let
+        darwinSystems = [ "aarch64-darwin" ];
+        darwinApps = nixpkgs.lib.genAttrs darwinSystems mkDarwinApps;
+      in
+      darwinApps;
 
-      mkDarwinApps = system: {
-        "switch" = mkApp "switch" system;
-      };
-
-      commonTaps = {
-        "homebrew/core" = homebrew-core;
-        "homebrew/cask" = homebrew-cask;
-        "homebrew/bundle" = homebrew-bundle;
-      };
-
-      influxTaps = {
-        "garden-io/garden-homebrew" = homebrew-garden;
-      };
-
-    in
-    {
-      apps = genAttrs darwinSystems mkDarwinApps;
-
-      darwinConfigurations = {
-        "personal-macbook" = darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          specialArgs = inputs;
-          modules = [
-            home-manager.darwinModules.home-manager
-            nix-homebrew.darwinModules.nix-homebrew
-            { 
-              nix-homebrew = {
-                enable = true;
-                user = user;
-                taps = mkMerge [ commonTaps influxTaps ];
-                mutableTaps = false;
-                autoMigrate = true;
-              };
-            }
-            ./machines/personal-macbook.nix
-          ];
+      darwinConfigurations =
+        let
+          influxTaps = {
+            "garden-io/garden-homebrew" = homebrew-garden;
+          };
+        in
+        {
+          "personal-macbook" = mkDarwinMachine {
+            extraTaps = influxTaps;
+            extraModules = [ ./machines/personal-macbook.nix ];
+          };
+          "influx-macbook" = mkDarwinMachine {
+            extraTaps = influxTaps;
+            extraModules = [ ./machines/influx-macbook.nix ];
+          };
         };
       };
-    };
-  }
+    }
 
