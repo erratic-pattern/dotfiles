@@ -9,6 +9,17 @@
       };
   };
 
+  # add nvim config directory
+  xdg.configFile."nvim/" = {
+    source = ./config/nvim;
+    recursive = true;
+  };
+
+  #  add .vimrc for vim-compatible config that's also sourced by nvim/init.lua
+  home.file.".vimrc" = {
+    source = ./config/vimrc;
+  };
+
   programs.neovim = {
       enable = true;
       defaultEditor = true;
