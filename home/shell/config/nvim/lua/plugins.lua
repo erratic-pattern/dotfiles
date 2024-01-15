@@ -3,7 +3,13 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
-    -- fuzzy search
+    -- status line
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+
+    -- fuzzy finder/picker
     use {
         'nvim-telescope/telescope.nvim', tag = "0.1.5",
         requires = { {'nvim-lua/plenary.nvim'} }
@@ -12,36 +18,48 @@ return require('packer').startup(function()
 
 
     -- file explorers/browsers
-    -- use 'preservim/nerdtree'
-    use {
-        "nvim-telescope/telescope-file-browser.nvim",
-        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-    }
     use {
         'nvim-tree/nvim-tree.lua',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
-
-    -- status line
-    -- use 'vim-airline/vim-airline'
-    -- use 'vim-airline/vim-airline-themes'
     use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
     }
 
-    -- highlighting
+    -- smooth scrolling
+    use {
+        'declancm/cinnamon.nvim',
+        config = function() require('cinnamon').setup({
+            default_delay = 3, 
+        }) end
+    }
+
+    -- LSP config
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        requires = {
+            -- LSP Installation
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
+            -- LSP Integration/Config
+            {'neovim/nvim-lspconfig'},
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'L3MON4D3/LuaSnip'},
+        }
+    }
+
+    -- treesitter for parsing and highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         requires = { "nvim-treesitter/nvim-treesitter-textobjects", },
     }
 
-    -- use 'HiPhish/nvim-ts-rainbow2' -- bracket highlighting
-    use 'yamatsum/nvim-cursorline' -- underline word under cursor
-    use 'lukas-reineke/indent-blankline.nvim' -- indentation guides
-
-    -- editing
+    -- editing helper plugins
     use {
         "numToStr/Comment.nvim", -- comment lines
         config = function()
@@ -50,8 +68,36 @@ return require('packer').startup(function()
     }
     use 'tpope/vim-surround' -- surround text with brackets, quotes, etc.
     use 'mbbill/undotree'
+    -- use 'HiPhish/nvim-ts-rainbow2' -- bracket highlighting
+    use 'yamatsum/nvim-cursorline' -- underline word under cursor
+    use 'lukas-reineke/indent-blankline.nvim' -- indentation guides
 
-    -- colors
+    -- git integrations
+    use {
+        'lewis6991/gitsigns.nvim', -- git signs in gutter
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+    use 'tpope/vim-fugitive' -- git commands
+    use 'tpope/vim-rhubarb' -- open GitHub links at cursor
+
+    -- gist integration
+    use {
+        "rawnly/gist.nvim",
+        config = function() require("gist").setup() end,
+        -- `GistsList` opens the selected gif in a terminal buffer,
+        -- this plugin uses neovim remote rpc functionality to open the gist in an actual buffer and not have buffer inception
+        requires = { "samjwill/nvim-unception", setup = function() vim.g.unception_block_while_host_edits = true end }
+    }
+
+    -- language-specific plugins
+    use 'LnL7/vim-nix' -- nix language support
+
+    -- AI overlords
+    use 'github/copilot.vim'
+
+    -- colorschemes
     use {
         'rose-pine/neovim',
         as = 'rose-pine',
@@ -83,48 +129,6 @@ return require('packer').startup(function()
             }
             vim.cmd [[colorscheme tokyonight-moon]]
         end
-    }
-
-    -- smooth scrolling
-    use {
-        'declancm/cinnamon.nvim',
-        config = function() require('cinnamon').setup({
-            default_delay = 3, 
-        }) end
-    }
-
-    -- git integrations
-    use {
-        'lewis6991/gitsigns.nvim', -- git signs in gutter
-        config = function()
-            require('gitsigns').setup()
-        end
-    }
-
-    use 'tpope/vim-fugitive' -- git commands
-    use 'tpope/vim-rhubarb' -- open GitHub links at cursor
-
-    -- language plugins
-    use 'LnL7/vim-nix' -- nix language support
-
-    -- AI overlords
-    use 'github/copilot.vim'
-
-    -- LSP config
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        requires = {
-            -- LSP Installation
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
-            -- LSP Integration/Config
-            {'neovim/nvim-lspconfig'},
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'L3MON4D3/LuaSnip'},
-        }
     }
 
 end)
