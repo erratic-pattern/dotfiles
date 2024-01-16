@@ -33,7 +33,7 @@
       flake = false;
     };
   };
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-garden, home-manager, nixpkgs} @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-garden, home-manager, nixpkgs } @inputs:
   let
     defaultUser = "adam";
     defaultDarwinSystem = "aarch64-darwin";
