@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     # General packages for development and system management
@@ -31,5 +31,9 @@
     # Fonts
     fira-code
     fira-code-nerdfont
+
+    # Video Tools
+    ffmpeg_5-full # see https://github.com/NixOS/nixpkgs/issues/271313
+
   ];
 }
