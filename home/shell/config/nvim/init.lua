@@ -5,10 +5,6 @@ vim.cmd.source("$HOME/.vimrc")
 vim.keymap.set("n", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- load plugins
 require('plugins')
 
