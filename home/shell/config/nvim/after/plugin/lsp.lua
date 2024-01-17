@@ -1,9 +1,18 @@
-local lsp = require('lsp-zero')
+local lsp_zero = require('lsp-zero')
 
-lsp.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp.default_keymaps({buffer = bufnr})
+lsp_zero.on_attach(function(client, bufnr)
+  local opts = {buffer = bufnr, remap = false}
+  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+  vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
+  vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+  vim.keymap.set("i", "gs", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
+  vim.keymap.set("n", "gl", function() vim.lsp.buf.open_float() end, opts)
+  vim.keymap.set("n", "<leader>r", function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
+  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
 end)
 
 require('mason').setup({})
@@ -14,9 +23,40 @@ require('mason-lspconfig').setup({
       'rust_analyzer',
       'bashls',
       'nil_ls',
-      -- 'lua_ls',
+      'lua_ls',
   };
   handlers = {
-    lsp.default_setup,
+    lsp_zero.default_setup,
+    -- configure lua_ls to recognize nvim globals
+    lua_ls = function()
+        local lua_opts = lsp_zero.nvim_lua_ls()
+        require('lspconfig').lua_ls.setup(lua_opts)
+    end,
   },
 })
+
+
+local cmp = require('cmp')
+cmp.setup({
+    sources = {
+        {name = 'path'},
+        {name = 'nvim_lsp'},
+        {name = 'nvim_lua'},
+        {name = 'luasnip', keyword_length = 2},
+        {name = 'buffer', keyword_length = 3},
+    },
+    formatting = lsp_zero.cmp_format(),
+    mapping = cmp.mapping.preset.insert({
+        -- `Enter` key to confirm completion
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        -- double <leader> to trigger completion
+        ['<C-Space>'] = cmp.mapping.complete(),
+        -- Navigate between cmp items
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        -- Scroll up and down in the completion documentation
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    }),
+})
+
