@@ -39,7 +39,7 @@ let user = "adam"; in
     { path = "/Applications/Slack.app/"; }
     { path = "/Applications/zoom.us.app/"; }
     { path = "/Applications/Notion.app/"; }
-    { path = "${pkgs.kitty}/Applications/Kitty.app/"; }
+    { path = "${pkgs.wezterm}/Applications/Wezterm.app/"; }
     { path = "/Applications/1Password.app/"; }
     { path = "/Applications/Spotify.app/"; }
     {
