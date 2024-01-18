@@ -5,7 +5,7 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         -- `Enter` key to confirm completion
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        -- double <leader> to trigger completion
+        -- Ctrl-space to trigger completion
         ['<C-Space>'] = cmp.mapping.complete(),
         -- Navigate between cmp items
         ['<C-j>'] = cmp.mapping.select_next_item(),
