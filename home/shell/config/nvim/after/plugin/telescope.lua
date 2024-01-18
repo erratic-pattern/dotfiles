@@ -33,10 +33,3 @@ vim.keymap.set('n', '<leader>gl', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>lsb', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>lsw', builtin.lsp_workspace_symbols, {})
 
--- file browser mappings
-vim.api.nvim_set_keymap(
-  "n",
-  "<space>fb",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-  { noremap = true }
-)
