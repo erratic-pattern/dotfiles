@@ -17,11 +17,22 @@ alias ls='ls --color=auto'
 export DOCKER_BUILDKIT=1
 
 # add homebrew shell env (TODO: remove this after setting up nix-homebrew)
-eval "$(/opt/homebrew/bin/brew shellenv)"    
+# eval "$(/opt/homebrew/bin/brew shellenv)"    
 
 # alias to work with home git repo
-alias home='git --work-tree=$HOME --git-dir=$HOME/.dotfiles'
+# alias home='git --work-tree=$HOME --git-dir=$HOME/.dotfiles'
 
 # bind delete key
 bindkey "^[[3~" delete-char
+
+DISABLE_AUTO_TITLE="true"
+
+# set terminal title to cwd
+function set_title_to_pwd() {
+    echo -en "\e]2;$(pwd | sed "s/${HOME//\//\\/}/~/")"
+}
+
+autoload add-zsh-hook
+add-zsh-hook chpwd set_title_to_pwd
+set_title_to_pwd
 
