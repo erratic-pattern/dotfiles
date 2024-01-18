@@ -11,10 +11,15 @@ telescope.setup({
 telescope.load_extension "file_browser"
 telescope.load_extension"ui-select"
 
-
 local builtin = require('telescope.builtin')
+
+
 -- basic finders
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>f',function ()
+    builtin.find_files {
+        find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
+    }
+end)
 vim.keymap.set('n', '<leader>s', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
