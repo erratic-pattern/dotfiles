@@ -6,6 +6,9 @@ let user = "adam"; in
     ../desktop/darwin
   ];
 
+  networking.hostName = "Adams-MacBook-Pro";
+  networking.computerName = "Adam's MacBook Pro";
+
   users.users.${user} = {
     name = "${user}";
     home = "/Users/${user}";
