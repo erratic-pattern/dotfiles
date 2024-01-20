@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   # install packer plugin manager
   home.file.".local/share/nvim/site/pack/packer/start/packer.nvim" = {
       recursive = true;
@@ -35,5 +35,10 @@
           luarocks # for Lua LSP
       ];
   };
+
+  home.activation.packerSync = 
+    lib.hm.dag.entryAfter ["writeBoundary"] ''
+      ${pkgs.neovim}/bin/nvim --headless -u ./.config/nvim/lua/plugins.lua -c 'autocmd User PackerComplete quitall' -c 'PackerSync' 2> /dev/null
+    '';
 }  
 
