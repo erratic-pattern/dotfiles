@@ -8,7 +8,6 @@ telescope.setup({
     }
 })
 
-telescope.load_extension "file_browser"
 telescope.load_extension"ui-select"
 
 local builtin = require('telescope.builtin')
