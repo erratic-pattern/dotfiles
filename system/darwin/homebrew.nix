@@ -7,7 +7,6 @@
     casks = [
       # Development Tools
       "docker"
-      "visual-studio-code"
 
       # Security
       "1password"
