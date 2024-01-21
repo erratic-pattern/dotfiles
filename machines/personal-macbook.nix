@@ -46,6 +46,7 @@ let user = "adam"; in
     { path = "/Applications/1Password.app/"; }
     { path = "/Applications/Spotify.app/"; }
     { path = "/Applications/Discord.app/"; }
+    { path = "/Applications/Steam.app/"; }
     {
       path = "${config.users.users.${user}.home}/Downloads";
       section = "others";
