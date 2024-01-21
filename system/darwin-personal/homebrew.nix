@@ -16,7 +16,8 @@
     casks = [
         # VPN
         "expressvpn"
-        # Communication Tools
+        # Games
+        "steam"
         "discord"
     ];
   };
