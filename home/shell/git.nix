@@ -15,6 +15,8 @@ email = "adam.curtis.dev@gmail.com"; in
             pull.rebase = true;
             rebase.autoStash = true;
             push.autoSetupRemote = true;
+            merge.tool = "nvim";
+            mergetool.nvim.cmd = "nvim -d -c 'wincmd l' -c 'norm ]c' \"$LOCAL\" \"$MERGED\" \"$REMOTE\"";
         };
     };
 }
