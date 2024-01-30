@@ -11,6 +11,7 @@
     tree
     tmux
     unzip
+    watch
     wget
     zip
 
