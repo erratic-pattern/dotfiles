@@ -1,9 +1,10 @@
 { pkgs, lib, ... } :  {
   home.packages = with pkgs; [
-    #IOx dependencies
     rustup
     protobuf
     postgresql
+    python39
+    libiconv
   ];
 
   # set default rust version to stable
