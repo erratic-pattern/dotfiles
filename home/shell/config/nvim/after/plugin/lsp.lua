@@ -34,6 +34,16 @@ require('mason-lspconfig').setup({
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
         end,
+        ["rust_analyzer"] = function()
+            require('lspconfig').rust_analyzer.setup({
+                cargo = {
+                    features = "all",
+                },
+                completion = {
+                    fullFunctionSignatures = { enable = true },
+                },
+            })
+        end
     },
 })
 
@@ -61,4 +71,3 @@ cmp.setup({
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
     }),
 })
-
