@@ -3,25 +3,20 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
+    use 'nvim-tree/nvim-web-devicons'
     -- status line
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
+    use 'nvim-lualine/lualine.nvim'
 
     -- fuzzy finder/picker
     use {
         'nvim-telescope/telescope.nvim', tag = "0.1.5",
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    use {'nvim-telescope/telescope-ui-select.nvim' }
+    use 'nvim-telescope/telescope-ui-select.nvim' 
 
 
     -- file explorers/browsers
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
+    use 'nvim-tree/nvim-tree.lua'
 
     -- smooth scrolling
     use {
