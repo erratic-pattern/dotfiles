@@ -20,12 +20,6 @@
     ];
 
     casks = [
-        # Development Tools
-        "docker"
-
-        # Security
-        "1password"
-
         # Communication Tools
         "slack"
         "zoom"
