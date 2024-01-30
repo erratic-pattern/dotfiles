@@ -27,4 +27,7 @@
       "wacom-tablet"
     ];
   };
+  environment.variables = {
+    DOCKER_BUILDKIT = "1";
+  };
 }

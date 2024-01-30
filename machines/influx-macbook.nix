@@ -27,12 +27,7 @@ let user = "adam"; in
         ../home/influx
       ];
       home.enableNixpkgsReleaseCheck = false;
-
       home.stateVersion = "21.11";
-
-      # Marked broken Oct 20, 2022 check later to remove this
-      # https://github.com/nix-community/home-manager/issues/3344
-      # manual.manpages.enable = false;
     };
   };
 

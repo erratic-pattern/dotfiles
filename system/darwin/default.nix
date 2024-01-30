@@ -1,24 +1,31 @@
-{ config, pkgs, lib, ... } : {
+{ config, pkgs, lib, ... }:
+let
+  brewShellEnv = ''eval "$(/opt/homebrew/bin/brew shellenv)"'';
+in
+{
   imports = [
     ../common
     ./homebrew.nix
   ];
-
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
 
   fonts = {
     fontDir.enable = true;
     fonts = [ pkgs.fira-code pkgs.fira-code-nerdfont ];
   };
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {
-      enable = true;
-      enableCompletion = true;
-      enableBashCompletion = true;
+    enable = true;
+    enableCompletion = true;
+    enableBashCompletion = true;
+    shellInit = brewShellEnv;
   };
+
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+    interactiveShellInit = brewShellEnv;
+  };
+
   # programs.fish.enable = true;
 
   system = {

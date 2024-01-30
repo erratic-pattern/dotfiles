@@ -3,9 +3,13 @@
     rustup
     protobuf
     postgresql
-    python39
+    python3
     libiconv
   ];
+
+  home.sessionVariables = {
+    PYTHONPATH = "${pkgs.python3}/${pkgs.python3.sitePackages}";
+  };
 
   # set default rust version to stable
   home.activation.rustupDefault =
