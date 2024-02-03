@@ -82,6 +82,14 @@ return require('packer').startup(function()
         requires = { "samjwill/nvim-unception", setup = function() vim.g.unception_block_while_host_edits = true end }
     }
 
+    -- github integration
+    use {
+        'pwntester/octo.nvim',
+        config = function ()
+            require"octo".setup()
+        end
+    }
+
     -- language-specific plugins
     use 'LnL7/vim-nix' -- nix language support
 
