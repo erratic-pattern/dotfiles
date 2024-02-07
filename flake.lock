@@ -138,6 +138,22 @@
         "type": "github"
       }
     },
+    "kubelogin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706837803,
+        "narHash": "sha256-HXLUvFYvhw9444EYxFNpgWVkrgGza5QGI473jUCJHn4=",
+        "owner": "int128",
+        "repo": "kubelogin",
+        "rev": "c68df0f232c9eaad1e37c76b48470f8a4123b395",
+        "type": "github"
+      },
+      "original": {
+        "owner": "int128",
+        "repo": "kubelogin",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -246,6 +262,7 @@
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
         "homebrew-garden": "homebrew-garden",
+        "kubelogin": "kubelogin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_4"
       }

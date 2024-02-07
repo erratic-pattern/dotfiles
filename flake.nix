@@ -32,75 +32,80 @@
       url = "github:garden-io/homebrew-garden";
       flake = false;
     };
+    kubelogin = {
+      url = "github:int128/kubelogin";
+      flake = false;
+    };
   };
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-garden, home-manager, nixpkgs } @inputs:
-  let
-    defaultUser = "adam";
-    defaultDarwinSystem = "aarch64-darwin";
-    mkApp = scriptName: system: {
-      type = "app";
-      program = "${self}/apps/${system}/${scriptName}";
-    };
-
-    mkDarwinApps = system: {
-      "switch" = mkApp "switch" system;
-    };
-    mkDarwinMachine = {
-      user ? defaultUser,
-      system ? defaultDarwinSystem,
-      extraTaps ? [],
-      extraModules ? [], }:
-      let
-        specialArgs = (inputs // {user = user; system = system;});
-        taps = {
-          "homebrew/core" = homebrew-core;
-          "homebrew/cask" = homebrew-cask;
-          "homebrew/bundle" = homebrew-bundle;
-        };
-        modules = [
-          home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              enable = true;
-              user = user;
-              taps = taps // extraTaps;
-              mutableTaps = false;
-              autoMigrate = true;
-            };
-          }
-        ];
-      in
-      darwin.lib.darwinSystem {
-        system = system;
-        specialArgs = specialArgs;
-        modules = modules ++ extraModules;
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-garden, home-manager, kubelogin, nixpkgs } @inputs:
+    let
+      defaultUser = "adam";
+      defaultDarwinSystem = "aarch64-darwin";
+      defaultTaps = {
+        "homebrew/core" = homebrew-core;
+        "homebrew/cask" = homebrew-cask;
+        "homebrew/bundle" = homebrew-bundle;
       };
-  in
-  {
-    apps =
-      let
-        darwinSystems = [ "aarch64-darwin" ];
-        darwinApps = nixpkgs.lib.genAttrs darwinSystems mkDarwinApps;
-      in
-      darwinApps;
+      extraTaps = {
+        "int128/kubelogin" = kubelogin;
+        "garden-io/garden-homebrew" = homebrew-garden;
+      };
 
-      darwinConfigurations =
+      mkApp = scriptName: system: {
+        type = "app";
+        program = "${self}/apps/${system}/${scriptName}";
+      };
+
+      mkDarwinApps = system: {
+        "switch" = mkApp "switch" system;
+      };
+      mkDarwinMachine =
+        { user ? defaultUser
+        , system ? defaultDarwinSystem
+        , extraTaps ? [ ]
+        , extraModules ? [ ]
+        ,
+        }:
         let
-          influxTaps = {
-            "garden-io/garden-homebrew" = homebrew-garden;
-          };
+          specialArgs = (inputs // { user = user; system = system; });
+          modules = [
+            home-manager.darwinModules.home-manager
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                enable = true;
+                user = user;
+                taps = defaultTaps // extraTaps;
+                mutableTaps = true;
+                autoMigrate = true;
+              };
+            }
+          ];
         in
-        {
-          "personal-macbook" = mkDarwinMachine {
-            extraTaps = influxTaps;
-            extraModules = [ ./machines/personal-macbook.nix ];
-          };
-          "influx-macbook" = mkDarwinMachine {
-            extraTaps = influxTaps;
-            extraModules = [ ./machines/influx-macbook.nix ];
-          };
+        darwin.lib.darwinSystem {
+          system = system;
+          specialArgs = specialArgs;
+          modules = modules ++ extraModules;
+        };
+    in
+    {
+      apps =
+        let
+          darwinSystems = [ "aarch64-darwin" ];
+          darwinApps = nixpkgs.lib.genAttrs darwinSystems mkDarwinApps;
+        in
+        darwinApps;
+
+      darwinConfigurations = {
+        "personal-macbook" = mkDarwinMachine {
+          extraTaps = extraTaps;
+          extraModules = [ ./machines/personal-macbook.nix ];
+        };
+        "influx-macbook" = mkDarwinMachine {
+          extraTaps = extraTaps;
+          extraModules = [ ./machines/influx-macbook.nix ];
         };
       };
-    }
+    };
+}
 
