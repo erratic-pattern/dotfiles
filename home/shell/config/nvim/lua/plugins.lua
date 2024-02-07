@@ -18,6 +18,8 @@ return require('packer').startup(function()
     -- file explorers/browsers
     use 'nvim-tree/nvim-tree.lua'
 
+    -- UX improvement plugins
+    use 'danilamihailov/beacon.nvim'
     -- smooth scrolling
     use {
         'declancm/cinnamon.nvim',
