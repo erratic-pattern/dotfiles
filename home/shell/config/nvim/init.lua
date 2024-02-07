@@ -5,6 +5,11 @@ vim.cmd.source("$HOME/.vimrc")
 vim.keymap.set("n", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 
+-- beacon settings
+vim.g.beacon_ignore_filetypes = {"NvimTree", "qf"}
+vim.g.beacon_shrink = 0
+-- vim.g.beacon_fade = 0
+
 -- quickfix keybindings
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
