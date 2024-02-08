@@ -3,6 +3,8 @@ if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
     . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
 fi
 
+export PATH="$PATH:$HOME/.cargo/bin"
+
 # Always color ls and group directories
 alias ls='ls --color=auto'
 
