@@ -20,13 +20,6 @@ return require('packer').startup(function()
 
     -- UX improvement plugins
     use 'danilamihailov/beacon.nvim'
-    -- smooth scrolling
-    use {
-        'declancm/cinnamon.nvim',
-        config = function() require('cinnamon').setup({
-            default_delay = 3, 
-        }) end
-    }
 
     -- LSP config
     use {
