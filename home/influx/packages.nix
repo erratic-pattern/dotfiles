@@ -6,6 +6,8 @@
     python3
     libiconv
     go
+    cmake
+    ninja
   ];
 
   home.sessionVariables = {
