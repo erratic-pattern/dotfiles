@@ -19,6 +19,8 @@
         # Games
         "steam"
         "discord"
+        # Social
+        "element"
     ];
   };
 }
