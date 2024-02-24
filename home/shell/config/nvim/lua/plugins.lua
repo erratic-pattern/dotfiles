@@ -10,9 +10,9 @@ return require('packer').startup(function()
     -- fuzzy finder/picker
     use {
         'nvim-telescope/telescope.nvim', tag = "0.1.5",
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
-    use 'nvim-telescope/telescope-ui-select.nvim' 
+    use 'nvim-telescope/telescope-ui-select.nvim'
 
 
     -- file explorers/browsers
@@ -20,6 +20,7 @@ return require('packer').startup(function()
 
     -- UX improvement plugins
     use 'danilamihailov/beacon.nvim'
+    use 'tpope/vim-sleuth' -- autoconfigure indent
 
     -- LSP config
     use {
@@ -27,14 +28,14 @@ return require('packer').startup(function()
         branch = 'v3.x',
         requires = {
             -- LSP Installation
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
             -- LSP Integration/Config
-            {'neovim/nvim-lspconfig'},
+            { 'neovim/nvim-lspconfig' },
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'L3MON4D3/LuaSnip'},
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'L3MON4D3/LuaSnip' },
         }
     }
 
@@ -52,11 +53,8 @@ return require('packer').startup(function()
             require('Comment').setup()
         end
     }
-    use 'tpope/vim-surround' -- surround text with brackets, quotes, etc.
     use 'mbbill/undotree'
     -- use 'HiPhish/nvim-ts-rainbow2' -- bracket highlighting
-    use 'yamatsum/nvim-cursorline' -- underline word under cursor
-    use 'lukas-reineke/indent-blankline.nvim' -- indentation guides
 
     -- git integrations
     use {
@@ -66,7 +64,7 @@ return require('packer').startup(function()
         end
     }
     use 'tpope/vim-fugitive' -- git commands
-    use 'tpope/vim-rhubarb' -- open GitHub links at cursor
+    use 'tpope/vim-rhubarb'  -- open GitHub links at cursor
 
     -- gist integration
     use {
@@ -80,33 +78,15 @@ return require('packer').startup(function()
     -- github integration
     use {
         'pwntester/octo.nvim',
-        config = function ()
-            require"octo".setup()
+        config = function()
+            require "octo".setup()
         end
     }
-
-    -- language-specific plugins
-    use 'LnL7/vim-nix' -- nix language support
 
     -- AI overlords
     use 'github/copilot.vim'
 
     -- colorschemes
-    use {
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            require('rose-pine').setup({
-                variant = 'moon',
-                -- bold_vert_split = true,
-                -- dim_nc_background = true,
-                -- disable_background = true,
-                -- disable_float_background = true,
-                -- disable_italics = true,
-            })
-            -- vim.cmd [[colorscheme rose-pine]]
-        end
-    }
     use {
         'folke/tokyonight.nvim',
         config = function()
@@ -117,14 +97,12 @@ return require('packer').startup(function()
                     comments = { italic = true },
                     keywords = { italic = false },
                     -- Background styles. Can be "dark", "transparent" or "normal"
-                    sidebars = "dark", 
-                    floats = "dark", 
+                    sidebars = "dark",
+                    floats = "dark",
                 },
                 lualine_bold = true,
             }
             vim.cmd [[colorscheme tokyonight-moon]]
         end
     }
-
 end)
-
