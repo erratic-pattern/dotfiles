@@ -10,17 +10,19 @@
     # $ mas search <app name>
     #
     masApps = {
-        # "1password" = 1333542190;
+      # "1password" = 1333542190;
     };
 
     casks = [
-        # VPN
-        "expressvpn"
-        # Games
-        "steam"
-        "discord"
-        # Social
-        "element"
+      # VPN
+      "expressvpn"
+      # Games
+      "steam"
+      "discord"
+      # Social
+      "element"
+      # file encryption
+      "veracrypt"
     ];
   };
 }
