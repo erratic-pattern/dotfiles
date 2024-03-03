@@ -5,6 +5,9 @@ vim.cmd.source("$HOME/.vimrc")
 vim.keymap.set("n", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 
+-- don't show mode since it's already in statusline
+vim.opt.showmode = false
+
 -- beacon settings
 vim.g.beacon_minimal_jump = 5
 vim.g.beacon_ignore_filetypes = {"NvimTree", "qf"}
