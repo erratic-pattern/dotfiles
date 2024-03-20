@@ -1,4 +1,3 @@
-
 { ... }:
 {
   homebrew = {
@@ -10,19 +9,16 @@
     # $ mas search <app name>
     #
     masApps = {
-        # "1password" = 1333542190;
-        "tailscale" = 1475387142;
+      "tailscale" = 1475387142;
     };
 
     brews = [
-        # "influxdb-cli"
-        # "garden-cli@0.12"
     ];
 
     casks = [
-        # Communication Tools
-        "slack"
-        "zoom"
+      # Communication Tools
+      "slack"
+      "zoom"
     ];
   };
 }
