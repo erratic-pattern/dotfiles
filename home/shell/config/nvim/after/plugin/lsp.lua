@@ -75,3 +75,47 @@ cmp.setup({
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
     }),
 })
+
+require('mason-nvim-dap').setup({
+    ensure_installed = {
+        'cppdbg',
+        'codelldb',
+    },
+})
+
+local dap = require('dap')
+
+dap.adapters.lldb = {
+    type = 'executable',
+    command = vim.fn.exepath("lldb-vscode"),
+    name = 'lldb'
+}
+
+local datafusion_cil = os.getenv('HOME') .. '/Code/arrow-datafusion/datafusion-cli'
+
+dap.configurations.rust = {
+    {
+        name = "datafusion-cli",
+        type = "lldb",
+        request = "launch",
+        program = function()
+            return datafusion_cil .. '/target/debug/datafusion-cli'
+        end,
+        cwd = datafusion_cil,
+        stopOnEntry = false,
+        args = function()
+            return { '-f', vim.fn.input('Path to SQL file: ', vim.fn.getcwd() .. '/', 'file') }
+        end,
+    },
+}
+
+local opts = { remap = true }
+vim.keymap.set("n", "<leader>db", function() dap.toggle_breakpoint() end, opts)
+vim.keymap.set("n", "<leader>ds", function() dap.step_over() end, opts)
+vim.keymap.set("n", "<leader>di", function() dap.step_into() end, opts)
+vim.keymap.set("n", "<leader>do", function() dap.step_out() end, opts)
+vim.keymap.set("n", "<leader>dc", function() dap.continue() end, opts)
+vim.keymap.set("n", "<leader>dr", function() dap.repl.open() end, opts)
+
+require("dapui").setup({})
+

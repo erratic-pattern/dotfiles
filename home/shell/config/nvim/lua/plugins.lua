@@ -39,6 +39,12 @@ return require('packer').startup(function()
         }
     }
 
+    -- debugger config
+    use { "nvim-neotest/nvim-nio" }
+    use 'mfussenegger/nvim-dap'
+    use 'jay-babu/mason-nvim-dap.nvim'
+    use 'rcarriga/nvim-dap-ui'
+
     -- treesitter for parsing and highlighting
     use {
         'nvim-treesitter/nvim-treesitter',

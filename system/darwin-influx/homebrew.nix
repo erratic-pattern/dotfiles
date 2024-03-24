@@ -13,6 +13,8 @@
     };
 
     brews = [
+      # having issues with nix llvm packages so use brew instead
+      "llvm"
     ];
 
     casks = [
@@ -21,4 +23,8 @@
       "zoom"
     ];
   };
+  # link lldb-vscode and llvm-symbolizer to homebrew bin
+  system.activationScripts.linkLlvmCode.text = ''
+    ln -f -s $(brew --prefix)/opt/llvm/bin/lldb-vscode $(brew --prefix)/opt/llvm/bin/llvm-symbolizer $(brew --prefix)/bin/
+  '';
 }
