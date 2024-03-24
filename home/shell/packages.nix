@@ -22,6 +22,10 @@
     # pinentry
     # yubikey-manager
 
+    # Debugging tools
+    # llvmPackages.lldb
+    # llvmPackages.libllvm
+
     # Source code management, Git, GitHub tools
     gh
     git
