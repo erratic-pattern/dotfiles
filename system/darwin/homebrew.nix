@@ -22,9 +22,6 @@
 
       # Music
       "spotify"
-
-      # Wacom Tablet Drivers
-      "wacom-tablet"
     ];
   };
   environment.variables = {
