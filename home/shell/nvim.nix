@@ -29,7 +29,6 @@
 
       withNodeJs = true; # used by copilot
       extraPackages = with pkgs; [
-          tree-sitter # for autoinstalling parsers
           ripgrep # used by telescope
           rustup # for rust-analyzer 
           luarocks # for Lua LSP
