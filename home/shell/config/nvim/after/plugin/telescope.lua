@@ -22,6 +22,7 @@ end)
 vim.keymap.set('n', '<leader>s', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>r', builtin.resume, {})
 -- git finders
 vim.keymap.set('n', '<leader>vf', builtin.git_files, {})
 vim.keymap.set('n', '<leader>vc', builtin.git_commits, {})
