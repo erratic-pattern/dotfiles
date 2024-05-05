@@ -3,7 +3,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/";
+    home-manager = {
+      url = "github:nix-community/home-manager/";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -12,6 +15,8 @@
 
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-darwin.follows = "darwin";
     };
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";

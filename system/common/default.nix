@@ -15,7 +15,7 @@
   services.nix-daemon.enable = true;
   # Setup user, packages, programs
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     settings = {
       allowed-users = ["root"];
       trusted-users = ["@admin" "adam"];
