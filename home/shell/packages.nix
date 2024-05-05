@@ -38,7 +38,7 @@
     fira-code-nerdfont
 
     # Video Tools
-    ffmpeg_5-full # see https://github.com/NixOS/nixpkgs/issues/271313
+    # ffmpeg_5-full
 
   ];
 }
