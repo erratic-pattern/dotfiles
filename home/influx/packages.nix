@@ -3,7 +3,6 @@
     rustup
     protobuf
     postgresql
-    python3
     libiconv
     go
     cmake

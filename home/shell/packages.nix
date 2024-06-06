@@ -7,6 +7,7 @@
     jq
     killall
     openssh
+    python3
     ripgrep
     tree
     tmux
@@ -39,6 +40,9 @@
 
     # Video Tools
     # ffmpeg_5-full
+
+    # Python Packages
+    python311Packages.dateutils
 
   ];
 }
