@@ -9,8 +9,7 @@ in
   ];
 
   fonts = {
-    fontDir.enable = true;
-    fonts = [ pkgs.fira-code pkgs.fira-code-nerdfont ];
+    packages = [ pkgs.fira-code pkgs.fira-code-nerdfont ];
   };
 
   programs.zsh = {
