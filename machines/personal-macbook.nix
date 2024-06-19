@@ -23,6 +23,7 @@ let user = "adam"; in
       imports = [
         ../home/shell
         ../home/darwin
+        ../home/muds
         ../home/influx
       ];
       home.enableNixpkgsReleaseCheck = false;
