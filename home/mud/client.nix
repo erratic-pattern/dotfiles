@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     # GUI MUD client
-    mudlet
-    # blightmud
+    # mudlet
+    blightmud
     # tinyfugue
   ];
 }
