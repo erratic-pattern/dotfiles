@@ -9,10 +9,6 @@
     ninja
   ];
 
-  home.sessionVariables = {
-    PYTHONPATH = "${pkgs.python3}/${pkgs.python3.sitePackages}";
-  };
-
   programs.zsh = {
     initExtra = ''
       export PATH="$PATH:$HOME/.cargo/bin:$HOME/go/bin"
