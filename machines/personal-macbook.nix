@@ -1,33 +1,22 @@
-{ config, pkgs, ... }:
-let user = "adam"; in
-{
+{ config, pkgs, user, ... }: {
   imports = [
     ../system/darwin-personal
+    ../system/darwin-influx
     ../desktop/darwin
   ];
 
   networking.hostName = "Adams-MacBook-Pro";
+  networking.localHostName = "Adams-MacBook-Pro";
   networking.computerName = "Adam's MacBook Pro";
 
-  users.users.${user} = {
-    name = "${user}";
-    home = "/Users/${user}";
-    isHidden = false;
-    shell = pkgs.zsh;
-  };
-
-  # Enable home-manager
   home-manager = {
-    useGlobalPkgs = true;
-    users.${user} = { pkgs, config, lib, ... }:{
+    users.${user} = { ... }: {
       imports = [
         ../home/shell
         ../home/darwin
         ../home/mud
         ../home/influx
       ];
-      home.enableNixpkgsReleaseCheck = false;
-      home.stateVersion = "21.11";
     };
   };
 

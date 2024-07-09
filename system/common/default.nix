@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, user, system, ... }: {
 
   nixpkgs = {
     config = {
@@ -11,14 +11,11 @@
     };
   };
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  # Setup user, packages, programs
   nix = {
     package = pkgs.nixVersions.latest;
     settings = {
-      allowed-users = ["root"];
-      trusted-users = ["@admin" "adam"];
+      allowed-users = [ "root" ];
+      trusted-users = [ "@admin" user ];
     };
 
     gc = {
@@ -33,6 +30,20 @@
     '';
   };
 
+  # Auto upgrade nix package and the daemon service.
+  services.nix-daemon.enable = true;
 
   system.checks.verifyNixPath = false;
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = inputs // {inherit user system; };
+    users.${user} = { ... }: {
+      home.enableNixpkgsReleaseCheck = false;
+      home.stateVersion = "21.11";
+      # allow home-manager to manage itself
+      programs.home-manager.enable = true;
+    };
+  };
 }

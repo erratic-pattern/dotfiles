@@ -1,12 +1,20 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, user, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
 let
   brewShellEnv = ''eval "$(/opt/homebrew/bin/brew shellenv)"'';
 in
 {
   imports = [
+    home-manager.darwinModules.home-manager
+    nix-homebrew.darwinModules.nix-homebrew
     ../common
-    ./homebrew.nix
   ];
+
+  users.users.${user} = {
+    name = "${user}";
+    home = "/Users/${user}";
+    isHidden = false;
+    shell = pkgs.zsh;
+  };
 
   fonts = {
     packages = [ pkgs.fira-code pkgs.fira-code-nerdfont ];
@@ -25,7 +33,21 @@ in
     interactiveShellInit = brewShellEnv;
   };
 
-  # programs.fish.enable = true;
+  nix-homebrew = {
+    enable = true;
+    user = user;
+    taps = {
+      "homebrew/core" = homebrew-core;
+      "homebrew/cask" = homebrew-cask;
+      "homebrew/bundle" = homebrew-bundle;
+    };
+    mutableTaps = true;
+    autoMigrate = true;
+  };
+
+  environment.variables = {
+    DOCKER_BUILDKIT = "1";
+  };
 
   system = {
     stateVersion = 4;

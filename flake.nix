@@ -37,6 +37,7 @@
       url = "github:garden-io/homebrew-garden";
       flake = false;
     };
+
     kubelogin = {
       url = "github:int128/kubelogin";
       flake = false;
@@ -46,15 +47,6 @@
     let
       defaultUser = "adam";
       defaultDarwinSystem = "aarch64-darwin";
-      defaultTaps = {
-        "homebrew/core" = homebrew-core;
-        "homebrew/cask" = homebrew-cask;
-        "homebrew/bundle" = homebrew-bundle;
-      };
-      extraTaps = {
-        "int128/kubelogin" = kubelogin;
-        "garden-io/garden-homebrew" = homebrew-garden;
-      };
 
       mkApp = scriptName: system: {
         type = "app";
@@ -64,33 +56,18 @@
       mkDarwinApps = system: {
         "switch" = mkApp "switch" system;
       };
+
       mkDarwinMachine =
         { user ? defaultUser
         , system ? defaultDarwinSystem
-        , extraTaps ? [ ]
-        , extraModules ? [ ]
+        , modules
         ,
         }:
         let
-          specialArgs = (inputs // { user = user; system = system; });
-          modules = [
-            home-manager.darwinModules.home-manager
-            nix-homebrew.darwinModules.nix-homebrew
-            {
-              nix-homebrew = {
-                enable = true;
-                user = user;
-                taps = defaultTaps // extraTaps;
-                mutableTaps = true;
-                autoMigrate = true;
-              };
-            }
-          ];
+          specialArgs = (inputs // { inherit user system inputs; });
         in
         darwin.lib.darwinSystem {
-          system = system;
-          specialArgs = specialArgs;
-          modules = modules ++ extraModules;
+          inherit system specialArgs modules;
         };
     in
     {
@@ -103,12 +80,14 @@
 
       darwinConfigurations = {
         "personal-macbook" = mkDarwinMachine {
-          extraTaps = extraTaps;
-          extraModules = [ ./machines/personal-macbook.nix ];
+          modules = [
+            ./machines/personal-macbook.nix
+          ];
         };
         "influx-macbook" = mkDarwinMachine {
-          extraTaps = extraTaps;
-          extraModules = [ ./machines/influx-macbook.nix ];
+          modules = [
+            ./machines/influx-macbook.nix
+          ];
         };
       };
     };

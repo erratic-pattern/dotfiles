@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-let user = "adam"; in
-{
+{ config, pkgs, user, ... }: {
   imports = [
     ../system/darwin-influx
     ../desktop/darwin
@@ -10,24 +8,13 @@ let user = "adam"; in
   networking.localHostName = "Adams-Influx-MacBook-Pro";
   networking.computerName = "Adam's Influx MacBook Pro";
 
-  users.users.${user} = {
-    name = "${user}";
-    home = "/Users/${user}";
-    isHidden = false;
-    shell = pkgs.zsh;
-  };
-
-  # Enable home-manager
   home-manager = {
-    useGlobalPkgs = true;
-    users.${user} = { pkgs, config, lib, ... }:{
+    users.${user} = { ... }:{
       imports = [
         ../home/shell
         ../home/darwin
         ../home/influx
       ];
-      home.enableNixpkgsReleaseCheck = false;
-      home.stateVersion = "21.11";
     };
   };
 
