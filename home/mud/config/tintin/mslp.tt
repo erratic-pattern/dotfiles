@@ -1,0 +1,3 @@
+#nop Handle MSLP links
+#config mouse on;
+#event {SHORT-CLICKED LINK SEND MOUSE BUTTON ONE} #send {%4};

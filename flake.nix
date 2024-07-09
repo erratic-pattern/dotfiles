@@ -42,8 +42,25 @@
       url = "github:int128/kubelogin";
       flake = false;
     };
+
+    vim-tintin = {
+      url = "github:LokiChaos/vim-tintin";
+      flake = false;
+    };
   };
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-garden, home-manager, kubelogin, nixpkgs } @inputs:
+  outputs =
+    inputs @ { self
+    , darwin
+    , nix-homebrew
+    , homebrew-bundle
+    , homebrew-core
+    , homebrew-cask
+    , homebrew-garden
+    , home-manager
+    , kubelogin
+    , nixpkgs
+    , vim-tintin
+    }:
     let
       defaultUser = "adam";
       defaultDarwinSystem = "aarch64-darwin";

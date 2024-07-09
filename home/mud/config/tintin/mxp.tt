@@ -1,0 +1,43 @@
+#nop Basic MXP handling
+#nop Source: https://tintin.mudhalla.net/scripts/mxp.php
+#config mouse on
+
+#EVENT {CATCH IAC WILL MXP}
+{
+     #nop #showme <118>SENDING DO MXP;
+     #send {\xFF\xFD\x5B\}
+}
+
+#EVENT {CATCH IAC DO MXP}
+{
+     #nop #showme <118>SENDING WILL MXP;
+     #send {\xFF\xFB\x5B\}
+}
+
+#FUNCTION {mxp_link}
+{
+     #line sub esc #var result {\e]68;1;%1;%2\a\e[4m%3\e[24m}
+}
+
+#ACTION {~\e[4z<VERSION>}
+{
+     #send {\e[1z<VERSION MXP=1.0 CLIENT=TINTIN++ VERSION=2.02.04>}
+}
+
+#ACTION {~\e[4z<SUPPORT>}
+{
+     #send {\e[1z<SUPPORTS +SEND +COLOR>}
+}
+
+#EVENT {PRESSED LINK MXP MOUSE BUTTON ONE}
+{
+     #send {%4}
+}
+
+#SUBSTITUTE {~\e[4z<COLOR #%1>%2\e[4z</COLOR>} {<f%1>%2<900>}
+#SUBSTITUTE {~\e[4z<SEND HREF="%1">%2\e[4z</SEND>} {@mxp_link{MXP;%1;%2}}
+#SUBSTITUTE {~\e[4z{<RExits>|</RExits>|<RDesc>|</RDesc>|<PROMPT>|</PROMPT>|<RName>|</RName>}} {}
+#SUBSTITUTE {~\e[4z<RNum %d />} {}
+#SUBSTITUTE {&lt;} {<}
+#SUBSTITUTE {&gt;} {>}
+

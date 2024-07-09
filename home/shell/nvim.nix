@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, vim-tintin, ... }: {
   # install packer plugin manager
   home.file.".local/share/nvim/site/pack/packer/start/packer.nvim" = {
     recursive = true;
@@ -15,7 +15,12 @@
     recursive = true;
   };
 
-  #  add .vimrc for vim-compatible config that's also sourced by nvim/init.lua
+  # add vim-tintin syntax file to nvim config directory
+  xdg.configFile."nvim/syntax/tt.vim" = {
+    source = "${vim-tintin}/syntax/tt.vim";
+  };
+
+  # add .vimrc for vim-compatible config that's also sourced by nvim/init.lua
   home.file.".vimrc" = {
     source = ./config/vimrc;
   };

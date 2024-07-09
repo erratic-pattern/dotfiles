@@ -1,8 +1,18 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # GUI MUD client
-    # mudlet
-    blightmud
-    # tinyfugue
+    tintin
   ];
+
+  # TinTin config files
+  home.file.".tintin" = {
+    source = ./config/tintin;
+    recursive = true;
+  };
+
+  # quick alias to load tintin with config
+  programs.zsh = {
+    initExtra = ''
+      alias tt='tt++ ~/.tintin/init.tt'
+    '';
+  };
 }

@@ -207,7 +207,8 @@
         "homebrew-garden": "homebrew-garden",
         "kubelogin": "kubelogin",
         "nix-homebrew": "nix-homebrew",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "vim-tintin": "vim-tintin"
       }
     },
     "systems": {
@@ -222,6 +223,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "vim-tintin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647076473,
+        "narHash": "sha256-radSlLf+CrxEJC17ZAtqjvUypZwkkpwvWdkzW5AKj9c=",
+        "owner": "LokiChaos",
+        "repo": "vim-tintin",
+        "rev": "eded66917922e1244ee531d555a5fc8a7af06d44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LokiChaos",
+        "repo": "vim-tintin",
         "type": "github"
       }
     }

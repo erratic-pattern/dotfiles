@@ -1,0 +1,37 @@
+#nop load system variables and directory paths;
+#info system save;
+#var config_dir {$info[SYSTEM][TINTIN]};
+#var worlds_dir {$config_dir/worlds};
+#var logins_dir {$config_dir/logins};
+
+#nop load protocol-specific configuration;
+#read $config_dir/mslp.tt;
+#read $config_dir/mxp.tt;
+
+#nop default split screen config;
+#nop one output window with multi-line input window;
+#split 0 0 0 0 5;
+
+#alias {/connect %1} {
+    #nop connect to a MUD and load the config file for that world;
+    #read $worlds_dir/%1.tt;
+};
+
+#alias {/login %1} {
+    #nop login as an account/character and load the config file for that login;
+    #read $logins_dir/$world/%1.tt;
+};
+
+#event {SESSION CREATED} {
+    #nop store the world name as a variable. Used by the /login alias;
+    #var world %0;
+};
+
+#event {SESSION CONNECTED} {
+    #nop Send telnet NOP every minute to avoid disconnects;
+    #ticker idle {#send {\xFF\xF1\}} 60;
+};
+
+#event {SESSION DISCONNECTED} {
+    #unticker idle;
+};
