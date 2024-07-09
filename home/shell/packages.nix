@@ -33,10 +33,6 @@
     # VS Code CLI
     # vscode
 
-    # Fonts
-    fira-code
-    fira-code-nerdfont
-
     # Video Tools
     # ffmpeg_5-full
 
