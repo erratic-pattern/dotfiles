@@ -5,9 +5,9 @@
     ../desktop/darwin
   ];
 
-  networking.hostName = "Adams-MacBook-Pro";
-  networking.localHostName = "Adams-MacBook-Pro";
-  networking.computerName = "Adam's MacBook Pro";
+  networking.hostName = "Adams-MacBook";
+  networking.localHostName = "Adams-MacBook";
+  networking.computerName = "Adam's MacBook";
 
   home-manager = {
     users.${user} = { ... }: {
