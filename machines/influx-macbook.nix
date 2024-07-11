@@ -1,7 +1,6 @@
 { config, pkgs, user, ... }: {
   imports = [
     ../system/darwin-influx
-    ../desktop/darwin
   ];
 
   networking.hostName = "Adams-Influx-MacBook";

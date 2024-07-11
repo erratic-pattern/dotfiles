@@ -2,7 +2,6 @@
   imports = [
     ../system/darwin-personal
     ../system/darwin-influx
-    ../desktop/darwin
   ];
 
   networking.hostName = "Adams-MacBook";

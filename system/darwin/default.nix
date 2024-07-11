@@ -6,6 +6,7 @@ in
   imports = [
     home-manager.darwinModules.home-manager
     nix-homebrew.darwinModules.nix-homebrew
+    ./dock.nix
     ../common
   ];
 
