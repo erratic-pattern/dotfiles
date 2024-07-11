@@ -6,7 +6,8 @@
 
 #nop load protocol-specific configuration;
 #read $config_dir/mslp.tt;
-#read $config_dir/mxp.tt;
+#nop disable MXP for now because it does not handle many cases
+#nop #read $config_dir/mxp.tt;
 
 #nop default split screen config;
 #nop one output window with multi-line input window;
