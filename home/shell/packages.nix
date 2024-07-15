@@ -8,6 +8,7 @@
     killall
     openssh
     ripgrep
+    fd
     tree
     tmux
     unzip
