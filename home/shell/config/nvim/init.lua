@@ -15,6 +15,9 @@ vim.g.beacon_size = 80
 -- vim.g.beacon_shrink = 0
 -- vim.g.beacon_fade = 0
 
+-- toggle relative line numbers
+vim.keymap.set('n', '<leader>ln', '<cmd>set invrelativenumber<CR>', {})
+
 -- quickfix keybindings
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
