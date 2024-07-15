@@ -35,6 +35,7 @@
     withNodeJs = true; # used by copilot
     extraPackages = with pkgs; [
       ripgrep # used by telescope
+      fd # used by telescope
       rustup # for rust-analyzer 
       luarocks # for Lua LSP
     ];

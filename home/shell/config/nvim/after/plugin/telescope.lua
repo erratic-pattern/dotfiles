@@ -3,23 +3,24 @@ local telescope = require 'telescope'
 telescope.setup({
     extensions = {
         ["ui-select"] = {
-            require("telescope.themes").get_dropdown { }
+            require("telescope.themes").get_dropdown {}
         }
     }
 })
 
-telescope.load_extension"ui-select"
+telescope.load_extension "ui-select"
 
 local builtin = require('telescope.builtin')
 
 
 -- basic finders
-vim.keymap.set('n', '<leader>f',function ()
+vim.keymap.set('n', '<leader>f', function()
     builtin.find_files {
         find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
     }
 end)
 vim.keymap.set('n', '<leader>s', builtin.live_grep, {})
+vim.keymap.set('v', '<leader>s', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>r', builtin.resume, {})
@@ -37,4 +38,3 @@ vim.keymap.set('n', '<leader>go', builtin.lsp_type_definitions, {})
 vim.keymap.set('n', '<leader>gl', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>lsb', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>lsw', builtin.lsp_workspace_symbols, {})
-

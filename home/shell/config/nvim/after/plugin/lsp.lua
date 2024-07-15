@@ -31,8 +31,15 @@ require('mason-lspconfig').setup({
         lsp_zero.default_setup,
         -- configure lua_ls to recognize nvim globals
         lua_ls = function()
-            local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
+            require('lspconfig').lua_ls.setup {
+                settings = {
+                    Lua = {
+                        diagnostics = { globals = { "vim" } },
+                        -- runtime = { version = "LuaJIT" },
+                        telemetry = { enable = false }
+                    }
+                }
+            }
         end,
         rust_analyzer = function()
             require('lspconfig').rust_analyzer.setup({
