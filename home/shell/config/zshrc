@@ -12,6 +12,10 @@ alias ls='ls --color=auto'
 
 #Delete
 bindkey "^[[3~" delete-char
+#Ctrl+R for history search
+bindkey "^R" history-incremental-search-backward
+
+
 
 # set terminal title to cwd
 DISABLE_AUTO_TITLE="true"
