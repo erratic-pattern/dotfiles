@@ -1,6 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use 'nvim-tree/nvim-web-devicons'
@@ -17,6 +17,12 @@ return require('packer').startup(function()
 
     -- file explorers/browsers
     use 'nvim-tree/nvim-tree.lua'
+    use {
+        "stevearc/oil.nvim",
+        config = function()
+            require("oil").setup()
+        end,
+    }
 
     -- UX improvement plugins
     use 'danilamihailov/beacon.nvim'
