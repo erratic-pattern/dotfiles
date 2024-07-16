@@ -97,11 +97,14 @@
 
       tokyonight-nvim
 
-      nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp
-      luasnip
+      cmp-path
+      cmp-buffer
+      cmp-cmdline
+      cmp-git
 
+      nvim-lspconfig
 
       nvim-treesitter-textobjects
       {
