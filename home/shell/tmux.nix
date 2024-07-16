@@ -1,4 +1,4 @@
-{config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 {
   xdg.configFile."tmux" = {
     source = ./config/tmux;

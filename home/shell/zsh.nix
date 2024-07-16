@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 {
   programs.zsh = {
     enable = true;
@@ -7,6 +7,6 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
-    initExtra = builtins.readFile(./config/zshrc);
+    initExtra = builtins.readFile (./config/zshrc);
   };
 }

@@ -42,6 +42,10 @@
       url = "github:int128/kubelogin";
       flake = false;
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     vim-tintin = {
       url = "github:LokiChaos/vim-tintin";
@@ -59,6 +63,7 @@
     , home-manager
     , kubelogin
     , nixpkgs
+    , nixvim
     , vim-tintin
     }:
     let

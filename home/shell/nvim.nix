@@ -1,12 +1,12 @@
-{ pkgs, lib, vim-tintin, ... }: {
-  # install packer plugin manager
-  home.file.".local/share/nvim/site/pack/packer/start/packer.nvim" = {
-    recursive = true;
-    source = builtins.fetchGit {
-      url = "https://github.com/wbthomason/packer.nvim";
-      ref = "master";
-      rev = "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3";
-    };
+{ pkgs, nixvim, vim-tintin, ... }:
+{
+  imports = [
+    nixvim.homeManagerModules.nixvim
+  ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   # add nvim config directory
@@ -25,25 +25,121 @@
     source = ./config/vimrc;
   };
 
-  programs.neovim = {
+  programs.nixvim = {
     enable = true;
-    defaultEditor = true;
+
     viAlias = true;
     vimAlias = true;
-    vimdiffAlias = true;
+
+    # TODO: uncomment for future Linux setup
+    # clipboard = {
+    # providers = lib.optionalAttrs pkgs.stdenvNoCC.isLinux {
+    #   # Required for copying to the system clipboard
+    #   wl-copy.enable = wayland;
+    #   xclip.enable = !wayland;
+    # };
+    # };
 
     withNodeJs = true; # used by copilot
     extraPackages = with pkgs; [
-      ripgrep # used by telescope
-      fd # used by telescope
-      rustup # for rust-analyzer 
-      luarocks # for Lua LSP
+      taplo-lsp # TOML
+      yaml-language-server # YAML
+      nodePackages.typescript-language-server # Typescript/Javascript
+      nodePackages.vscode-json-languageserver # JSON
+      python3Packages.python-lsp-server # Python
+      sumneko-lua-language-server # Lua
+
+      # Bash
+      shellcheck
+      nodePackages.bash-language-server
+
+      # Nix
+      nil
+      nixpkgs-fmt
+
+      # Rust
+      rustup
+      rust-analyzer
+
+      # Telescope
+      ripgrep
+      fd
+    ];
+    extraPlugins = with pkgs.vimPlugins; [
+
+
+      lualine-nvim
+
+      plenary-nvim
+      nvim-web-devicons
+      telescope-nvim
+      telescope-ui-select-nvim
+
+      nvim-tree-lua
+      oil-nvim
+
+      # beacon-nvim
+      editorconfig-nvim
+      vim-sleuth
+
+      comment-nvim
+      undotree
+
+      gitsigns-nvim
+      vim-fugitive
+      vim-rhubarb
+
+      nvim-unception
+      # gist-nvim
+      octo-nvim
+
+      copilot-vim
+
+      tokyonight-nvim
+
+      nvim-lspconfig
+      nvim-cmp
+      cmp-nvim-lsp
+      luasnip
+
+
+      nvim-treesitter-textobjects
+      {
+        plugin = nvim-treesitter.withPlugins
+          (plugins: with plugins; [
+            tree-sitter-json
+            tree-sitter-toml
+            tree-sitter-yaml
+            tree-sitter-rust
+            tree-sitter-python
+            tree-sitter-nix
+            tree-sitter-cmake
+            tree-sitter-make
+            tree-sitter-cpp
+            tree-sitter-c
+            tree-sitter-bash
+            tree-sitter-lua
+            tree-sitter-css
+            tree-sitter-typescript
+            tree-sitter-javascript
+            tree-sitter-tsx
+            tree-sitter-html
+            tree-sitter-http
+            tree-sitter-markdown
+            tree-sitter-markdown-inline
+            tree-sitter-regex
+            tree-sitter-vim
+            tree-sitter-vimdoc
+            tree-sitter-query
+            tree-sitter-llvm
+            tree-sitter-go
+            tree-sitter-zig
+            tree-sitter-sql
+            tree-sitter-proto
+            tree-sitter-dockerfile
+          ]);
+      }
     ];
   };
-
-  home.activation.packerSync =
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      ${pkgs.neovim}/bin/nvim --headless -u ./.config/nvim/lua/plugins.lua -c 'autocmd User PackerComplete quitall' -c 'PackerSync' 2> /dev/null
-    '';
-}  
+}
 

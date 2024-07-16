@@ -8,7 +8,7 @@
   networking.computerName = "Adam's Influx MacBook";
 
   home-manager = {
-    users.${user} = { ... }:{
+    users.${user} = { ... }: {
       imports = [
         ../home/shell
         ../home/darwin

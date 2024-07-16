@@ -1,0 +1,64 @@
+-- TODO: work on DAP setup
+-- require('mason-nvim-dap').setup({
+--     ensure_installed = {
+--         'cppdbg',
+--         'codelldb',
+--     },
+-- })
+-- local dap = require('dap')
+--
+-- dap.adapters.lldb = {
+--     type = 'executable',
+--     command = vim.fn.exepath("lldb-vscode"),
+--     name = 'lldb'
+-- }
+--
+-- local datafusion_cil = os.getenv('HOME') .. '/Code/arrow-datafusion/datafusion-cli'
+-- local influxdb_iox = os.getenv('HOME') .. '/Code/influxdb_iox/'
+--
+-- dap.configurations.rust = {
+--     {
+--         name = "influxdb_iox",
+--         type = "lldb",
+--         request = "launch",
+--         program = function()
+--             return influxdb_iox .. '/target/debug/influxdb_iox'
+--         end,
+--         cwd = influxdb_iox,
+--         stopOnEntry = false,
+--         args = function()
+--             local langs = { 'sql', 'influxql' }
+--             local lang_menu = { 'Select query language: ' }
+--             for k, v in pairs(langs) do
+--                 lang_menu[k + 1] = k .. '. ' .. v
+--             end
+--             local lang_ind = vim.fn.inputlist(lang_menu)
+--             local lang = langs[lang_ind]
+--             local namespace = vim.fn.input('Namespace: ')
+--             local query = vim.fn.input('Query to run: ')
+--             return { '--lang', lang, namespace, query }
+--         end,
+--     },
+--     {
+--         name = "datafusion-cli",
+--         type = "lldb",
+--         request = "launch",
+--         program = function()
+--             return datafusion_cil .. '/target/debug/datafusion-cli'
+--         end,
+--         cwd = datafusion_cil,
+--         stopOnEntry = false,
+--         args = function()
+--             return { '-f', vim.fn.input('Path to SQL file: ', vim.fn.getcwd() .. '/', 'file') }
+--         end,
+--     },
+-- }
+-- local opts = { remap = true }
+-- vim.keymap.set("n", "<leader>db", function() dap.toggle_breakpoint() end, opts)
+-- vim.keymap.set("n", "<leader>ds", function() dap.step_over() end, opts)
+-- vim.keymap.set("n", "<leader>di", function() dap.step_into() end, opts)
+-- vim.keymap.set("n", "<leader>do", function() dap.step_out() end, opts)
+-- vim.keymap.set("n", "<leader>dc", function() dap.continue() end, opts)
+-- vim.keymap.set("n", "<leader>dr", function() dap.repl.open() end, opts)
+--
+-- require("dapui").setup({})
