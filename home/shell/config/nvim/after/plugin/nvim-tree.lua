@@ -1,7 +1,5 @@
 require('nvim-tree').setup {
-	-- prefer nvim-tree over netrw for file browser
-	-- disable_netrw = false,
-	-- hijack_netrw = true,
+	disable_netrw = false,
 }
 
 vim.keymap.set('n', '<leader>ex', '<cmd>NvimTreeFindFile<cr>')
