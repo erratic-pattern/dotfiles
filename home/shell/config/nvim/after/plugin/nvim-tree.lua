@@ -4,8 +4,6 @@ require('nvim-tree').setup {
 	-- hijack_netrw = true,
 }
 
--- require'nvim-web-devicons'.setup { }
-
 vim.keymap.set('n', '<leader>ex', '<cmd>NvimTreeFindFile<cr>')
 vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeToggle<cr>')
 
