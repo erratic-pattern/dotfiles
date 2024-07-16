@@ -48,6 +48,7 @@
       nodePackages.vscode-json-languageserver # JSON
       python3Packages.python-lsp-server # Python
       sumneko-lua-language-server # Lua
+      jsonnet-language-server #Jsonnet
 
       # Bash
       shellcheck
@@ -66,7 +67,6 @@
       fd
     ];
     extraPlugins = with pkgs.vimPlugins; [
-
 
       lualine-nvim
 
@@ -140,6 +140,7 @@
             tree-sitter-sql
             tree-sitter-proto
             tree-sitter-dockerfile
+            tree-sitter-jsonnet
           ]);
       }
     ];

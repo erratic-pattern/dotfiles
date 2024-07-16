@@ -9,6 +9,7 @@
     openssh
     ripgrep
     fd
+    parallel
     tree
     tmux
     unzip
