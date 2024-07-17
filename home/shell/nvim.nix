@@ -59,7 +59,6 @@
       nixpkgs-fmt
 
       # Rust
-      rustup
       rust-analyzer
 
       # Telescope
