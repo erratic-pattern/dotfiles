@@ -1,10 +1,8 @@
-local default_lsp = {
-    -- Use nvim-cmp's capabilities, see `plugins/cmp.lua`
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
-
-    -- Configure some keybindings when a language server attaches
-    on_attach = function(_, buffer)
-        local opts = { buffer = buffer, remap = false }
+-- Configure some keybindings when a language server attaches
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.buf }
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
@@ -19,6 +17,11 @@ local default_lsp = {
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
     end
+})
+
+local default_lsp = {
+    -- Use nvim-cmp's capabilities, see `plugins/cmp.lua`
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
 
 -- require('mason').setup({})
@@ -99,4 +102,3 @@ for server_name, server_options in pairs(language_servers) do
     local merged = vim.tbl_deep_extend("force", default_lsp, server_options)
     require("lspconfig")[server_name].setup(merged)
 end
-
