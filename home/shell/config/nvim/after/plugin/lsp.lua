@@ -29,6 +29,7 @@ local language_servers = {
     bashls = {},
     taplo = {},
     tsserver = {},
+    gopls = {},
 
     -- JSON
     jsonls = {

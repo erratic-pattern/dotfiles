@@ -49,6 +49,7 @@
       python3Packages.python-lsp-server # Python
       sumneko-lua-language-server # Lua
       jsonnet-language-server #Jsonnet
+      gopls # Go
 
       # Bash
       shellcheck
