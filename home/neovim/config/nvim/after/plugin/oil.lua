@@ -1,4 +1,14 @@
-require("oil").setup()
+require("oil").setup({
+    -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
+    delete_to_trash = true,
+    -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
+    skip_confirm_for_simple_edits = true,
+    -- Constrain the cursor to the editable parts of the oil buffer
+    -- Set to `false` to disable, or "name" to keep it on the file names
+    constrain_cursor = "name",
+    -- Set to true to watch the filesystem for changes and reload oil
+    watch_for_changes = true,
+})
 
 vim.keymap.set('n', '<leader>o', '<cmd>Oil<cr>')
 
@@ -9,4 +19,5 @@ vim.api.nvim_create_user_command("Browse", function(args) vim.ui.open(args.args)
     desc = "Open a File/URL for browsing",
     force = true,
     nargs = 1,
+
 })
