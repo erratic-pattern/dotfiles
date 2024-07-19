@@ -121,6 +121,7 @@
             tree-sitter-cpp
             tree-sitter-c
             tree-sitter-bash
+            tree-sitter-readline
             tree-sitter-lua
             tree-sitter-css
             tree-sitter-typescript

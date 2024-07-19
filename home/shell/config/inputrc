@@ -1,0 +1,46 @@
+# vi: ft=readline
+
+# Change cursor based on editing mode
+set show-mode-in-prompt on
+set vi-cmd-mode-string "\1\e[2 q\2"
+set vi-ins-mode-string "\1\e[6 q\2"
+set emacs-mode-string "\1\e[6 q\2"
+
+set editing-mode vi
+
+set keymap emacs
+"\e": vi-editing-mode
+
+# emacs keybindings in vi-insert mode
+set keymap vi-insert
+"\C-@": set-mark
+"\C-]": character-search
+"\C-_": undo
+"\C-a": beginning-of-line
+"\C-b": backward-char
+"\C-d": delete-char
+"\C-e": end-of-line
+"\C-f": forward-char
+"\C-g": abort
+"\C-k": kill-line
+"\C-l": clear-screen
+"\C-o": operate-and-get-next
+"\C-q": quoted-insert
+"\C-x!": possible-command-completions
+"\C-x$": possible-variable-completions
+"\C-x(": start-kbd-macro
+"\C-x)": end-kbd-macro
+"\C-x*": glob-expand-word
+"\C-x/": possible-filename-completions
+"\C-x@": possible-hostname-completions
+"\C-x\C-?": backward-kill-line
+"\C-x\C-e": edit-and-execute-command
+"\C-x\C-g": abort
+"\C-x\C-r": re-read-init-file
+"\C-x\C-u": undo
+"\C-x\C-v": vi-movement-mode
+"\C-x\C-x": exchange-point-and-mark
+"\C-xe": call-last-kbd-macro
+"\C-xg": glob-list-expansions
+"\C-x~": possible-username-completions
+

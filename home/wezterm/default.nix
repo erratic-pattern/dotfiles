@@ -1,6 +1,6 @@
 { home, ... }: {
   home.file.".wezterm.lua" = {
-    source = ./config/wezterm.lua;
+    source = ./wezterm.lua;
   };
 
   programs.wezterm = {

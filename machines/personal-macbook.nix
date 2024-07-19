@@ -11,10 +11,12 @@
   home-manager = {
     users.${user} = { ... }: {
       imports = [
-        ../home/shell
         ../home/darwin
-        ../home/mud
         ../home/influx
+        ../home/mud
+        ../home/neovim
+        ../home/shell
+        ../home/wezterm
       ];
     };
   };
