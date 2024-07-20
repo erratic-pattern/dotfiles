@@ -42,6 +42,7 @@
 
     withNodeJs = true; # used by copilot
     extraPackages = with pkgs; [
+      ### LSP servers
       taplo-lsp # TOML
       yaml-language-server # YAML
       nodePackages.typescript-language-server # Typescript/Javascript
@@ -50,53 +51,57 @@
       sumneko-lua-language-server # Lua
       jsonnet-language-server #Jsonnet
       gopls # Go
-
       # Bash
       shellcheck
       nodePackages.bash-language-server
-
       # Nix
       nil
       nixpkgs-fmt
-
       # Rust
       rust-analyzer
 
-      # Telescope
+      ### Telescope dependencies
       ripgrep
       fd
     ];
     extraPlugins = with pkgs.vimPlugins; [
 
+      # Status line, buffer line, tab line
       lualine-nvim
 
+      # Fuzzy Finding / Search
       plenary-nvim
       nvim-web-devicons
       telescope-nvim
       telescope-ui-select-nvim
 
+      # File Exploration and Manipulation
       nvim-tree-lua
       oil-nvim
 
       # beacon-nvim
-      editorconfig-nvim
       vim-sleuth
 
       comment-nvim
       undotree
 
+      # Git integrations
       gitsigns-nvim
       vim-fugitive
       vim-rhubarb
 
+      # GitHub integrations
       nvim-unception
       # gist-nvim
       octo-nvim
 
+      # AI Overlords
       copilot-vim
 
+      # Color Schemes
       tokyonight-nvim
 
+      # Autocompletion
       nvim-cmp
       cmp-nvim-lsp
       cmp-path
@@ -104,8 +109,10 @@
       cmp-cmdline
       cmp-git
 
+      # LSP Configuration
       nvim-lspconfig
 
+      # Syntax
       nvim-treesitter-textobjects
       {
         plugin = nvim-treesitter.withPlugins
