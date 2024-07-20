@@ -18,7 +18,7 @@ in
   };
 
   home.shellAliases = {
-    ls = "ls --color-auto";
+    ls = "ls --color=auto";
   };
 
   programs.bash = {
