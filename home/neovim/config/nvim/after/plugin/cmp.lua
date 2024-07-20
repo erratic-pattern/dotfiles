@@ -17,13 +17,10 @@ cmp.setup({
     },
 
     mapping = cmp.mapping.preset.insert({
-        -- `Enter` key to confirm completion
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        -- double <leader> to trigger completion
+        -- key to confirm completion
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        -- manually open completion
         ['<C-Space>'] = cmp.mapping.complete(),
-        -- Navigate between cmp items
-        ['<C-j>'] = cmp.mapping.select_next_item(),
-        ['<C-k>'] = cmp.mapping.select_prev_item(),
         -- Scroll up and down in the completion documentation
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
