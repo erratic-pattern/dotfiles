@@ -1,11 +1,11 @@
-{ config, pkgs, lib, user, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
-let
-  brewShellEnv = ''eval "$(/opt/homebrew/bin/brew shellenv)"'';
-in
+{ config, pkgs, lib, user, home-manager, nix-homebrew, ... }:
 {
   imports = [
     home-manager.darwinModules.home-manager
     nix-homebrew.darwinModules.nix-homebrew
+    ./shell.nix
+    ./fonts.nix
+    ./homebrew.nix
     ./dock.nix
     ../common
   ];
@@ -15,39 +15,6 @@ in
     home = "/Users/${user}";
     isHidden = false;
     shell = pkgs.zsh;
-  };
-
-  fonts = {
-    packages = [ pkgs.fira-code pkgs.fira-code-nerdfont ];
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    enableBashCompletion = true;
-    shellInit = brewShellEnv;
-  };
-
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-    interactiveShellInit = brewShellEnv;
-  };
-
-  nix-homebrew = {
-    enable = true;
-    user = user;
-    taps = {
-      "homebrew/core" = homebrew-core;
-      "homebrew/cask" = homebrew-cask;
-      "homebrew/bundle" = homebrew-bundle;
-    };
-    mutableTaps = true;
-    autoMigrate = true;
-  };
-
-  environment.variables = {
-    DOCKER_BUILDKIT = "1";
   };
 
   system = {
@@ -127,8 +94,6 @@ in
       # remapCapsLockToControl = true;
     };
   };
-
-  environment.pathsToLink = [ "/share/zsh" ];
 
   # https://github.com/LnL7/nix-darwin/issues/139#issuecomment-1230728610
   # Nix-darwin does not link installed applications to the user environment. This means apps will not show up
