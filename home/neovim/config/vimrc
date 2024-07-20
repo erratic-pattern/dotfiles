@@ -26,7 +26,7 @@ set history=1000
 " delete comment characters when joining lines
 set formatoptions+=j
 
-" indentation options
+" default indentation options when not overriden by plugins
 set autoindent
 set expandtab
 set shiftround
@@ -56,7 +56,7 @@ set relativenumber
 " colors
 set termguicolors
 set background=dark
-set colorcolumn="80"
+set colorcolumn=+1
 
 " allow dashes in filenames
 set isfname-=-
