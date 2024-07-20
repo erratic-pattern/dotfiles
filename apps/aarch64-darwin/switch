@@ -12,10 +12,10 @@ SYSTEM="darwinConfigurations.$CONFIG.system"
 export NIXPKGS_ALLOW_UNFREE=1
 
 echo "Starting build..."
-nix --experimental-features 'nix-command flakes' build ".#$SYSTEM" $@
+nix --experimental-features 'nix-command flakes' build ".#$SYSTEM" "$@"
 
 echo "Switching to new build..."
-./result/sw/bin/darwin-rebuild switch --flake ".#$CONFIG" $@
+./result/sw/bin/darwin-rebuild switch --flake ".#$CONFIG" "$@"
 
 echo "Cleaning up..."
 unlink ./result
