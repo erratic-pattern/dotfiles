@@ -56,7 +56,6 @@ set relativenumber
 " colors
 set termguicolors
 set background=dark
-set colorcolumn=+1
 
 " allow dashes in filenames
 set isfname-=-
