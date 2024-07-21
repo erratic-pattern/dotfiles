@@ -10,7 +10,7 @@ require("oil").setup({
     watch_for_changes = true,
 })
 
-vim.keymap.set('n', '<leader>o', '<cmd>Oil<cr>')
+vim.keymap.set('n', '<leader>o', '<cmd>Oil<cr>', { noremap = true, desc = "Open current directory for editing with Oil" })
 
 -- Oil.nvim disables newrw, which disables :Browse and prevents vim-rhubarb
 -- from opening github links with :GBrowse. To fix this, we just need to create

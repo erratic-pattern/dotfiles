@@ -5,5 +5,4 @@ vim.api.nvim_create_user_command('CopilotToggle', function()
     vim.cmd('Copilot status')
 end, { nargs = 0, })
 
-vim.keymap.set('n', '<leader>cp', '<cmd>CopilotToggle<cr>', { noremap = true })
-
+vim.keymap.set('n', '<leader>cp', '<cmd>CopilotToggle<cr>', { noremap = true, desc = "Toggle Copilot on/off" })

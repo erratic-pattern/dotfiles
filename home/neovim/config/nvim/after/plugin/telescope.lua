@@ -12,29 +12,35 @@ telescope.load_extension "ui-select"
 
 local builtin = require('telescope.builtin')
 
+local function bind(mode, keys, desc, action)
+    local opts = { noremap = true, desc = desc }
+    vim.keymap.set(mode, keys, action, opts)
+end
 
 -- basic finders
-vim.keymap.set('n', '<leader>f', function()
+bind('n', '<leader>f', "Search/Find Files (Telescope find_files)", function()
     builtin.find_files {
         find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
     }
 end)
-vim.keymap.set('n', '<leader>s', builtin.live_grep, {})
-vim.keymap.set('v', '<leader>s', builtin.grep_string, {})
-vim.keymap.set('n', '<leader>b', builtin.buffers, {})
-vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>r', builtin.resume, {})
+bind('n', '<leader>s', "Search text in project files (Telescope live_grep)", builtin.live_grep)
+bind('v', '<leader>s', "Search selected text in project files (Telescope grep_string)", builtin.grep_string)
+bind('n', '<leader>b', "Search open buffers (Telescope buffers)", builtin.buffers)
+bind('n', '<leader>h', "Search :help tags (Telescope help_tags)", builtin.help_tags)
+bind('n', '<leader>r', "Resume previous telescope finder (Telescpe resume)", builtin.resume)
+bind('n', '<leader>?', "Search key mappings (Telescope keymaps)", builtin.keymaps)
 -- git finders
-vim.keymap.set('n', '<leader>vf', builtin.git_files, {})
-vim.keymap.set('n', '<leader>vc', builtin.git_commits, {})
-vim.keymap.set('n', '<leader>vb', builtin.git_branches, {})
-vim.keymap.set('n', '<leader>vs', builtin.git_status, {})
-vim.keymap.set('n', '<leader>vx', builtin.git_stash, {})
+bind('n', '<leader>vf', "Search Git files (Telescope git_files)", builtin.git_files)
+bind('n', '<leader>vc', "Search Git commits (Telescope git_commits)", builtin.git_commits)
+bind('n', '<leader>vb', "Search Git branches (Telescope git_branches)", builtin.git_branches)
+bind('n', '<leader>vs', "Search Git staged changes (Telescope git_status)", builtin.git_status)
+bind('n', '<leader>vx', "Search Git stash (Telescope git_stash)", builtin.git_stash)
 -- LSP finders
-vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
-vim.keymap.set('n', '<leader>gi', builtin.lsp_implementations, {})
-vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions, {})
-vim.keymap.set('n', '<leader>go', builtin.lsp_type_definitions, {})
-vim.keymap.set('n', '<leader>gl', builtin.diagnostics, {})
-vim.keymap.set('n', '<leader>lsb', builtin.lsp_document_symbols, {})
-vim.keymap.set('n', '<leader>lsw', builtin.lsp_workspace_symbols, {})
+bind('n', '<leader>gr', "Search LSP references (Telescope lsp_references)", builtin.lsp_references)
+bind('n', '<leader>gi', "Search LSP implementations (Telescope lsp_implementations)", builtin.lsp_implementations)
+bind('n', '<leader>gd', "Search LSP definitions (Telescope lsp_defintions)", builtin.lsp_definitions)
+bind('n', '<leader>go', "Search LSP type defintions (Telescope lsp_type_definitions)", builtin.lsp_type_definitions)
+bind('n', '<leader>gl', "Search diagnostics (Telescope diagnostics)", builtin.diagnostics)
+bind('n', '<leader>lsb', "Search LSP document symbols (Telescope lsp_document_symbols)", builtin.lsp_document_symbols)
+bind('n', '<leader>lsw', "Search LSP workspace symbols (Telescope lsp_workspace_symbols)", builtin.lsp_workspace_symbols)
+

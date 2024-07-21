@@ -2,20 +2,31 @@
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
-        local opts = { buffer = event.buf }
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-        vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-        vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, opts)
-        vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-        vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>cf", function() vim.lsp.buf.format() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
+        local function bind(mode, keys, desc, action)
+            local opts = { buffer = event.buf, desc = desc }
+            vim.keymap.set(mode, keys, action, opts)
+        end
+        bind("n", "K", "Show documentation of symbol under cursor in floating window (vim.lsp.buf.hover)",
+            function() vim.lsp.buf.hover() end)
+        bind("n", "gd", "Go to definition of symbol under cursor (vim.lsp.buf.definitions)",
+            function() vim.lsp.buf.definition() end)
+        bind("n", "gD", "Go to declaration of symbol under cursor (vim.lsp.buf.declarations)",
+            function() vim.lsp.buf.declaration() end)
+        bind("n", "gi", "Show implementations of symbol under cursor (vim.lsp.buf.implementations)",
+            function() vim.lsp.buf.implementation() end)
+        bind("n", "go", "Go to type definition of symbol under cursor (vim.lsp.buf.type_definition)",
+            function() vim.lsp.buf.type_definition() end)
+        bind("n", "gs",
+            "Show signature information of symbol under cursor in floating window (vim.lsp.buf.signature_help)",
+            function() vim.lsp.buf.signature_help() end)
+        bind("n", "gr", "Show references to symbol under cursor in Quickfix list",
+            function() vim.lsp.buf.references() end)
+        bind("n", "gl", "Show diagnostics in floating window", function() vim.diagnostic.open_float() end)
+        bind("n", "<leader>cr", "Rename symbol under cursor", function() vim.lsp.buf.rename() end)
+        bind("n", "<leader>ca", "Show LSP code actions for current line", function() vim.lsp.buf.code_action() end)
+        bind("n", "<leader>cf", "Run LSP formatting on current bufer", function() vim.lsp.buf.format() end)
+        bind("n", "]d", "Go to next diagnostic", function() vim.diagnostic.goto_next() end)
+        bind("n", "[d", "Go to previous diagnostic", function() vim.diagnostic.goto_prev() end)
     end
 })
 
