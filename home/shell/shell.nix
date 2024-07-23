@@ -24,7 +24,7 @@ in
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    bashrcExtra = concatConfigFiles ./config/bash;
+    initExtra = concatConfigFiles ./config/bash;
   };
 
   programs.zsh = {
