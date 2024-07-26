@@ -15,6 +15,10 @@ vim.g.beacon_size = 80
 -- vim.g.beacon_shrink = 0
 -- vim.g.beacon_fade = 0
 
+-- Quickfix Open/Close mappings
+vim.keymap.set('n', '<leader>q', '<cmd>belowright copen<CR>', {desc = 'Open Quickfix Window' })
+vim.keymap.set('n', '<leader>Q', '<cmd>belowright cclose<CR>', {desc = 'Close Quickfix Window' })
+
 -- toggle relative line numbers
 vim.keymap.set('n', '<leader>ln', '<cmd>set invrelativenumber<CR>', { desc = "Toggle relative line numbers" })
 
