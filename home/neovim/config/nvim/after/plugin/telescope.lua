@@ -29,6 +29,7 @@ bind('n', '<leader>b', "Search open buffers (Telescope buffers)", builtin.buffer
 bind('n', '<leader>h', "Search :help tags (Telescope help_tags)", builtin.help_tags)
 bind('n', '<leader>r', "Resume previous telescope finder (Telescpe resume)", builtin.resume)
 bind('n', '<leader>?', "Search key mappings (Telescope keymaps)", builtin.keymaps)
+bind('n', '<leader>x', "Search Telescope Pickers (Telescope builtin)", builtin.builtin)
 -- git finders
 bind('n', '<leader>vf', "Search Git files (Telescope git_files)", builtin.git_files)
 bind('n', '<leader>vc', "Search Git commits (Telescope git_commits)", builtin.git_commits)
