@@ -41,6 +41,8 @@ bind('n', '<leader>gr', "Search LSP references (Telescope lsp_references)", buil
 bind('n', '<leader>gi', "Search LSP implementations (Telescope lsp_implementations)", builtin.lsp_implementations)
 bind('n', '<leader>gd', "Search LSP definitions (Telescope lsp_defintions)", builtin.lsp_definitions)
 bind('n', '<leader>go', "Search LSP type defintions (Telescope lsp_type_definitions)", builtin.lsp_type_definitions)
+bind('n', '<leader>lic', "Search LSP incoming calls (Telescope lsp_incoming_calls)", builtin.lsp_incoming_calls)
+bind('n', '<leader>loc', "Search LSP outgoing calls (Telescope lsp_outgoing_calls)", builtin.lsp_outgoing_calls)
 bind('n', '<leader>gl', "Search diagnostics (Telescope diagnostics)", builtin.diagnostics)
 bind('n', '<leader>lsb', "Search LSP document symbols (Telescope lsp_document_symbols)", builtin.lsp_document_symbols)
 bind('n', '<leader>lsw', "Search LSP workspace symbols (Telescope lsp_workspace_symbols)", builtin.lsp_workspace_symbols)
