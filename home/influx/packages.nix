@@ -8,6 +8,7 @@
     cmake
     ninja
     vault
+    influxdb2
   ];
 
   home.sessionPath = [
