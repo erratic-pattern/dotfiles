@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, config, ... }: {
   home.packages = with pkgs; [
     rustup
     protobuf
@@ -7,6 +7,11 @@
     go
     cmake
     ninja
+    vault
+  ];
+
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
   ];
 
   # set default rust version to stable
