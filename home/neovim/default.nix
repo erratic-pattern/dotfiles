@@ -79,11 +79,11 @@
       nvim-tree-lua
       oil-nvim
 
-      # beacon-nvim
+      # General Editing
       vim-sleuth
-
       comment-nvim
       undotree
+      # beacon-nvim
 
       # Git integrations
       gitsigns-nvim
@@ -124,7 +124,7 @@
       cmp-cmdline
       cmp-git
 
-      # LSP Configuration
+      # LSP
       nvim-lspconfig
 
       # Syntax
