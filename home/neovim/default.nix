@@ -55,7 +55,7 @@
       shellcheck
       nodePackages.bash-language-server
       # Nix
-      nil
+      nixd
       nixpkgs-fmt
       # Rust
       rust-analyzer

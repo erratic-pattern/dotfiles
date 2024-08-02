@@ -49,9 +49,9 @@ local language_servers = {
     },
 
     -- Nix
-    nil_ls = {
+    nixd = {
         settings = {
-            ["nil"] = {
+            ["nixd"] = {
                 formatting = { command = { "nixpkgs-fmt" } }
             }
         }
