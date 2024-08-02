@@ -100,6 +100,7 @@
 
       # Color Schemes
       tokyonight-nvim
+      nightfox-nvim
 
       # Autocompletion
       nvim-cmp

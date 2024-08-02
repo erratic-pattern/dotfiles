@@ -10,5 +10,11 @@ require("tokyonight").setup {
     },
     lualine_bold = true,
 }
+
 -- default colorscheme
-vim.cmd [[colorscheme tokyonight-moon]]
+local status, err = pcall(function() vim.cmd [[colorscheme nightfox]] end)
+if not status then
+    --fallback to a built-in colorscheme
+    vim.cmd [[colorscheme retrobox]]
+    error(err)
+end

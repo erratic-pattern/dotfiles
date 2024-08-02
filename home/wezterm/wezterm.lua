@@ -9,7 +9,7 @@ config.font_size = 12
 -- disable ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
-config.color_scheme = 'tokyonight_moon'
+config.color_scheme = 'nightfox'
 
 config.use_fancy_tab_bar = false;
 config.hide_tab_bar_if_only_one_tab = true;
