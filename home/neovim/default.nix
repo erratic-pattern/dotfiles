@@ -101,6 +101,20 @@
       # Color Schemes
       tokyonight-nvim
       nightfox-nvim
+      nord-nvim
+      zenbones-nvim
+      # apprentice
+      tender-vim
+      gruvbox
+      palenight-vim
+      melange-nvim
+      srcery-vim
+      onehalf
+      jellybeans-nvim
+      iceberg-vim
+      seoul256-vim
+      kanagawa-nvim
+      oceanic-next
 
       # Autocompletion
       nvim-cmp

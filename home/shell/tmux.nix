@@ -4,7 +4,7 @@
     source = ./config/tmux;
     recursive = true;
   };
-  xdg.configFile."tmux/nightfox.tmux" = {
+  xdg.configFile."tmux/colorscheme.tmux" = {
     source = "${pkgs.vimPlugins.nightfox-nvim}/extra/nightfox/nightfox.tmux";
   };
   programs.tmux = {
