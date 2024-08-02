@@ -83,6 +83,7 @@
       vim-sleuth
       comment-nvim
       undotree
+      nvim-colorizer-lua
       # beacon-nvim
 
       # Git integrations
