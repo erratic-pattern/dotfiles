@@ -116,6 +116,7 @@
       seoul256-vim
       kanagawa-nvim
       oceanic-next
+      rose-pine
 
       # Autocompletion
       nvim-cmp
