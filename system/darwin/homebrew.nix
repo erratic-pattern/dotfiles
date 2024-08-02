@@ -1,4 +1,4 @@
-{ config, pkgs, lib, user, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
+{ user, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
 let
   brewShellEnv = ''eval "$(/opt/homebrew/bin/brew shellenv)"'';
 in

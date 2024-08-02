@@ -6,7 +6,7 @@ let
       (f: type: builtins.readFile "${dir}/${f}")
       (lib.filterAttrs
         (f: type: type == "regular")
-        ((builtins.readDir dir)));
+        (builtins.readDir dir));
   # Read directory of config files and concatenate contents into a string
   concatConfigFiles = dir:
     lib.concatStringsSep "\n" (lib.attrValues (readDirFiles dir));

@@ -55,16 +55,8 @@
   outputs =
     inputs @ { self
     , darwin
-    , nix-homebrew
-    , homebrew-bundle
-    , homebrew-core
-    , homebrew-cask
-    , homebrew-garden
-    , home-manager
-    , kubelogin
     , nixpkgs
-    , nixvim
-    , vim-tintin
+    , ...
     }:
     let
       defaultUser = "adam";
