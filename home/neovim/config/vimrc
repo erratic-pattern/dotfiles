@@ -15,13 +15,13 @@ set nohlsearch
 set backupdir=~/.vim/backup//
 set dir=~/.vim/swap//
 set undodir=~/.vim/undo//
-set updatetime=50
+set updatetime=500
 
 " autoread from filesystem
 set autoread
 
 " undo history
-set history=1000
+set history=10000
 
 " delete comment characters when joining lines
 set formatoptions+=j
@@ -53,6 +53,10 @@ set titlestring=%t%(\ %M%)%(\ \(%{expand(\"%:~:h\")}\)%)%a
 set number
 set relativenumber
 
+" cursor line
+set cursorline
+set cursorlineopt=number
+
 " colors
 set termguicolors
 set background=dark
@@ -71,4 +75,4 @@ cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
 cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
 cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
-:
+

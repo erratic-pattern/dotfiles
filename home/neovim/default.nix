@@ -85,7 +85,6 @@
       indent-blankline-nvim
       undotree
       nvim-colorizer-lua
-      # beacon-nvim
 
       # Git integrations
       gitsigns-nvim
