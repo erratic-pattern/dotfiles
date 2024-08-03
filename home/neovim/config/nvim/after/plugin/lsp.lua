@@ -61,9 +61,15 @@ local language_servers = {
     lua_ls = {
         settings = {
             Lua = {
-                diagnostics = { globals = { "vim" } },
+                telemetry = { enable = false },
                 runtime = { version = "LuaJIT" },
-                telemetry = { enable = false }
+                -- Make server aware of NeoVim runtime
+                workspace = {
+                    checkThirdParty = false,
+                    library = {
+                        vim.env.VIMRUNTIME
+                    },
+                }
             }
         }
     },
