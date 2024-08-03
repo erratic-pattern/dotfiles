@@ -100,23 +100,26 @@
       copilot-vim
 
       # Color Schemes
-      tokyonight-nvim
       nightfox-nvim
-      nord-nvim
-      zenbones-nvim
-      # apprentice
-      tender-vim
-      gruvbox
-      palenight-vim
-      melange-nvim
-      srcery-vim
-      onehalf
-      jellybeans-nvim
-      iceberg-vim
-      seoul256-vim
-      kanagawa-nvim
       oceanic-next
+      palenight-vim
+      onehalf
+      tokyonight-nvim
       rose-pine
+      # zenbones-nvim
+      # apprentice # no nix package
+      iceberg-vim
+      nord-nvim
+      tender-vim
+      catppuccin-nvim
+      melange-nvim
+      kanagawa-nvim
+      jellybeans-nvim
+      seoul256-vim
+      srcery-vim
+      gruvbox
+      dracula-nvim
+
 
       # Autocompletion
       nvim-cmp
