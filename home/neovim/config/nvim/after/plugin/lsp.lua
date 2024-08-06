@@ -7,26 +7,26 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.keymap.set(mode, keys, action, opts)
         end
         bind("n", "K", "Show documentation of symbol under cursor in floating window (vim.lsp.buf.hover)",
-            function() vim.lsp.buf.hover() end)
+            vim.lsp.buf.hover)
         bind("n", "gd", "Go to definition of symbol under cursor (vim.lsp.buf.definitions)",
-            function() vim.lsp.buf.definition() end)
+            vim.lsp.buf.definition)
         bind("n", "gD", "Go to declaration of symbol under cursor (vim.lsp.buf.declarations)",
-            function() vim.lsp.buf.declaration() end)
+            vim.lsp.buf.declaration)
         bind("n", "gi", "Show implementations of symbol under cursor (vim.lsp.buf.implementations)",
-            function() vim.lsp.buf.implementation() end)
+            vim.lsp.buf.implementation)
         bind("n", "go", "Go to type definition of symbol under cursor (vim.lsp.buf.type_definition)",
-            function() vim.lsp.buf.type_definition() end)
+            vim.lsp.buf.type_definition)
         bind("n", "gs",
             "Show signature information of symbol under cursor in floating window (vim.lsp.buf.signature_help)",
-            function() vim.lsp.buf.signature_help() end)
+            vim.lsp.buf.signature_help)
         bind("n", "gr", "Show references to symbol under cursor in Quickfix list",
-            function() vim.lsp.buf.references() end)
-        bind("n", "gl", "Show diagnostics in floating window", function() vim.diagnostic.open_float() end)
-        bind("n", "<leader>cr", "Rename symbol under cursor", function() vim.lsp.buf.rename() end)
-        bind("n", "<leader>ca", "Show LSP code actions for current line", function() vim.lsp.buf.code_action() end)
-        bind("n", "<leader>cf", "Run LSP formatting on current bufer", function() vim.lsp.buf.format() end)
-        bind("n", "]d", "Go to next diagnostic", function() vim.diagnostic.goto_next() end)
-        bind("n", "[d", "Go to previous diagnostic", function() vim.diagnostic.goto_prev() end)
+            vim.lsp.buf.references)
+        bind("n", "gl", "Show diagnostics in floating window", vim.diagnostic.open_float)
+        bind("n", "<leader>cr", "Rename symbol under cursor", vim.lsp.buf.rename)
+        bind("n", "<leader>ca", "Show LSP code actions for current line", vim.lsp.buf.code_action)
+        bind("n", "<leader>cf", "Run LSP formatting on current bufer", vim.lsp.buf.format)
+        bind("n", "]d", "Go to next diagnostic", vim.diagnostic.goto_next)
+        bind("n", "[d", "Go to previous diagnostic", vim.diagnostic.goto_prev)
     end
 })
 
