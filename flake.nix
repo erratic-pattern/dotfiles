@@ -42,9 +42,11 @@
       url = "github:int128/kubelogin";
       flake = false;
     };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     vim-tintin = {
