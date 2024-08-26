@@ -14,7 +14,7 @@ require("tokyonight").setup {
 -- default colorscheme
 local status, err = pcall(function() vim.cmd [[colorscheme nightfox]] end)
 if not status then
-    --fallback to a built-in colorscheme
-    vim.cmd [[colorscheme retrobox]]
+    -- fallback to a built-in colorscheme
+    vim.cmd [[colorscheme habamax]]
     error(err)
 end
