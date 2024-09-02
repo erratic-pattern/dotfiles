@@ -6,7 +6,6 @@
     libiconv
     go
     vault
-    influxdb2
   ];
 
   home.sessionPath = [
