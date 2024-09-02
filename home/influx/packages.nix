@@ -5,8 +5,6 @@
     postgresql
     libiconv
     go
-    cmake
-    ninja
     vault
     influxdb2
   ];
