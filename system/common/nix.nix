@@ -26,6 +26,7 @@
 
     extraOptions = ''
       experimental-features = nix-command flakes
+      build-max-jobs = auto
     '';
   };
 
