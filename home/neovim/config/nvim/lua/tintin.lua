@@ -11,8 +11,9 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "tt",
   command = [[
     runtime syntax/tt.vim
-    setlocal nosmartindent
+    setlocal indentkeys-=0#
     setlocal commentstring=#nop\ %s
+    inoremap <buffer> # X#
   ]],
 })
 
