@@ -61,9 +61,6 @@ set cursorlineopt=number
 set termguicolors
 set background=dark
 
-" allow dashes in filenames
-set isfname-=-
-
 " wildcard menu settings
 set wildmenu
 set wildmode=longest:full
