@@ -43,13 +43,6 @@
       flake = false;
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-      inputs.nix-darwin.follows = "darwin";
-    };
-
     vim-tintin = {
       url = "github:LokiChaos/vim-tintin";
       flake = false;

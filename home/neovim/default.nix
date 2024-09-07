@@ -1,9 +1,5 @@
-{ pkgs, nixvim, vim-tintin, ... }:
+{ pkgs, vim-tintin, ... }:
 {
-  imports = [
-    nixvim.homeManagerModules.nixvim
-  ];
-
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -25,7 +21,7 @@
     source = ./config/vimrc;
   };
 
-  programs.nixvim = {
+  programs.neovim = {
     enable = true;
 
     viAlias = true;
@@ -64,7 +60,8 @@
       ripgrep
       fd
     ];
-    extraPlugins = with pkgs.vimPlugins; [
+
+    plugins = with pkgs.vimPlugins; [
 
       # Status line, buffer line, tab line
       lualine-nvim
