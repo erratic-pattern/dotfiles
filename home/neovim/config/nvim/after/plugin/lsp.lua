@@ -39,7 +39,7 @@ local default_lsp = {
 local language_servers = {
     bashls = {},
     taplo = {},
-    tsserver = {},
+    ts_ls = {},
     gopls = {},
 
     -- JSON
