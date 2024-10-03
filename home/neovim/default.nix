@@ -1,4 +1,4 @@
-{ pkgs, vim-tintin, ... }:
+{ pkgs, lib, vim-tintin, ... }:
 {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -37,6 +37,11 @@
     # };
 
     withNodeJs = true; # used by copilot
+
+    # fixes issue with rust-analyzer in user PATH shadowing the one here
+    # https://github.com/nix-community/home-manager/issues/4330#issuecomment-2391709770
+    extraWrapperArgs = [ "--prefix" "PATH" ":" "${lib.makeBinPath [ pkgs.rust-analyzer ]}" ];
+
     extraPackages = with pkgs; [
       ### LSP servers
       taplo-lsp # TOML
