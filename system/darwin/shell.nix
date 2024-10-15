@@ -7,7 +7,7 @@
 
   programs.bash = {
     enable = true;
-    enableCompletion = true;
+    completion.enable = true;
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
