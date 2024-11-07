@@ -19,6 +19,8 @@
       "google-chrome"
       "notion"
       "dropbox"
+      "google-drive"
+
       "spotify"
       "expressvpn"
       "steam"

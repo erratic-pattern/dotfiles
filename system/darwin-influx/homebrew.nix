@@ -34,6 +34,7 @@
       "slack"
       "zoom"
       "spotify"
+      "google-drive"
     ];
   };
 
