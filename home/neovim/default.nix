@@ -52,6 +52,7 @@
       sumneko-lua-language-server # Lua
       jsonnet-language-server #Jsonnet
       gopls # Go
+      buf # Protobuf
       # Bash
       shellcheck
       nodePackages.bash-language-server

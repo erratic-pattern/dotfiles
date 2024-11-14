@@ -1,3 +1,20 @@
+local lspconfig = require'lspconfig'
+
+-- Add custom server definitions not included in some versions of lspconfig
+local configs = require'lspconfig.configs'
+
+-- protobuf LSP using Buf CLI
+-- this is in beta, and some older versions of lspconfig don't support it
+if not configs.buf_ls then
+    configs.buf_ls = {
+        default_config = {
+            cmd = { 'buf', 'beta', 'lsp', '--timeout=0', '--log-format=text' },
+            filetypes = { 'proto' },
+            root_dir = lspconfig.util.root_pattern('buf.yaml', '.git'),
+        },
+    }
+end
+
 -- Configure some keybindings when a language server attaches
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
@@ -35,12 +52,15 @@ local default_lsp = {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
 
--- require('mason').setup({})
 local language_servers = {
     bashls = {},
     taplo = {},
     ts_ls = {},
     gopls = {},
+    -- legacy protobuf LSP. change to "buf_ls" to use beta Buf cli
+    -- bufls = {},
+    -- protobuf LSP using the beta buf CLI
+    buf_ls = {},
 
     -- JSON
     jsonls = {
@@ -118,5 +138,5 @@ local language_servers = {
 
 for server_name, server_options in pairs(language_servers) do
     local merged = vim.tbl_deep_extend("force", default_lsp, server_options)
-    require("lspconfig")[server_name].setup(merged)
+    lspconfig[server_name].setup(merged)
 end
