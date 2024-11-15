@@ -40,7 +40,7 @@ cmp.setup({
 
 -- Autocomplete git/github issues, PRs, usernames, and commits
 require("cmp_git").setup()
-cmp.setup.filetype('gitcommit', {
+cmp.setup.filetype({'gitcommit', 'octo'}, {
     sources = cmp.config.sources({
         { name = 'git' },
         { name = 'buffer' },
