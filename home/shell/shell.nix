@@ -33,6 +33,9 @@ in
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
+    history = {
+      size = 1000000;
+    };
     localVariables = {
       # Prompt: name@machine ~/some/path$
       PS1 = "%n@%m %~$ ";
