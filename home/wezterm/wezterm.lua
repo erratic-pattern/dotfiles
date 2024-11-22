@@ -8,7 +8,7 @@ config.front_end = "WebGpu"
 config.webgpu_power_preference = 'HighPerformance'
 
 config.font = wezterm.font 'Fira Code'
-config.font_size = 12
+config.font_size = 13
 -- disable ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
