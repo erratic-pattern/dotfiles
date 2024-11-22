@@ -44,8 +44,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     else
         local HOME_DIR = os.getenv("HOME")
         local current_dir = tab.active_pane.current_working_dir
-        if string.match(current_dir, "^file://") then
-            current_dir = string.gsub(current_dir, "^file://[^/\\]*([/\\])", "%1")
+        if current_dir.scheme == 'file' then
+            current_dir = current_dir.file_path
             current_dir = string.gsub(current_dir, regexEscape(HOME_DIR), "~")
             current_dir = string.gsub(current_dir, "/$", "")
         end
