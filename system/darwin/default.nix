@@ -6,7 +6,6 @@
     ./shell.nix
     ./fonts.nix
     ./homebrew.nix
-    ./dock.nix
     ../common
   ];
 

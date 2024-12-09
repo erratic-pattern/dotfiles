@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }: {
+{ pkgs, user, ... }: {
   imports = [
     ../system/darwin-personal
     ../system/darwin-influx
@@ -21,22 +21,16 @@
     };
   };
 
-  local.dock.enable = true;
-  local.dock.entries = [
-    { path = "/System/Applications/System Settings.app/"; }
-    { path = "/Applications/Google Chrome.app/"; }
-    { path = "/Applications/Slack.app/"; }
-    { path = "/Applications/zoom.us.app/"; }
-    { path = "/Applications/Notion.app/"; }
-    { path = "${pkgs.wezterm}/Applications/Wezterm.app/"; }
-    { path = "/Applications/1Password.app/"; }
-    { path = "/Applications/Spotify.app/"; }
-    { path = "/Applications/Discord.app/"; }
-    { path = "/Applications/Steam.app/"; }
-    {
-      path = "${config.users.users.${user}.home}/Downloads";
-      section = "others";
-      options = "--sort name --view grid --display stack";
-    }
+  system.defaults.dock.persistent-apps = [
+    "/System/Applications/System Settings.app/"
+    "/Applications/Google Chrome.app/"
+    "/Applications/Slack.app/"
+    "/Applications/zoom.us.app/"
+    "/Applications/Notion.app/"
+    "${pkgs.wezterm}/Applications/Wezterm.app/"
+    "/Applications/1Password.app/"
+    "/Applications/Spotify.app/"
+    "/Applications/Discord.app/"
+    "/Applications/Steam.app/"
   ];
 }
