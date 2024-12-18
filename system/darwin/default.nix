@@ -32,7 +32,7 @@
         AppleShowAllExtensions = true;
 
         # press and hold to repeat key
-        ApplePressAndHoldEnabled = false;
+        ApplePressAndHoldEnabled = true;
         # 120, 90, 60, 30, 12, 6, 2
         KeyRepeat = 2;
         # 120, 94, 68, 35, 25, 15
@@ -90,7 +90,6 @@
 
     keyboard = {
       enableKeyMapping = true;
-      # remapCapsLockToControl = true;
     };
   };
 
