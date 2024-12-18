@@ -86,6 +86,11 @@
         TrackpadThreeFingerDrag = false;
         ActuationStrength = 0;
       };
+
+      # Control Center / Menu Bar
+      controlcenter = {
+        Bluetooth = true; # Show bluetooth icon in menu bar
+      };
     };
 
     keyboard = {
