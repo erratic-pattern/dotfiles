@@ -56,50 +56,50 @@
     }:
     let
       defaultUser = "adam";
-      defaultDarwinSystem = "aarch64-darwin";
-
-      mkApp = scriptName: system: {
-        type = "app";
-        program = "${self}/apps/${system}/${scriptName}";
-      };
-
-      mkDarwinApps = system: {
-        "switch" = mkApp "switch" system;
-      };
-
-      mkDarwinMachine =
-        { user ? defaultUser
-        , system ? defaultDarwinSystem
-        , modules
-        ,
-        }:
-        let
-          specialArgs = (inputs // { inherit user system inputs; });
-        in
-        darwin.lib.darwinSystem {
-          inherit system specialArgs modules;
-        };
     in
     {
       apps =
         let
-          darwinSystems = [ "aarch64-darwin" ];
-          darwinApps = nixpkgs.lib.genAttrs darwinSystems mkDarwinApps;
+          darwinApps = nixpkgs.lib.genAttrs [ "aarch64-darwin" ]
+            (system: {
+              "switch" = {
+                type = "app";
+                program = "${self}/apps/darwin/switch";
+              };
+            });
         in
         darwinApps;
 
-      darwinConfigurations = {
-        "personal-macbook" = mkDarwinMachine {
-          modules = [
-            ./machines/personal-macbook.nix
-          ];
+      darwinConfigurations =
+        let
+          defaultDarwinSystem = "aarch64-darwin";
+          mkDarwinMachine =
+            { user ? defaultUser
+            , system ? defaultDarwinSystem
+            , modules
+            ,
+            }:
+            let
+              specialArgs = (inputs // {
+                inherit user system inputs;
+              });
+            in
+            darwin.lib.darwinSystem {
+              inherit system specialArgs modules;
+            };
+        in
+        {
+          "personal-macbook" = mkDarwinMachine {
+            modules = [
+              ./machines/personal-macbook.nix
+            ];
+          };
+          "influx-macbook" = mkDarwinMachine {
+            modules = [
+              ./machines/influx-macbook.nix
+            ];
+          };
         };
-        "influx-macbook" = mkDarwinMachine {
-          modules = [
-            ./machines/influx-macbook.nix
-          ];
-        };
-      };
     };
 }
 
