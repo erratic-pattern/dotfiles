@@ -56,6 +56,7 @@
     }:
     let
       defaultUser = "adam";
+      overlays = import ./overlays;
     in
     {
       apps =
@@ -77,15 +78,18 @@
             { user ? defaultUser
             , system ? defaultDarwinSystem
             , modules
-            ,
             }:
             let
               specialArgs = (inputs // {
                 inherit user system inputs;
               });
+              pkgs = import nixpkgs {
+                inherit system overlays;
+                config.allowUnfree = true;
+              };
             in
             darwin.lib.darwinSystem {
-              inherit system specialArgs modules;
+              inherit system specialArgs pkgs modules; 
             };
         in
         {
