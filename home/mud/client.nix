@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     tintin
-    mudlet
+    # mudlet
   ];
 
   # TinTin config files
