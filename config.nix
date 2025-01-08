@@ -21,7 +21,12 @@ rec {
 
   nixOsSystems = [ ];
 
-  androidSystems = [ ];
+  androidSystems = [ "aarch64-linux" ];
+
+  linuxSystems = unique (concatLists [
+    androidSystems
+    nixOsSystems
+  ]);
 
   systems = unique (concatLists [
     androidSystems

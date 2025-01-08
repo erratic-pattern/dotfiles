@@ -1,9 +1,0 @@
-#!/bin/sh -e
-if [ -n "${1-}" ]; then
-    NAME="$1"
-    shift
-else
-    NAME="$(scutil --get LocalHostName)"
-fi
-darwin-rebuild switch --flake ".#$NAME" "$@"
-
