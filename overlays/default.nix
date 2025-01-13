@@ -1,3 +1,2 @@
 [
-  (import ./discord-rpc.nix)
 ]
