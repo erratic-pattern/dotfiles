@@ -1,3 +1,2 @@
 [
-  (import ./ruff.nix)
 ]

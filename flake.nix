@@ -2,6 +2,8 @@
   description = "Nix System Configuration Files";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+
 
     home-manager = {
       url = "github:nix-community/home-manager/";
@@ -52,6 +54,7 @@
     inputs @ { self
     , darwin
     , nixpkgs
+    , nixpkgs-stable
     , ...
     }:
     let
@@ -80,16 +83,19 @@
             , modules
             }:
             let
-              specialArgs = (inputs // {
-                inherit user system inputs;
-              });
-              pkgs = import nixpkgs {
+              pkgArgs = {
                 inherit system overlays;
                 config.allowUnfree = true;
               };
+              pkgs = import nixpkgs pkgArgs;
+              pkgs-stable = import nixpkgs-stable pkgArgs;
+              specialArgs = (inputs // {
+                inherit user system pkgs-stable;
+                flake-inputs = inputs;
+              });
             in
             darwin.lib.darwinSystem {
-              inherit system specialArgs pkgs modules; 
+              inherit system specialArgs pkgs modules;
             };
         in
         {

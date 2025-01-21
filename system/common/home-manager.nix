@@ -1,9 +1,9 @@
 
-{ inputs, user, system, ... }: {
+{ flake-inputs, user, system, pkgs-stable, ... }: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = inputs // { inherit user system; };
+    extraSpecialArgs = flake-inputs // { inherit user system pkgs-stable; };
     users.${user} = { ... }: {
       home.enableNixpkgsReleaseCheck = false;
       home.stateVersion = "21.11";
