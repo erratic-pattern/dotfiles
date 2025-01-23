@@ -1,0 +1,27 @@
+#!/bin/sh -e
+
+NAME="$1"
+shift
+
+if [ "$SYSTEM" = "aarch64-darwin" ] || [ "$SYSTEM" = "x86_64-darwin" ]; then
+    ATTR="darwinConfigurations.$NAME.system"
+    if [ -z "$NAME" ]; then
+        NAME="$(scutil --get LocalHostName)"
+    fi
+else
+    echo "Unknown system $SYSTEM"
+    exit 1
+fi
+
+nix --experimental-features 'nix-command flakes' build --max-jobs auto ".#$ATTR" "$@"
+
+if [ "$SYSTEM" = "aarch64-darwin" ] || [ "$SYSTEM" = "x86_64-darwin" ]; then
+    ./result/sw/bin/darwin-rebuild switch --flake ".#$NAME" "$@"
+else
+    echo "Unknown system $SYSTEM"
+    exit 1
+fi
+
+echo "Cleaning up"
+unlink ./result
+

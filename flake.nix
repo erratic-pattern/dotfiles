@@ -51,8 +51,7 @@
     };
   };
   outputs =
-    inputs @ { self
-    , darwin
+    inputs @ { darwin
     , nixpkgs
     , nixpkgs-stable
     , ...
@@ -61,22 +60,13 @@
       config = import ./config.nix inputs;
       lib = import ./lib.nix inputs;
       overlays = import ./overlays inputs;
-      inherit (lib) eachDarwinSystem;
+      inherit (lib) eachSystem mkApp;
+      inherit (nixpkgs.lib) genAttrs;
     in
     {
       inherit lib;
 
-      apps =
-        let
-          darwinApps = eachDarwinSystem
-            (system: {
-              "switch" = {
-                type = "app";
-                program = "${self}/apps/darwin/switch";
-              };
-            });
-        in
-        darwinApps;
+      apps = eachSystem (system: genAttrs [ "switch" ] (mkApp system));
 
       darwinConfigurations =
         let
@@ -106,6 +96,7 @@
             };
         in
         {
+
           "personal-macbook" = darwinConfiguration {
             modules = [
               ./machines/personal-macbook.nix
@@ -118,5 +109,6 @@
           };
         };
     };
+
 }
 
