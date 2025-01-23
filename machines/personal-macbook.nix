@@ -15,6 +15,7 @@
         ../home/influx
         ../home/mud
         ../home/neovim
+        ../home/rust
         ../home/shell
         ../home/wezterm
       ];

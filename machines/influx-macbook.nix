@@ -13,6 +13,7 @@
         ../home/darwin
         ../home/influx
         ../home/neovim
+        ../home/rust
         ../home/shell
         ../home/wezterm
       ];
