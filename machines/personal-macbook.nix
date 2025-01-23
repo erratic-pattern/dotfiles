@@ -11,7 +11,6 @@
   home-manager = {
     users.${user} = { ... }: {
       imports = [
-        ../home/darwin
         ../home/influx
         ../home/mud
         ../home/neovim
