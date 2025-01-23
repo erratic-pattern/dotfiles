@@ -86,7 +86,7 @@
             , modules
             }:
             let
-              overlays = import ./overlays inputs ++ extraOverlays;
+              overlays = (import ./overlays inputs).common ++ extraOverlays;
               pkgs = import nixpkgs {
                 inherit system overlays;
                 config = config.defaultNixPkgsConfig;
