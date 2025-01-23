@@ -58,13 +58,16 @@
     , ...
     }:
     let
-      defaultUser = "adam";
-      overlays = import ./overlays;
+      config = import ./config.nix inputs;
+      lib = import ./lib.nix inputs;
+      inherit (lib) eachDarwinSystem;
     in
     {
+      inherit lib;
+
       apps =
         let
-          darwinApps = nixpkgs.lib.genAttrs [ "aarch64-darwin" ]
+          darwinApps = eachDarwinSystem
             (system: {
               "switch" = {
                 type = "app";
@@ -76,19 +79,22 @@
 
       darwinConfigurations =
         let
-          defaultDarwinSystem = "aarch64-darwin";
-          mkDarwinMachine =
-            { user ? defaultUser
-            , system ? defaultDarwinSystem
+          darwinConfiguration =
+            { user ? config.defaultUser
+            , system ? "aarch64-darwin"
+            , extraOverlays ? [ ]
             , modules
             }:
             let
-              pkgArgs = {
+              overlays = import ./overlays inputs ++ extraOverlays;
+              pkgs = import nixpkgs {
                 inherit system overlays;
-                config.allowUnfree = true;
+                config = config.defaultNixPkgsConfig;
               };
-              pkgs = import nixpkgs pkgArgs;
-              pkgs-stable = import nixpkgs-stable pkgArgs;
+              pkgs-stable = import nixpkgs-stable {
+                inherit system overlays;
+                config = config.defaultNixPkgsConfig;
+              };
               specialArgs = (inputs // {
                 inherit user system pkgs-stable;
                 flake-inputs = inputs;
@@ -99,12 +105,12 @@
             };
         in
         {
-          "personal-macbook" = mkDarwinMachine {
+          "personal-macbook" = darwinConfiguration {
             modules = [
               ./machines/personal-macbook.nix
             ];
           };
-          "influx-macbook" = mkDarwinMachine {
+          "influx-macbook" = darwinConfiguration {
             modules = [
               ./machines/influx-macbook.nix
             ];
