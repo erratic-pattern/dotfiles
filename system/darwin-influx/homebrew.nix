@@ -20,12 +20,6 @@
       "tailscale" = 1475387142;
     };
 
-    brews = [
-      # llvm package for using VSCode debugger
-      # having issues with nix llvm packages so use brew instead
-      "llvm"
-    ];
-
     casks = [
       "docker"
       "1password"
