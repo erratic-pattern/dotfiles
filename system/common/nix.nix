@@ -25,5 +25,5 @@
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
-  system.checks.verifyNixPath = false;
+  # system.checks.verifyNixPath = false;
 }
