@@ -60,6 +60,7 @@
     let
       config = import ./config.nix inputs;
       lib = import ./lib.nix inputs;
+      overlays = import ./overlays inputs;
       inherit (lib) eachDarwinSystem;
     in
     {
@@ -86,13 +87,13 @@
             , modules
             }:
             let
-              overlays = (import ./overlays inputs).common ++ extraOverlays;
               pkgs = import nixpkgs {
-                inherit system overlays;
+                inherit system;
+                overlays = overlays.common ++ overlays.darwin ++ extraOverlays;
                 config = config.defaultNixPkgsConfig;
               };
               pkgs-stable = import nixpkgs-stable {
-                inherit system overlays;
+                inherit system;
                 config = config.defaultNixPkgsConfig;
               };
               specialArgs = (inputs // {
