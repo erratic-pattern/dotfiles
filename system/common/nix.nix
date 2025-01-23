@@ -1,14 +1,6 @@
 { pkgs, user, ... }: {
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      # cudaSupport = true;
-      # cudaCapabilities = ["8.0"];
-      allowBroken = true;
-      # allowInsecure = false;
-      allowUnsupportedSystem = true;
-    };
-  };
+
+  nixpkgs.pkgs = pkgs;
 
   nix = {
     package = pkgs.nixVersions.latest;
