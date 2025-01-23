@@ -1,4 +1,4 @@
-{ pkgs, lib, vim-tintin, ... }:
+{ pkgs, lib, ... }:
 {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -9,11 +9,6 @@
   xdg.configFile."nvim/" = {
     source = ./config/nvim;
     recursive = true;
-  };
-
-  # add vim-tintin syntax file to nvim config directory
-  xdg.configFile."nvim/syntax/tt.vim" = {
-    source = "${vim-tintin}/syntax/tt.vim";
   };
 
   # add .vimrc for vim-compatible config that's also sourced by nvim/init.lua
