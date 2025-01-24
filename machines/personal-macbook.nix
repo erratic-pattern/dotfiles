@@ -14,6 +14,7 @@
         ../home/influx
         ../home/mud
         ../home/neovim
+        ../home/obsidian
         ../home/rust
         ../home/shell
         ../home/wezterm
@@ -27,6 +28,7 @@
     "/Applications/Slack.app/"
     "/Applications/zoom.us.app/"
     "/Applications/Notion.app/"
+    "${pkgs.obsidian}/Applications/Obsidian.app/"
     "${pkgs.wezterm}/Applications/Wezterm.app/"
     "/Applications/1Password.app/"
     "/Applications/Spotify.app/"
