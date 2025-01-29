@@ -60,7 +60,7 @@
       lib = import ./lib.nix inputs;
       overlays = import ./overlays inputs;
       inherit (builtins) readFile;
-      inherit (lib) eachSystem eachDarwinSystem mkApps importNixPkgsFor importNixPkgsStableFor;
+      inherit (lib) eachDarwinSystem mkApps importNixPkgsFor importNixPkgsStableFor;
     in
     {
       inherit lib;

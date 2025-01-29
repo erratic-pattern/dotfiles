@@ -1,4 +1,4 @@
-{ home-manager, ... }:
+{ ... }:
 {
   imports = [
     ./shell.nix
