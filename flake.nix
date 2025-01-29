@@ -51,14 +51,16 @@
     };
   };
   outputs =
-    inputs @ { darwin
+    inputs @ { self
+    , darwin
     , ...
     }:
     let
       config = import ./config.nix inputs;
       lib = import ./lib.nix inputs;
       overlays = import ./overlays inputs;
-      inherit (lib) eachSystem mkApps importNixPkgsFor importNixPkgsStableFor;
+      inherit (builtins) readFile;
+      inherit (lib) eachSystem eachDarwinSystem mkApps importNixPkgsFor importNixPkgsStableFor;
     in
     {
       inherit lib;
@@ -71,7 +73,16 @@
           pkgs.callPackage ./packages inputs
         );
 
-      apps = eachSystem (mkApps [ "switch" ]);
+      apps = eachDarwinSystem
+        (system:
+          mkApps {
+            "switch" = {
+              inherit system;
+              name = "switch";
+              runtimeInputs = [ darwin.packages.${system}.darwin-rebuild ];
+              script = readFile ./apps/darwin/switch;
+            };
+          });
 
       darwinConfigurations =
         let
