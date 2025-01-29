@@ -1,4 +1,4 @@
-inputs @ { self, nixpkgs, nixpkgs-stable, ... }:
+inputs @ { nixpkgs, nixpkgs-stable, ... }:
 let
   config = import ./config.nix inputs;
   inherit (nixpkgs.lib) genAttrs mapAttrs;

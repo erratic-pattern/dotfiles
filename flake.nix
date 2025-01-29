@@ -51,8 +51,8 @@
     };
   };
   outputs =
-    inputs @ { self
-    , darwin
+    inputs @ {
+    darwin
     , ...
     }:
     let
