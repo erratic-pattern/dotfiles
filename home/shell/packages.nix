@@ -18,7 +18,7 @@
     zip
 
     # Encryption and security tools
-    # _1password-cli
+    _1password-cli
     gnupg
     # libfido2
     # pinentry
