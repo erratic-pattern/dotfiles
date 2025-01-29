@@ -1,8 +1,11 @@
-{ user, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
+{ user, homebrew-core, homebrew-cask, homebrew-bundle, nix-homebrew, ... }:
 let
   brewShellEnv = ''eval "$(/opt/homebrew/bin/brew shellenv)"'';
 in
 {
+  imports = [
+    nix-homebrew.darwinModules.nix-homebrew
+  ];
   nix-homebrew = {
     enable = true;
     user = user;
