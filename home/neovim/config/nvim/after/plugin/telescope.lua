@@ -1,4 +1,5 @@
 local telescope = require 'telescope'
+telescope.load_extension('oil')
 
 telescope.setup({
     extensions = {
@@ -23,6 +24,7 @@ bind('n', '<leader>f', "Search/Find Files (Telescope find_files)", function()
         find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
     }
 end)
+bind('n', '<leader>d', "Search/Find Directories", telescope.extensions.oil.oil)
 bind('n', '<leader>s', "Search text in project files (Telescope live_grep)", builtin.live_grep)
 bind('v', '<leader>s', "Search selected text in project files (Telescope grep_string)", builtin.grep_string)
 bind('n', '<leader>b', "Search open buffers (Telescope buffers)", builtin.buffers)

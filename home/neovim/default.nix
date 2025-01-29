@@ -76,6 +76,7 @@
       nvim-web-devicons
       telescope-nvim
       telescope-ui-select-nvim
+      telescope-oil
 
       # File Exploration and Manipulation
       nvim-tree-lua
