@@ -56,10 +56,12 @@
       finder = {
         AppleShowAllFiles = true;
         AppleShowAllExtensions = true;
-        _FXShowPosixPathInTitle = false;
         ShowStatusBar = true;
         ShowPathbar = true;
+        # When performing a search, search the current folder by default
         FXDefaultSearchScope = "SCcf";
+        _FXShowPosixPathInTitle = true;
+        _FXSortFoldersFirst = true;
         FXEnableExtensionChangeWarning = false;
       };
 
