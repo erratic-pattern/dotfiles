@@ -1,4 +1,9 @@
-{ ... }: {
+{ user, pkgs, ... }: {
+  # users.users.${user}.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
+    element
+  ];
+
   homebrew = {
     enable = true;
 
@@ -23,11 +28,11 @@
       "spotify"
       "expressvpn"
       "steam"
-      "element"
     ];
   };
 
   environment.variables = {
     DOCKER_BUILDKIT = "1";
   };
+
 }
