@@ -1,12 +1,7 @@
 { pkgs, ... }: {
-
-  imports = [
-    ../darwin/packages.nix
-  ];
-
   environment.systemPackages = with pkgs; [
-    discord
-    element
+    obsidian
+    wezterm
   ];
 
   homebrew = {
@@ -24,7 +19,20 @@
     };
 
     casks = [
-      "steam"
+      "docker"
+      "1password"
+      "google-chrome"
+      "notion"
+      "dropbox"
+      "google-drive"
+      "slack"
+      "spotify"
+      "expressvpn"
     ];
   };
+
+  environment.variables = {
+    DOCKER_BUILDKIT = "1";
+  };
+
 }

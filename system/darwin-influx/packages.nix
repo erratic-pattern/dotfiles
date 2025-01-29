@@ -1,4 +1,9 @@
 { kubelogin, homebrew-garden, ... }: {
+
+  imports = [
+    ../darwin/packages.nix
+  ];
+
   nix-homebrew = {
     taps = {
       "int128/kubelogin" = kubelogin;
@@ -21,23 +26,8 @@
     };
 
     casks = [
-      "docker"
-      "1password"
-      "google-chrome"
-      "notion"
-      "slack"
       "zoom"
-      "spotify"
-      "google-drive"
     ];
   };
-
-  environment.variables = {
-    DOCKER_BUILDKIT = "1";
-  };
-
-  # link lldb-vscode and llvm-symbolizer to homebrew bin
-  system.activationScripts.linkLlvmCode.text = ''
-    ln -f -s $(brew --prefix)/opt/llvm/bin/lldb-vscode $(brew --prefix)/opt/llvm/bin/llvm-symbolizer $(brew --prefix)/bin/
-  '';
 }
+
