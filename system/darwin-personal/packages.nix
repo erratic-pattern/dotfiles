@@ -6,7 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     discord
-    element
+    element-desktop
   ];
 
   homebrew = {
