@@ -12,7 +12,6 @@
       imports = [
         ../home/influx
         ../home/neovim
-        ../home/obsidian
         ../home/rust
         ../home/shell
         ../home/wezterm
