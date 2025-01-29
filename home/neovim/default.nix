@@ -60,7 +60,11 @@
       ### Telescope dependencies
       ripgrep
       fd
+    ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
+      ### obsidian-nvim dependencies on MacOS
+      pngpaste
     ];
+
 
     plugins = with pkgs.vimPlugins; [
 
@@ -93,6 +97,9 @@
       nvim-unception
       # gist-nvim
       octo-nvim
+
+      # Obsidian Integration
+      obsidian-nvim
 
       # AI Overlords
       copilot-vim
