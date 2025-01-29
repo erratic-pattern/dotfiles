@@ -65,14 +65,6 @@
     {
       inherit lib;
 
-      packages = eachSystem
-        (system:
-          let
-            pkgs = importNixPkgsFor system { };
-          in
-          pkgs.callPackage ./packages inputs
-        );
-
       apps = eachDarwinSystem
         (system:
           mkApps {
@@ -120,6 +112,5 @@
           };
         };
     };
-
 }
 
