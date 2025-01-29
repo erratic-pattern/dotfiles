@@ -5,7 +5,7 @@
     ./fonts.nix
     ./homebrew.nix
     ./home-manager.nix
-    ./spotlight-fix.nix
+    # ./spotlight-fix.nix
     ./system-settings.nix
     ./user.nix
     ../common
