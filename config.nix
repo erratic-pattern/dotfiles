@@ -4,8 +4,6 @@ let
   inherit (builtins) concatLists;
 in
 rec {
-  defaultUser = "adam";
-
   defaultNixPkgsConfig = {
     allowUnfree = true;
     # cudaSupport = true;
@@ -14,6 +12,10 @@ rec {
     # allowInsecure = false;
     allowUnsupportedSystem = true;
   };
+
+  defaultUser = "adam";
+
+  defaultDarwinSystem = "aarch64-darwin";
 
   darwinSystems = [ "aarch64-darwin" ];
 

@@ -72,7 +72,7 @@
         let
           darwinConfiguration =
             { user ? config.defaultUser
-            , system ? "aarch64-darwin"
+            , system ? config.defaultDarwinSystem
             , extraOverlays ? [ ]
             , modules
             }:
