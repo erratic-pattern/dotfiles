@@ -52,21 +52,26 @@
   };
   outputs =
     inputs @ { darwin
-    , nixpkgs
-    , nixpkgs-stable
     , ...
     }:
     let
       config = import ./config.nix inputs;
       lib = import ./lib.nix inputs;
       overlays = import ./overlays inputs;
-      inherit (lib) eachSystem mkApp;
-      inherit (nixpkgs.lib) genAttrs;
+      inherit (lib) eachSystem mkApps importNixPkgsFor importNixPkgsStableFor;
     in
     {
       inherit lib;
 
-      apps = eachSystem (system: genAttrs [ "switch" ] (mkApp system));
+      packages = eachSystem
+        (system:
+          let
+            pkgs = importNixPkgsFor system { };
+          in
+          pkgs.callPackage ./packages inputs
+        );
+
+      apps = eachSystem (mkApps [ "switch" ]);
 
       darwinConfigurations =
         let
@@ -74,25 +79,20 @@
             { user ? config.defaultUser
             , system ? config.defaultDarwinSystem
             , extraOverlays ? [ ]
-            , modules
+            , modules ? [ ]
             }:
             let
-              pkgs = import nixpkgs {
-                inherit system;
-                overlays = overlays.common ++ overlays.darwin ++ extraOverlays;
-                config = config.defaultNixPkgsConfig;
+              pkgs = importNixPkgsFor system {
+                overlays = overlays.darwin ++ extraOverlays;
               };
-              pkgs-stable = import nixpkgs-stable {
-                inherit system;
-                config = config.defaultNixPkgsConfig;
-              };
+              pkgs-stable = importNixPkgsStableFor system { };
               specialArgs = (inputs // {
-                inherit user system pkgs-stable;
+                inherit user pkgs-stable;
                 flake-inputs = inputs;
               });
             in
             darwin.lib.darwinSystem {
-              inherit system specialArgs pkgs modules;
+              inherit specialArgs pkgs modules;
             };
         in
         {
