@@ -1,8 +1,8 @@
-{ pkgs, pkgs-stable, ... }: {
+{ pkgs, ... }: {
   home.packages = (with pkgs; [
     python311
     poetry
-    pkgs-stable.ruff
+    ruff
   ] ++ (with python311Packages; [
     python-dateutil
   ]));
