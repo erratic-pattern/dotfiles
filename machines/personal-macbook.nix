@@ -32,7 +32,7 @@
     "${pkgs.wezterm}/Applications/Wezterm.app/"
     "/Applications/1Password.app/"
     "/Applications/Spotify.app/"
-    "/Applications/Discord.app/"
+    "${pkgs.discord}/Applications/Discord.app/"
     "/Applications/Steam.app/"
   ];
 }

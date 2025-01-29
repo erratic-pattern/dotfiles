@@ -20,11 +20,9 @@
       "notion"
       "dropbox"
       "google-drive"
-
       "spotify"
       "expressvpn"
       "steam"
-      "discord"
       "element"
     ];
   };
