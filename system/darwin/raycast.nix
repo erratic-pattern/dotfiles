@@ -1,9 +1,13 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    raycast
-  ];
-  # Custom keyboard shortcuts
-  CustomUserPreferences = {
+{ pkgs, ... }:
+let
+  inherit (pkgs) raycast;
+in
+{
+  environment.systemPackages =
+    [
+      raycast
+    ];
+  system.defaults.CustomUserPreferences = {
     "com.apple.symbolichotkeys" = {
       AppleSymbolicHotKeys = {
         # Disable spotlight keybind
@@ -12,5 +16,10 @@
         };
       };
     };
+  };
+  services.skhd = {
+    skhdConfig = ''
+      cmd - space : open ${raycast}/Applications/Raycast.app
+    '';
   };
 }

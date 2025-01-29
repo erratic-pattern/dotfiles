@@ -5,6 +5,7 @@
     ./home-manager.nix
     ./homebrew.nix
     ./packages.nix
+    ./raycast.nix
     ./shell.nix
     ./skhd.nix
     # ./spotlight-fix.nix
