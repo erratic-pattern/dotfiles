@@ -9,10 +9,10 @@ rec {
   importNixPkgsFor = importNixPkgsCustom nixpkgs;
   importNixPkgsStableFor = importNixPkgsCustom nixpkgs-stable;
   app = args: args // { type = "app"; };
-  forAllDarwinSystem = genAttrs config.darwinSystems;
-  forAllAndroidSystem = genAttrs config.androidSystems;
-  forAllNixOsSystem = genAttrs config.nixOsSystems;
-  forAllLinuxSystem = genAttrs config.linuxSystems;
-  forAllSystem = genAttrs config.systems;
+  forAllDarwinSystems = genAttrs config.darwinSystems;
+  forAllAndroidSystems = genAttrs config.androidSystems;
+  forAllNixOsSystems = genAttrs config.nixOsSystems;
+  forAllLinuxSystems = genAttrs config.linuxSystems;
+  forAllSystems = genAttrs config.systems;
   mergeAttrList = foldl recursiveUpdate { };
 }

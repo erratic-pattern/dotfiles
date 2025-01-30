@@ -68,13 +68,13 @@
       config = import ./config.nix inputs;
       lib = import ./lib.nix inputs;
       overlays = import ./overlays inputs;
-      inherit (lib) app forAllSystem importNixPkgsFor importNixPkgsStableFor;
+      inherit (lib) app forAllSystems importNixPkgsFor importNixPkgsStableFor;
     in
     {
       inherit lib;
 
       apps =
-        (forAllSystem
+        forAllSystems
           (system:
             let
               pkgs = importNixPkgsFor system { };
@@ -85,7 +85,7 @@
                 program = "${localPkgs.switch}/bin/switch";
               };
             }
-          ));
+          );
 
 
       darwinConfigurations =
