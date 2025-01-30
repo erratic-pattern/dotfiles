@@ -59,8 +59,6 @@
   };
   outputs =
     inputs @ { darwin
-    , nixpkgs
-    , nixpkgs-stable
     , nix-on-droid
     , ...
     }:

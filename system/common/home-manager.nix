@@ -1,4 +1,3 @@
-
 { flake-inputs, user, pkgs-stable, ... }: {
   home-manager = {
     useGlobalPkgs = true;

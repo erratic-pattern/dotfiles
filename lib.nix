@@ -1,7 +1,7 @@
 inputs @ { nixpkgs, nixpkgs-stable, ... }:
 let
   config = import ./config.nix inputs;
-  inherit (nixpkgs.lib.attrsets) genAttrs mapAttrs recursiveUpdate;
+  inherit (nixpkgs.lib.attrsets) genAttrs recursiveUpdate;
   inherit (nixpkgs.lib.lists) foldl;
 in
 rec {
