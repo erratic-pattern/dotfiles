@@ -131,7 +131,7 @@
           };
           pkgs-stable = importNixPkgsStableFor system;
           extraSpecialArgs = (inputs // {
-            inherit user system;
+            inherit user system pkgs-stable;
             flake-inputs = inputs;
           });
         in
