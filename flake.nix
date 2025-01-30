@@ -20,6 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nix-darwin.follows = "darwin";
     };
+
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
@@ -40,6 +41,12 @@
       flake = false;
     };
 
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     kubelogin = {
       url = "github:int128/kubelogin";
       flake = false;
@@ -51,30 +58,35 @@
     };
   };
   outputs =
-    inputs @ {
-    darwin
+    inputs @ { darwin
+    , nixpkgs
+    , nixpkgs-stable
+    , nix-on-droid
     , ...
     }:
     let
       config = import ./config.nix inputs;
       lib = import ./lib.nix inputs;
       overlays = import ./overlays inputs;
-      inherit (builtins) readFile;
-      inherit (lib) eachDarwinSystem mkApps importNixPkgsFor importNixPkgsStableFor;
+      inherit (lib) app forAllSystem importNixPkgsFor importNixPkgsStableFor;
     in
     {
       inherit lib;
 
-      apps = eachDarwinSystem
-        (system:
-          mkApps {
-            "switch" = {
-              inherit system;
-              name = "switch";
-              runtimeInputs = [ darwin.packages.${system}.darwin-rebuild ];
-              script = readFile ./apps/darwin/switch;
-            };
-          });
+      apps =
+        (forAllSystem
+          (system:
+            let
+              pkgs = importNixPkgsFor system { };
+              localPkgs = pkgs.callPackage ./packages inputs;
+            in
+            {
+              "switch" = app {
+                program = "${localPkgs.switch}/bin/switch";
+              };
+            }
+          ));
+
 
       darwinConfigurations =
         let
@@ -111,6 +123,27 @@
             ];
           };
         };
+
+      nixOnDroidConfigurations.default =
+        let
+          user = config.defaultUser;
+          system = "aarch64-linux";
+          pkgs = importNixPkgsFor system {
+            overlays = overlays.common ++ overlays.android;
+          };
+          pkgs-stable = importNixPkgsStableFor system;
+          extraSpecialArgs = (inputs // {
+            inherit user system;
+            flake-inputs = inputs;
+          });
+        in
+        nix-on-droid.lib.nixOnDroidConfiguration
+          {
+            inherit pkgs extraSpecialArgs;
+            modules = [
+              ./machines/android.nix
+            ];
+          };
     };
 }
 
