@@ -27,3 +27,4 @@ writeShellApplication {
     fi
   '';
 }
+

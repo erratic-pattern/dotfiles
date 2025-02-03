@@ -39,5 +39,7 @@
     # Video Tools
     ffmpeg-full
 
+    # Nix tools
+    cached-nix-shell
   ];
 }
