@@ -146,39 +146,39 @@
       {
         plugin = nvim-treesitter.withPlugins
           (plugins: with plugins; [
-            tree-sitter-json
-            tree-sitter-toml
-            tree-sitter-yaml
-            tree-sitter-rust
-            tree-sitter-python
-            tree-sitter-nix
-            tree-sitter-cmake
-            tree-sitter-make
-            tree-sitter-cpp
-            tree-sitter-c
             tree-sitter-bash
-            tree-sitter-readline
-            tree-sitter-lua
+            tree-sitter-c
+            tree-sitter-cmake
+            tree-sitter-cpp
             tree-sitter-css
-            tree-sitter-typescript
-            tree-sitter-javascript
-            tree-sitter-tsx
+            tree-sitter-dockerfile
+            tree-sitter-gitcommit
+            tree-sitter-go
             tree-sitter-html
             tree-sitter-http
+            tree-sitter-javascript
+            tree-sitter-json
+            tree-sitter-jsonnet
+            tree-sitter-llvm
+            tree-sitter-lua
+            tree-sitter-make
             tree-sitter-markdown
             tree-sitter-markdown-inline
+            tree-sitter-nix
+            tree-sitter-proto
+            tree-sitter-python
+            tree-sitter-query
+            tree-sitter-readline
             tree-sitter-regex
+            tree-sitter-rust
+            tree-sitter-sql
+            tree-sitter-toml
+            tree-sitter-tsx
+            tree-sitter-typescript
             tree-sitter-vim
             tree-sitter-vimdoc
-            tree-sitter-query
-            tree-sitter-llvm
-            tree-sitter-go
+            tree-sitter-yaml
             tree-sitter-zig
-            tree-sitter-sql
-            tree-sitter-proto
-            tree-sitter-dockerfile
-            tree-sitter-jsonnet
-            tree-sitter-gitcommit
           ]);
       }
     ];
