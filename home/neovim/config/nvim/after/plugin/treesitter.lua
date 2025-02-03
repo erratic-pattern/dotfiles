@@ -1,8 +1,11 @@
-require'nvim-treesitter.configs'.setup {
-  auto_install = false, -- managed by nix
+-- Defines a read-write directory for treesitters in nvim's cache dir
+local parser_install_dir = vim.fn.stdpath("cache") .. "/ts_parsers"
+vim.fn.mkdir(parser_install_dir, "p")
+vim.opt.runtimepath:append(parser_install_dir)
 
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+require'nvim-treesitter.configs'.setup {
+  auto_install = true,
+  parser_install_dir = parser_install_dir,
 
   indent = {
     enable = true,
