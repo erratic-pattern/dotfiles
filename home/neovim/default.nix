@@ -86,7 +86,6 @@
       vim-sleuth
       indent-blankline-nvim
       undotree
-      nvim-colorizer-lua
 
       # Git integrations
       gitsigns-nvim
@@ -140,7 +139,8 @@
       # LSP
       nvim-lspconfig
 
-      # Syntax
+      # Syntax Hightlighting
+      nvim-colorizer-lua
       nvim-treesitter-textobjects
       {
         plugin = nvim-treesitter.withPlugins
