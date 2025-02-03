@@ -4,6 +4,7 @@
     # Shell utilities 
     bash-completion
     coreutils
+    difftastic
     fd
     jq
     killall
