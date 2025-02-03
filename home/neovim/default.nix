@@ -84,7 +84,6 @@
 
       # General Editing
       vim-sleuth
-      comment-nvim
       indent-blankline-nvim
       undotree
       nvim-colorizer-lua

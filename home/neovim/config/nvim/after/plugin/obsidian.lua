@@ -16,6 +16,7 @@ vim.keymap.set("n", "<leader>ny", "<cmd>ObsidianYesterday<cr>", { noremap = true
 vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianTags<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nT", "<cmd>ObsidianTemplate<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", { noremap = true });
 
@@ -135,14 +136,13 @@ require "obsidian".setup({
     return out
   end,
 
-  -- Optional, for templates (see below).
-  -- templates = {
-  --   folder = "templates",
-  --   date_format = "%Y-%m-%d",
-  --   time_format = "%H:%M",
-  --   -- A map for custom variables, the key should be the variable and the value a function
-  --   substitutions = {},
-  -- },
+  templates = {
+    folder = "templates",
+    date_format = "%Y-%m-%d",
+    time_format = "%H:%M",
+    -- A map for custom variables, the key should be the variable and the value a function
+    substitutions = {},
+  },
 
   -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
   -- URL it will be ignored but you can customize this behavior here.
