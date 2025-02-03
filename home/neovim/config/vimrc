@@ -9,6 +9,8 @@ set timeoutlen=3000
 " search options
 set incsearch
 set nohlsearch
+set inccommand=split
+set cmdwinheight=20
 
 " vim directories
 " set noswapfile
