@@ -102,6 +102,9 @@
       # Obsidian Integration
       obsidian-nvim
 
+      # Vim Learning tools
+      precognition-nvim
+
       # AI Overlords
       copilot-vim
 
