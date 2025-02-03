@@ -1,23 +1,23 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # General packages for development and system management
+    # Shell utilities 
     bash-completion
     coreutils
+    fd
     jq
     killall
-    openssh
-    ripgrep
-    fd
     parallel
-    tree
+    ripgrep
     tmux
+    tree
     unzip
     watch
     wget
     zip
 
     # Encryption and security tools
+    openssh
     _1password-cli
     gnupg
     # libfido2
