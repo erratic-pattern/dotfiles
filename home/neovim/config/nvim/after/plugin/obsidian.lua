@@ -7,14 +7,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 })
 
-vim.keymap.set("n", "gf", function()
-  if require("obsidian").util.cursor_on_markdown_link() then
-    return "<cmd>ObsidianFollowLink<CR>"
-  else
-    return "gf"
-  end
-end, { noremap = false, expr = true })
-
+-- Global keybinds
 vim.keymap.set("n", "<leader>nn", "<cmd>ObsidianNew<cr>", { noremap = true });
 vim.keymap.set("v", "<leader>nn", "<cmd>ObsidianLinkNew<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nd", "<cmd>ObsidianToday<cr>", { noremap = true });
@@ -27,36 +20,35 @@ vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", { noremap = true });
 
 require "obsidian".setup({
-  -- A list of workspace names, paths, and configuration overrides.
-  -- If you use the Obsidian app, the 'path' of a workspace should generally be
-  -- your vault root (where the `.obsidian` folder is located).
-  -- When obsidian.nvim is loaded by your plugin manager, it will automatically set
-  -- the workspace to the first workspace in the list whose `path` is a parent of the
-  -- current markdown file being edited.
   workspaces = {
     {
       name = "vault",
       path = "~/Documents/Notes",
     },
-    -- {
-    --   name = "work",
-    --   path = "~/vaults/work",
-    --   -- Optional, override certain settings.
-    --   overrides = {
-    --     notes_subdir = "notes",
-    --   },
-    -- },
+  },
+  --
+  -- Keymappings for when buffer is a workspace markdown file.
+  mappings = {
+    -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+    ["gf"] = {
+      action = function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gf"
+        end
+      end,
+      opts = { noremap = false, expr = true, buffer = true },
+    },
+    -- Smart action depending on context, either follow link or toggle checkbox.
+    ["<CR>"] = {
+      action = function()
+        return require("obsidian").util.smart_action()
+      end,
+      opts = { noremap = false, buffer = true, expr = true },
+    }
   },
 
-  -- Alternatively - and for backwards compatibility - you can set 'dir' to a single path instead of
-  -- 'workspaces'. For example:
-  -- dir = "~/vaults/work",
-
-  -- Optional, if you keep notes in a specific subdirectory of your vault.
-  -- notes_subdir = "notes",
-
-  -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
-  -- levels defined by "vim.log.levels.*".
   log_level = vim.log.levels.INFO,
 
   -- daily_notes = {
@@ -72,44 +64,16 @@ require "obsidian".setup({
   --   template = nil
   -- },
 
-  -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
   completion = {
-    -- Set to false to disable completion.
     nvim_cmp = true,
-    -- Trigger completion at 2 chars.
     min_chars = 2,
   },
 
-  -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
-  -- way then set 'mappings = {}'.
-  mappings = {
-    -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-    ["gf"] = {
-      action = function()
-        return require("obsidian").util.gf_passthrough()
-      end,
-      opts = { noremap = false, expr = true, buffer = true },
-    },
-    -- Toggle check-boxes.
-    -- ["<leader>ch"] = {
-    --   action = function()
-    --     return require("obsidian").util.toggle_checkbox()
-    --   end,TodayToday
-    --   opts = { buffer = true },
-    -- },
-    -- Smart action depending on context, either follow link or toggle checkbox.
-    ["<tab>"] = {
-      action = function()
-        return require("obsidian").util.smart_action()
-      end,
-      opts = { buffer = true, expr = true },
-    }
-  },
 
   -- Where to put new notes. Valid options are
   --  * "current_dir" - put new notes in same directory as the current buffer.
   --  * "notes_subdir" - put new notes in the default notes subdirectory.
-  new_notes_location = "current_dir",
+  new_notes_location = "notes_subdir",
 
   -- Optional, customize how note IDs are generated given an optional title.
   ---@param title string|?
