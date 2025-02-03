@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 let
   name = "Adam Curtis";
   email = "adam.curtis.dev@gmail.com";
@@ -19,6 +19,7 @@ in
       push.autoSetupRemote = true;
       merge.tool = "nvim";
       mergetool.nvim.cmd = "nvim -d -c 'wincmd l' -c 'norm ]c' \"$LOCAL\" \"$MERGED\" \"$REMOTE\"";
+      diff.external="${pkgs.difftastic}/bin/difft";
     };
   };
 }
