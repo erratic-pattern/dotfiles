@@ -1,15 +1,10 @@
 { lib, ... }:
 let
-  # Read file contents of a directory non-recurisvely
-  readDirFiles = dir:
-    lib.mapAttrs
-      (f: type: builtins.readFile "${dir}/${f}")
-      (lib.filterAttrs
-        (f: type: type == "regular")
-        (builtins.readDir dir));
-  # Read directory of config files and concatenate contents into a string
+  inherit (lib) concatStringsSep map readFile;
+  inherit (lib.filesystem) listFilesRecursive;
+  # Read a directory of config files recursively and concatenate contents into a string
   concatConfigFiles = dir:
-    lib.concatStringsSep "\n" (lib.attrValues (readDirFiles dir));
+    concatStringsSep "\n" (map readFile (listFilesRecursive dir));
 in
 {
   home.sessionVariables = {
