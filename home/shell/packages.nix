@@ -37,7 +37,7 @@
     # vscode
 
     # Video Tools
-    # ffmpeg_5-full
+    ffmpeg-full
 
   ];
 }
