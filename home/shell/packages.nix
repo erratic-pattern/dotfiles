@@ -17,6 +17,12 @@
     wget
     zip
 
+    # System Management
+    btop
+    glances
+    htop
+
+
     # Encryption and security tools
     openssh
     _1password-cli
