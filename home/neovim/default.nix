@@ -178,6 +178,7 @@
             tree-sitter-proto
             tree-sitter-dockerfile
             tree-sitter-jsonnet
+            tree-sitter-gitcommit
           ]);
       }
     ];
