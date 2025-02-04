@@ -15,8 +15,8 @@ vim.keymap.set("n", "<leader>nD", "<cmd>ObsidianTomorrow<cr>", { noremap = true 
 vim.keymap.set("n", "<leader>ny", "<cmd>ObsidianYesterday<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianTags<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nT", "<cmd>ObsidianTemplate<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianTemplate<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nT", "<cmd>ObsidianTags<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", { noremap = true });
 
