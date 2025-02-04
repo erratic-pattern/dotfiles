@@ -1,3 +1,17 @@
+--- Returns the given day of the current week as Unix time
+--- @param day integer A day specifier in the range 1-7 with 1 representing Sunday
+--- @return integer dayOfWeek the day as Unix time
+local function dayOfWeek(day)
+  if day < 1 or day > 7 then error("Day must be within range 1-7") end
+  -- Current time as a table
+  local current_time = os.date("*t", os.time())
+  -- Truncate to midnight of current day as Unix time
+  local current_day = os.time { year = current_time.year, month = current_time.month, day = current_time.day }
+  -- Roll back/forward to Monday
+  local offset = 86400 * -(current_time.wday - day)
+  return current_day + offset
+end
+
 -- set conceallevel=2 on markdown to allow ui support
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
@@ -15,10 +29,11 @@ vim.keymap.set("n", "<leader>nD", "<cmd>ObsidianTomorrow<cr>", { noremap = true 
 vim.keymap.set("n", "<leader>ny", "<cmd>ObsidianYesterday<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianTemplate<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianNewFromTemplate<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nT", "<cmd>ObsidianTags<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", { noremap = true });
+
 
 require "obsidian".setup({
   workspaces = {
@@ -141,7 +156,15 @@ require "obsidian".setup({
     date_format = "%Y-%m-%d",
     time_format = "%H:%M",
     -- A map for custom variables, the key should be the variable and the value a function
-    substitutions = {},
+    substitutions = {
+      start_of_week = function()
+        return os.date("%Y-%m-%d", dayOfWeek(2)) -- Roll back/forward to Monday
+      end,
+      end_of_week = function()
+        return os.date("%Y-%m-%d", dayOfWeek(6)) -- Roll back/forward to Friday
+      end
+    },
+
   },
 
   -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
