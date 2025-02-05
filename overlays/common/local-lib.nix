@@ -1,7 +1,7 @@
 # extend the nixpkgs lib with custom local lib.
-inputs: self: super: {
-  lib = super.lib.extend
-    (self: super: {
+inputs: final: prev: {
+  lib = prev.lib.extend
+    (final: prev: {
       local = import ../lib.nix inputs;
     });
 }
