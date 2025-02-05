@@ -73,13 +73,13 @@ require "obsidian".setup({
 
   -- daily_notes = {
   --   -- Optional, if you keep daily notes in a separate directory.
-  --   folder = "notes/dailies",
+  -- folder = "daily",
   --   -- Optional, if you want to change the date format for the ID of daily notes.
   --   date_format = "%Y-%m-%d",
   --   -- Optional, if you want to change the date format of the default alias of daily notes.
   --   alias_format = "%B %-d, %Y",
   --   -- Optional, default tags to add to each new daily note created.
-  --   default_tags = { "daily-notes" },
+  default_tags = { "daily" },
   --   -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
   --   template = nil
   -- },
@@ -89,18 +89,19 @@ require "obsidian".setup({
     min_chars = 2,
   },
 
-
   -- Where to put new notes. Valid options are
   --  * "current_dir" - put new notes in same directory as the current buffer.
   --  * "notes_subdir" - put new notes in the default notes subdirectory.
   new_notes_location = "notes_subdir",
 
+  notes_subdir = "notebox",
+
   -- Optional, customize how note IDs are generated given an optional title.
   ---@param title string|?
   ---@return string
   note_id_func = function(title)
-    -- Create note IDs in a modified Zettelkasten format with a timestamp and a suffix.
-    return os.date('%Y-%m-%d-%H-%M-%S') .. "-" .. title
+    -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+    return os.time() .. "-" .. title
   end,
 
   -- Optional, customize how note file names are generated given the ID, target directory, and title.
@@ -205,15 +206,15 @@ require "obsidian".setup({
     -- Not all pickers support all mappings.
     note_mappings = {
       -- Create a new note from your query.
-      -- new = "<C-x>",
+      new = "<C-x>",
       -- Insert a link to the selected note.
-      -- insert_link = "<C-l>",
+      insert_link = "<C-l>",
     },
     tag_mappings = {
       -- Add tag(s) to current note.
-      -- tag_note = "<C-x>",
+      tag_note = "<C-x>",
       -- Insert a tag at the current location.
-      -- insert_tag = "<C-l>",
+      insert_tag = "<C-l>",
     },
   },
 
