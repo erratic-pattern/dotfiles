@@ -153,6 +153,10 @@
           ];
         };
 
+      legacyPackages = forAllSystems (
+        system: nixpkgs.legacyPackages.${system}.callPackage ./packages inputs
+      );
+
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
     };

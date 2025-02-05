@@ -1,6 +1,7 @@
 # collection of local vim/neovim plugins
 {
-  prev,
+  nixpkgs,
+  system,
   vimUtils,
   vimPlugins,
   fetchFromGitHub,
@@ -21,7 +22,7 @@
     meta.homepage = "https://github.com/albenisolmos/telescope-oil.nvim";
   };
 
-  obsidian-nvim = prev.vimPlugins.obsidian-nvim.overrideAttrs {
+  obsidian-nvim = nixpkgs.legacyPackages.${system}.vimPlugins.obsidian-nvim.overrideAttrs {
     patches = [
       # https://github.com/epwalsh/obsidian.nvim/pull/774
       (fetchpatch {
