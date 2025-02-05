@@ -80,7 +80,7 @@
       apps = forAllSystems (
         system:
         let
-          pkgs = importNixPkgsFor system { };
+          pkgs = nixpkgs.legacyPackages.${system};
           localPkgs = pkgs.callPackage ./packages inputs;
         in
         {
