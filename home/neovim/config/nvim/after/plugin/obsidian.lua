@@ -28,7 +28,6 @@ vim.keymap.set("n", "<leader>nd", "<cmd>ObsidianToday<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nD", "<cmd>ObsidianTomorrow<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>ny", "<cmd>ObsidianYesterday<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianNewFromTemplate<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nT", "<cmd>ObsidianTags<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<cr>", { noremap = true });
@@ -62,7 +61,12 @@ require "obsidian".setup({
         return require("obsidian").util.smart_action()
       end,
       opts = { noremap = false, buffer = true, expr = true },
-    }
+    },
+    -- Show backlinks
+    ["<leader>nb"] = {
+      action = "<cmd>ObsidianBacklinks<cr>",
+      opts = { noremap = true, buffer = true }
+    },
   },
 
   log_level = vim.log.levels.INFO,
