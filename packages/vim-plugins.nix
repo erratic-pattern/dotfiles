@@ -24,23 +24,29 @@
 
   obsidian-nvim = nixpkgs.legacyPackages.${system}.vimPlugins.obsidian-nvim.overrideAttrs {
     patches = [
+      # https://github.com/epwalsh/obsidian.nvim/pull/709
+      (fetchpatch {
+        name = "cristobalgvera:feature/provide-note-in-substitutions";
+        url = "https://patch-diff.githubusercontent.com/raw/epwalsh/obsidian.nvim/pull/709.patch";
+        hash = "sha256-0gow3/7PpWguifx4KJh94UbB7cAo/mIGxKZoh2XT1SE=";
+      })
       # https://github.com/epwalsh/obsidian.nvim/pull/774
       (fetchpatch {
         name = "bosvik:bug/NewFromTemplate-respect-id";
         url = "https://patch-diff.githubusercontent.com/raw/epwalsh/obsidian.nvim/pull/774.patch";
         hash = "sha256-LoIy0Bbl1aJJQrsFOaoHX1n9UXtKSdENYgjlAWGZhz0=";
       })
+      # https://github.com/epwalsh/obsidian.nvim/pull/715
+      # (fetchpatch {
+      #   name = "meeIbrahim:templateWithFrontmatter";
+      #   url = "https://patch-diff.githubusercontent.com/raw/epwalsh/obsidian.nvim/pull/715.patch";
+      #   hash = "sha256-Kf7FAfWkANkX7uHFbnbe5traIrACXIsIrAnQCduRIHw=";
+      # })
       # https://github.com/epwalsh/obsidian.nvim/pull/804
       (fetchpatch {
         name = "sirjager:feat/extending-file-support";
         url = "https://patch-diff.githubusercontent.com/raw/epwalsh/obsidian.nvim/pull/804.patch";
         hash = "sha256-A2EOBsKfDObgWsAU0Fmg9UQ8r8xqNnp5exm0I0Vylg4=";
-      })
-      # https://github.com/epwalsh/obsidian.nvim/pull/709
-      (fetchpatch {
-        name = "cristobalgvera:feature/provide-note-in-substitutions";
-        url = "https://patch-diff.githubusercontent.com/raw/epwalsh/obsidian.nvim/pull/709.patch";
-        hash = "sha256-0gow3/7PpWguifx4KJh94UbB7cAo/mIGxKZoh2XT1SE=";
       })
       # https://github.com/epwalsh/obsidian.nvim/pull/817
       # (fetchpatch
