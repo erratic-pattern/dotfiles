@@ -1,7 +1,16 @@
-{ self, system, darwin, writeShellApplication, ... }:
+{
+  self,
+  system,
+  darwin,
+  writeShellApplication,
+  ...
+}:
 writeShellApplication {
   name = "switch";
-  runtimeInputs = [ self darwin.packages.${system}.darwin-rebuild ];
+  runtimeInputs = [
+    self
+    darwin.packages.${system}.darwin-rebuild
+  ];
   text = ''
     #!/bin/sh -e
     if [ -n "''${1-}" ]; then

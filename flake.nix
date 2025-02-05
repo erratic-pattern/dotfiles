@@ -4,7 +4,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
-
     home-manager = {
       url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,51 +57,60 @@
     };
   };
   outputs =
-    inputs @ { darwin
-    , nix-on-droid
-    , ...
+    inputs@{
+      nixpkgs,
+      darwin,
+      nix-on-droid,
+      ...
     }:
     let
       config = import ./config.nix inputs;
       lib = import ./lib.nix inputs;
       overlays = import ./overlays inputs;
-      inherit (lib) app forAllSystems importNixPkgsFor importNixPkgsStableFor;
+      inherit (lib)
+        app
+        forAllSystems
+        importNixPkgsFor
+        importNixPkgsStableFor
+        ;
     in
     {
       inherit lib;
 
-      apps =
-        forAllSystems
-          (system:
-            let
-              pkgs = importNixPkgsFor system { };
-              localPkgs = pkgs.callPackage ./packages inputs;
-            in
-            {
-              "switch" = app {
-                program = "${localPkgs.switch}/bin/switch";
-              };
-            }
-          );
-
+      apps = forAllSystems (
+        system:
+        let
+          pkgs = importNixPkgsFor system { };
+          localPkgs = pkgs.callPackage ./packages inputs;
+        in
+        {
+          "switch" = app {
+            program = "${localPkgs.switch}/bin/switch";
+          };
+        }
+      );
 
       darwinConfigurations =
         let
           darwinConfiguration =
-            { user ? config.defaultUser
-            , system ? config.defaultDarwinSystem
-            , extraOverlays ? [ ]
-            , modules ? [ ]
+            {
+              user ? config.defaultUser,
+              system ? config.defaultDarwinSystem,
+              extraOverlays ? [ ],
+              modules ? [ ],
             }:
             let
               pkgs = importNixPkgsFor system {
                 overlays = overlays.darwin ++ extraOverlays;
               };
               pkgs-stable = importNixPkgsStableFor system { };
-              specialArgs = (inputs // {
-                inherit user pkgs-stable;
-                flake-inputs = inputs;
-              });
+              specialArgs = (
+                inputs
+                // {
+                  inherit user pkgs-stable;
+                  flake-inputs = inputs;
+                }
+              );
             in
             darwin.lib.darwinSystem {
               inherit specialArgs pkgs modules;
@@ -130,18 +138,22 @@
             overlays = overlays.common ++ overlays.android;
           };
           pkgs-stable = importNixPkgsStableFor system;
-          extraSpecialArgs = (inputs // {
-            inherit user system pkgs-stable;
-            flake-inputs = inputs;
-          });
+          extraSpecialArgs = (
+            inputs
+            // {
+              inherit user system pkgs-stable;
+              flake-inputs = inputs;
+            }
+          );
         in
-        nix-on-droid.lib.nixOnDroidConfiguration
-          {
-            inherit pkgs extraSpecialArgs;
-            modules = [
-              ./machines/android.nix
-            ];
-          };
+        nix-on-droid.lib.nixOnDroidConfiguration {
+          inherit pkgs extraSpecialArgs;
+          modules = [
+            ./machines/android.nix
+          ];
+        };
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+
     };
 }
-

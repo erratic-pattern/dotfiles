@@ -3,10 +3,9 @@ let
   inherit (pkgs) raycast;
 in
 {
-  environment.systemPackages =
-    [
-      raycast
-    ];
+  environment.systemPackages = [
+    raycast
+  ];
   system.defaults.CustomUserPreferences = {
     "com.apple.symbolichotkeys" = {
       AppleSymbolicHotKeys = {

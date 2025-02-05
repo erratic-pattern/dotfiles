@@ -35,36 +35,43 @@
 
     # fixes issue with rust-analyzer in user PATH shadowing the one here
     # https://github.com/nix-community/home-manager/issues/4330#issuecomment-2391709770
-    extraWrapperArgs = [ "--prefix" "PATH" ":" "${lib.makeBinPath [ pkgs.rust-analyzer ]}" ];
-
-    extraPackages = with pkgs; [
-      ### LSP servers
-      taplo-lsp # TOML
-      yaml-language-server # YAML
-      nodePackages.typescript-language-server # Typescript/Javascript
-      nodePackages.vscode-json-languageserver # JSON
-      python3Packages.python-lsp-server # Python
-      sumneko-lua-language-server # Lua
-      jsonnet-language-server #Jsonnet
-      gopls # Go
-      buf # Protobuf
-      # Bash
-      shellcheck
-      nodePackages.bash-language-server
-      # Nix
-      nixd
-      nixpkgs-fmt
-      # Rust
-      rust-analyzer
-
-      ### Telescope dependencies
-      ripgrep
-      fd
-    ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
-      ### obsidian-nvim dependencies on MacOS
-      pngpaste
+    extraWrapperArgs = [
+      "--prefix"
+      "PATH"
+      ":"
+      "${lib.makeBinPath [ pkgs.rust-analyzer ]}"
     ];
 
+    extraPackages =
+      with pkgs;
+      [
+        ### LSP servers
+        taplo-lsp # TOML
+        yaml-language-server # YAML
+        nodePackages.typescript-language-server # Typescript/Javascript
+        nodePackages.vscode-json-languageserver # JSON
+        python3Packages.python-lsp-server # Python
+        sumneko-lua-language-server # Lua
+        jsonnet-language-server # Jsonnet
+        gopls # Go
+        buf # Protobuf
+        # Bash
+        shellcheck
+        nodePackages.bash-language-server
+        # Nix
+        nixd
+        nixpkgs-fmt
+        # Rust
+        rust-analyzer
+
+        ### Telescope dependencies
+        ripgrep
+        fd
+      ]
+      ++ lib.optionals stdenv.hostPlatform.isDarwin [
+        ### obsidian-nvim dependencies on MacOS
+        pngpaste
+      ];
 
     plugins = with pkgs.vimPlugins; [
 
@@ -127,7 +134,6 @@
       gruvbox
       dracula-nvim
 
-
       # Autocompletion
       nvim-cmp
       cmp-nvim-lsp
@@ -143,8 +149,8 @@
       nvim-colorizer-lua
       nvim-treesitter-textobjects
       {
-        plugin = nvim-treesitter.withPlugins
-          (plugins: with plugins; [
+        plugin = nvim-treesitter.withPlugins (
+          plugins: with plugins; [
             tree-sitter-bash
             tree-sitter-c
             tree-sitter-cmake
@@ -178,9 +184,9 @@
             tree-sitter-vimdoc
             tree-sitter-yaml
             tree-sitter-zig
-          ]);
+          ]
+        );
       }
     ];
   };
 }
-

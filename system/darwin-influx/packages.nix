@@ -1,4 +1,5 @@
-{ kubelogin, homebrew-garden, ... }: {
+{ kubelogin, homebrew-garden, ... }:
+{
 
   imports = [
     ../darwin/packages.nix
@@ -30,4 +31,3 @@
     ];
   };
 }
-

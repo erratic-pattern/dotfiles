@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     protobuf
     postgresql
@@ -7,4 +8,3 @@
     vault
   ];
 }
-

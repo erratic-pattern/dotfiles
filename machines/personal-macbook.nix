@@ -1,4 +1,5 @@
-{ pkgs, user, ... }: {
+{ pkgs, user, ... }:
+{
   imports = [
     ../system/darwin-personal
     ../system/darwin-influx
@@ -9,16 +10,18 @@
   networking.computerName = "Adam's MacBook";
 
   home-manager = {
-    users.${user} = { ... }: {
-      imports = [
-        ../home/influx
-        ../home/mud
-        ../home/neovim
-        ../home/rust
-        ../home/shell
-        ../home/wezterm
-      ];
-    };
+    users.${user} =
+      { ... }:
+      {
+        imports = [
+          ../home/influx
+          ../home/mud
+          ../home/neovim
+          ../home/rust
+          ../home/shell
+          ../home/wezterm
+        ];
+      };
   };
 
   system.defaults.dock.persistent-apps = [

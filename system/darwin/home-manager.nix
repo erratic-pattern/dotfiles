@@ -1,4 +1,5 @@
-{ home-manager, pkgs, ... }: {
+{ home-manager, pkgs, ... }:
+{
   imports = [
     ../common/home-manager.nix
     home-manager.darwinModules.home-manager
@@ -8,4 +9,3 @@
     overlays = pkgs.overlays;
   };
 }
-

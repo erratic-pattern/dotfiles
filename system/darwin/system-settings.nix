@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   system = {
     stateVersion = 4;
 
@@ -37,7 +38,7 @@
         # dark mode
         AppleInterfaceStyle = "Dark";
 
-        # full keyboard UI control 
+        # full keyboard UI control
         AppleKeyboardUIMode = 3;
 
         NSDocumentSaveNewDocumentsToCloud = false;

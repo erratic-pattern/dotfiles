@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # Shell utilities 
+    # Shell utilities
     bash-completion
     coreutils
     difftastic
@@ -21,7 +21,6 @@
     btop
     glances
     htop
-
 
     # Encryption and security tools
     openssh

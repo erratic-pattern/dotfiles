@@ -1,4 +1,11 @@
-{ user, homebrew-core, homebrew-cask, homebrew-bundle, nix-homebrew, ... }:
+{
+  user,
+  homebrew-core,
+  homebrew-cask,
+  homebrew-bundle,
+  nix-homebrew,
+  ...
+}:
 let
   brewShellEnv = ''eval "$(/opt/homebrew/bin/brew shellenv)"'';
 in

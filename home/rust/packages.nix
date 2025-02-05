@@ -9,14 +9,17 @@ in
   ];
 
   # Install cargo utilities into ~/.cargo/bin
-  home.file = listToAttrs
-    (
-      map
-        (p: {
-          name = ".cargo/bin/${baseNameOf (unsafeDiscardStringContext p)}";
-          value = { source = p; };
-        })
-        (with pkgs; [
+  home.file = listToAttrs (
+    map
+      (p: {
+        name = ".cargo/bin/${baseNameOf (unsafeDiscardStringContext p)}";
+        value = {
+          source = p;
+        };
+      })
+      (
+        with pkgs;
+        [
           "${cargo-binstall}/bin/cargo-binstall"
           "${cargo-deny}/bin/cargo-deny"
           "${cargo-hakari}/bin/cargo-hakari"
@@ -28,16 +31,16 @@ in
           "${sqlx-cli}/bin/cargo-sqlx"
           "${sqlx-cli}/bin/sqlx"
           "${taplo}/bin/taplo"
-        ]));
+        ]
+      )
+  );
 
   home.sessionPath = [
     "$HOME/.cargo/bin"
   ];
 
   # set default rust version to stable
-  home.activation.rustupDefault =
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      ${pkgs.rustup}/bin/rustup default stable
-    '';
+  home.activation.rustupDefault = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    ${pkgs.rustup}/bin/rustup default stable
+  '';
 }
-

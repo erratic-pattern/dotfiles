@@ -3,8 +3,7 @@ let
   inherit (lib) concatStringsSep map readFile;
   inherit (lib.filesystem) listFilesRecursive;
   # Read a directory of config files recursively and concatenate contents into a string
-  concatConfigFiles = dir:
-    concatStringsSep "\n" (map readFile (listFilesRecursive dir));
+  concatConfigFiles = dir: concatStringsSep "\n" (map readFile (listFilesRecursive dir));
 in
 {
   home.sessionVariables = {

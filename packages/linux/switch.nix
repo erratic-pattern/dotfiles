@@ -1,4 +1,10 @@
-{ self, nix-on-droid, system, writeShellApplication, ... }:
+{
+  self,
+  nix-on-droid,
+  system,
+  writeShellApplication,
+  ...
+}:
 writeShellApplication {
   name = "switch";
   runtimeInputs = [ nix-on-droid.packages.${system}.nix-on-droid ];
@@ -27,4 +33,3 @@ writeShellApplication {
     fi
   '';
 }
-
