@@ -1,7 +1,7 @@
-local lspconfig = require'lspconfig'
+local lspconfig = require 'lspconfig'
 
 -- Add custom server definitions not included in some versions of lspconfig
-local configs = require'lspconfig.configs'
+local configs = require 'lspconfig.configs'
 
 -- protobuf LSP using Buf CLI
 -- this is in beta, and some older versions of lspconfig don't support it
@@ -72,7 +72,7 @@ local language_servers = {
     nixd = {
         settings = {
             ["nixd"] = {
-                formatting = { command = { "nixpkgs-fmt" } }
+                formatting = { command = { "nixfmt" } }
             }
         }
     },

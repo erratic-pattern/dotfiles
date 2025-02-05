@@ -60,7 +60,7 @@
         nodePackages.bash-language-server
         # Nix
         nixd
-        nixpkgs-fmt
+        nixfmt-rfc-style
         # Rust
         rust-analyzer
 
