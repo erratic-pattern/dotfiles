@@ -71,18 +71,18 @@ require "obsidian".setup({
 
   log_level = vim.log.levels.INFO,
 
-  -- daily_notes = {
-  --   -- Optional, if you keep daily notes in a separate directory.
-  -- folder = "daily",
-  --   -- Optional, if you want to change the date format for the ID of daily notes.
-  --   date_format = "%Y-%m-%d",
-  --   -- Optional, if you want to change the date format of the default alias of daily notes.
-  --   alias_format = "%B %-d, %Y",
-  --   -- Optional, default tags to add to each new daily note created.
-  default_tags = { "daily" },
-  --   -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-  --   template = nil
-  -- },
+  daily_notes = {
+    --   -- Optional, if you keep daily notes in a separate directory.
+    -- folder = "daily",
+    --   -- Optional, if you want to change the date format for the ID of daily notes.
+    --   date_format = "%Y-%m-%d",
+    --   -- Optional, if you want to change the date format of the default alias of daily notes.
+    --   alias_format = "%B %-d, %Y",
+    --   -- Optional, default tags to add to each new daily note created.
+    default_tags = { "daily" },
+    --   -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+    --   template = nil
+  },
 
   completion = {
     nvim_cmp = true,
@@ -100,8 +100,12 @@ require "obsidian".setup({
   ---@param title string|?
   ---@return string
   note_id_func = function(title)
-    -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-    return os.time() .. "-" .. title
+      -- Create note IDs in a Zettelkasten format with a timestamp and an optional title suffix.
+    if title then
+      return os.time() .. "-" .. title
+    else
+      return tostring(os.time())
+    end
   end,
 
   -- Optional, customize how note file names are generated given the ID, target directory, and title.
