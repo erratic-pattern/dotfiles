@@ -1,8 +1,8 @@
-{ ... }:
+{ home-manager, ... }:
 {
   imports = [
+    home-manager.darwinModules.home-manager
     ./fonts.nix
-    ./home-manager.nix
     ./homebrew.nix
     ./packages.nix
     ./raycast.nix
