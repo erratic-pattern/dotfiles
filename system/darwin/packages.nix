@@ -2,6 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
     obsidian
+    slack
+    spotify
     wezterm
   ];
 
@@ -20,15 +22,13 @@
     };
 
     casks = [
-      "docker"
       "1password"
-      "google-chrome"
-      "notion"
+      "docker"
       "dropbox"
-      "google-drive"
-      "slack"
-      "spotify"
       "expressvpn"
+      "google-chrome"
+      "google-drive"
+      "notion"
     ];
   };
 
