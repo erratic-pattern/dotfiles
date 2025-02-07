@@ -11,6 +11,7 @@
         ../home/mud
         ../home/neovim
         ../home/shell
+        ../home/directories.nix
       ];
     };
   };

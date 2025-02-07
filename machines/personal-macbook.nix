@@ -20,6 +20,7 @@
           ../home/rust
           ../home/shell
           ../home/wezterm
+          ../home/directories.nix
         ];
       };
   };
