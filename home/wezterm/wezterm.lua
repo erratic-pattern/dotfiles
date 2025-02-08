@@ -17,6 +17,8 @@ config.color_scheme = 'nightfox'
 config.use_fancy_tab_bar = false;
 config.hide_tab_bar_if_only_one_tab = true;
 
+config.enable_kitty_graphics = true
+
 config.set_environment_variables = {
     TERMINFO_DIRS = '/home/user/.nix-profile/share/terminfo',
     WSLENV = 'TERMINFO_DIRS',
