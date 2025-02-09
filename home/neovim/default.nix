@@ -128,7 +128,7 @@
       catppuccin-nvim
       melange-nvim
       kanagawa-nvim
-      jellybeans-nvim
+      # jellybeans-nvim
       seoul256-vim
       srcery-vim
       gruvbox
