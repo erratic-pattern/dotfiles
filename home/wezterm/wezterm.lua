@@ -31,6 +31,7 @@ config.set_environment_variables = {
     WSLENV = 'TERMINFO_DIRS',
 }
 
+-- Escape all regex special characters in string
 local function regexEscape(str)
     return str:gsub("[%(%)%.%%%+%-%*%?%[%^%$%]]", "%%%1")
 end
@@ -61,5 +62,24 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     local title = string.format(" %s  [%s] %s ", tab.tab_index + 1, process_name, subtitle)
     return { { Text = title }, }
 end)
+
+
+-- Only perform the given action when not in fullscreen mode, otherwise passthru to running program
+local function action_unless_fullscreen(action, key)
+    return wezterm.action_callback(function(win, pane)
+        if pane:is_alt_screen_active() then
+            -- a program is full screen, passthrough the key
+            win:perform_action(wezterm.action.SendKey { key = key, mods = 'NONE' }, pane)
+        else
+            -- do the action
+            win:perform_action(action, pane)
+        end
+    end)
+end
+
+config.keys = {
+    { key = 'PageUp',   mods = 'NONE', action = action_unless_fullscreen(wezterm.action.ScrollByPage(-0.5), 'PageUp') },
+    { key = 'PageDown', mods = 'NONE', action = action_unless_fullscreen(wezterm.action.ScrollByPage(0.5), 'PageDown') },
+}
 
 return config
