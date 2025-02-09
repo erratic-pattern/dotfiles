@@ -1,31 +1,35 @@
 local wezterm = require 'wezterm'
 local config = {}
+
 if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
+
+-- graphics settings
 config.front_end = "WebGpu"
 config.webgpu_power_preference = 'HighPerformance'
+config.max_fps = 240
+config.animation_fps = 30
 
+-- fonts
 config.font = wezterm.font 'Fira Code'
 config.font_size = 13
 -- disable ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
+-- theme and appearance
 config.color_scheme = 'nightfox'
-
 config.use_fancy_tab_bar = false;
 config.hide_tab_bar_if_only_one_tab = true;
+config.tab_max_width = 64
 
-config.enable_kitty_graphics = true
-
+-- terminfo settings
+config.term = 'wezterm'
 config.set_environment_variables = {
     TERMINFO_DIRS = '/home/user/.nix-profile/share/terminfo',
     WSLENV = 'TERMINFO_DIRS',
 }
-config.term = 'wezterm'
-
-config.tab_max_width = 64
 
 local function regexEscape(str)
     return str:gsub("[%(%)%.%%%+%-%*%?%[%^%$%]]", "%%%1")
