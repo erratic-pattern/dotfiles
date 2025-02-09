@@ -21,6 +21,7 @@
           ../home/shell
           ../home/wezterm
           ../home/directories.nix
+          ../home/syncthing.nix
         ];
       };
   };
