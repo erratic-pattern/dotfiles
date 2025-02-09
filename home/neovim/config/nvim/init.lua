@@ -8,6 +8,10 @@ vim.g.mapleader = " "
 -- don't show mode since it's already in statusline
 vim.opt.showmode = false
 
+-- disable smartindent and enable treesitter indent
+vim.opt.smartindent = false
+vim.treesitter.indent = true
+
 -- Quickfix Open/Close mappings
 vim.keymap.set('n', '<leader>q', '<cmd>belowright copen<CR>', { desc = 'Open Quickfix Window' })
 vim.keymap.set('n', '<leader>Q', '<cmd>belowright cclose<CR>', { desc = 'Close Quickfix Window' })
