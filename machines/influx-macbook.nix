@@ -1,4 +1,4 @@
-{ user, ... }:
+{ pkgs, user, ... }:
 {
   imports = [
     ../system/darwin-influx
@@ -27,12 +27,12 @@
   system.defaults.dock.persistent-apps = [
     "/System/Applications/System Settings.app/"
     "/Applications/Google Chrome.app/"
-    "/Applications/Nix Apps/Slack.app/"
+    "${pkgs.slack}/Applications/Slack.app/"
     "/Applications/zoom.us.app/"
     "/Applications/Nix Apps/Notion.app/"
-    "/Applications/Nix Apps/Obsidian.app/"
-    "/Applications/Nix Apps/Wezterm.app/"
+    "${pkgs.obsidian}/Applications/Obsidian.app/"
+    "${pkgs.wezterm}/Applications/Wezterm.app/"
     "/Applications/1Password.app/"
-    "/Applications/Nix Apps/Spotify.app/"
+    "${pkgs.spotify}/Applications/Spotify.app/"
   ];
 }

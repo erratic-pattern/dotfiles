@@ -29,14 +29,14 @@
   system.defaults.dock.persistent-apps = [
     "/System/Applications/System Settings.app/"
     "/Applications/Google Chrome.app/"
-    "/Applications/Slack.app/"
+    "${pkgs.slack}/Applications/Slack.app/"
     "/Applications/zoom.us.app/"
     "/Applications/Notion.app/"
     "${pkgs.obsidian}/Applications/Obsidian.app/"
     "${pkgs.wezterm}/Applications/Wezterm.app/"
     "/Applications/1Password.app/"
-    "/Applications/Spotify.app/"
-    "${pkgs.discord}/Applications/Discord.app/"
+    "${pkgs.spotify}/Applications/Spotify.app/"
+    "${pkgs.discord}/Applicptions/Discord.app/"
     "/Applications/Steam.app/"
   ];
 }
