@@ -158,6 +158,7 @@
             tree-sitter-css
             tree-sitter-dockerfile
             tree-sitter-gitcommit
+            tree-sitter-gitignore
             tree-sitter-go
             tree-sitter-html
             tree-sitter-http
