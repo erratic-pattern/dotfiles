@@ -36,7 +36,7 @@
     "${pkgs.wezterm}/Applications/Wezterm.app/"
     "/Applications/1Password.app/"
     "${pkgs.spotify}/Applications/Spotify.app/"
-    "${pkgs.discord}/Applicptions/Discord.app/"
+    "${pkgs.discord}/Applications/Discord.app/"
     "/Applications/Steam.app/"
   ];
 }
