@@ -31,7 +31,9 @@ vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { noremap = tr
 vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianNewFromTemplate<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nT", "<cmd>ObsidianTags<cr>", { noremap = true });
 vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", { noremap = true });
+-- note: issue with using <cmd>
+-- see https://github.com/epwalsh/obsidian.nvim/issues/454
+vim.keymap.set("v", "<leader>ne", ":ObsidianExtractNote<cr>", { noremap = true });
 
 
 require "obsidian".setup({
