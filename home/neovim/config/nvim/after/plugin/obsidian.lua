@@ -64,6 +64,13 @@ require "obsidian".setup({
       end,
       opts = { noremap = false, buffer = true, expr = true },
     },
+    -- Toggle checkbox
+    ["<leader>nc"] = {
+      action = function()
+        return "<cmd>ObsidianToggleCheckbox<CR>"
+      end,
+      opts = { noremap = true, buffer = true, expr = true },
+    },
     -- Show backlinks
     ["<leader>nb"] = {
       action = "<cmd>ObsidianBacklinks<cr>",
