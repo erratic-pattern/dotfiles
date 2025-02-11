@@ -22,6 +22,18 @@
     meta.homepage = "https://github.com/albenisolmos/telescope-oil.nvim";
   };
 
+  vim-dirtytalk = vimUtils.buildVimPlugin {
+    pname = "vim-dirtytalk";
+    version = "2024-04-14";
+    src = fetchFromGitHub {
+      owner = "psliwka";
+      repo = "vim-dirtytalk";
+      rev = "aa57ba902b04341a04ff97214360f56856493583";
+      sha256 = "sha256-azU5jkv/fD/qDDyCU1bPNXOH6rmbDauG9jDNrtIXc0Y=";
+    };
+    meta.homepage = "https://github.com/psliwka/vim-dirtytalk";
+  };
+
   obsidian-nvim = nixpkgs.legacyPackages.${system}.vimPlugins.obsidian-nvim.overrideAttrs {
     patches = [
       # https://github.com/epwalsh/obsidian.nvim/pull/709

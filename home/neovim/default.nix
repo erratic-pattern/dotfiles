@@ -94,6 +94,9 @@
       indent-blankline-nvim
       undotree
 
+      # Spell Checking
+      vim-dirtytalk
+
       # Git integrations
       gitsigns-nvim
       vim-fugitive
