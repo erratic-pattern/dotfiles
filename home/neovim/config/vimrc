@@ -89,3 +89,8 @@ function HlOnlySpellBad()
 endfunction
 autocmd BufNew * call HlOnlySpellBad()
 
+" Install some builtin Vim plugins
+packadd cfilter
+packadd justify
+packadd matchit
+
