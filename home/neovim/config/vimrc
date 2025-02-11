@@ -28,7 +28,7 @@ set history=10000
 " delete comment characters when joining lines
 set formatoptions+=j
 
-" default indentation options when not overriden by plugins
+" default indentation options when not overridden by plugins
 set autoindent
 set expandtab
 set shiftround
@@ -41,7 +41,7 @@ set smartindent
 set nowrap
 
 " interface options
-set laststatus=2 " always show status bar 
+set laststatus=2 " always show status bar
 set scrolloff=5
 set signcolumn=yes
 set ruler
@@ -76,6 +76,16 @@ cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
 " enable spellchecking
-:set spell spelllang=en_us
-:set spelloptions=camel
+set spell
+set spelllang=en
+set spelloptions=camel " spellcheck CamelCase words
+
+" Disable highlighting of rare words, regional words, and incorrect
+" capitalization. ]s and [s will still jump to them.
+function HlOnlySpellBad()
+    highlight clear SpellRare
+    highlight clear SpellCap
+    highlight clear SpellLocal
+endfunction
+autocmd BufNew * call HlOnlySpellBad()
 
