@@ -77,4 +77,5 @@ cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
 " enable spellchecking
 :set spell spelllang=en_us
+:set spelloptions=camel
 
