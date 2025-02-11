@@ -42,7 +42,7 @@ set nowrap
 
 " interface options
 set laststatus=2 " always show status bar
-set scrolloff=5
+set scrolloff=0
 set signcolumn=yes
 set ruler
 " set virtualedit=onemore " allow cursor to go past end of line
