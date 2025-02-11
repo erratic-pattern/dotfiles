@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
   callback = function(args)
     -- jump to quickfix item without moving focus from the quickfix window location
-    vim.keymap.set('n', '<Tab>', "<CR><C-W>p", { buffer = args.buf, noremap = true, desc = "Preview Quickfix Item" })
+    vim.keymap.set('n', '<Tab>', "<CR>:copen<CR>", { buffer = args.buf, noremap = true, desc = "Preview Quickfix Item" })
   end
 })
 
