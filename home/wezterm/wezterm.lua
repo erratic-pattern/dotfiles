@@ -13,10 +13,20 @@ config.max_fps = 240
 config.animation_fps = 30
 
 -- fonts
-config.font = wezterm.font 'Fira Code'
-config.font_size = 13
--- disable ligatures
-config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+config.font = wezterm.font_with_fallback {
+    {
+        family = 'MonaspiceXe Nerd Font Mono',
+        weight = 'Light',
+        -- enable texture healing & ligatures
+        harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
+    },
+    {
+        family = 'FiraCode Nerd Font',
+        -- disable alt glyphs and ligatures
+        harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+    }
+}
+config.font_size = 14
 
 -- theme and appearance
 config.color_scheme = 'nightfox'
