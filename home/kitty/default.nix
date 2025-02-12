@@ -1,5 +1,23 @@
 { pkgs, ... }:
+let
+  icon = pkgs.fetchFromGitHub {
+    owner = "diegobit";
+    repo = "kitty-icon";
+    rev = "main";
+    sha256 = "sha256-vZCNNVfdCTYPiSSXtug7xfW3c0Cx/H0S3w+f1q3Prgs=";
+  };
+in
 {
+  # Customize icon
+  xdg.configFile =
+    if pkgs.stdenv.hostPlatform.isDarwin then
+      {
+        "kitty/kitty.app.icns".source = "${icon}/kitty.icns";
+      }
+    else
+      {
+        "kitty/kitty.app.png".source = "${icon}/kitty.png";
+      };
   programs.kitty = {
     enable = true;
 
@@ -28,5 +46,7 @@
     darwinLaunchOptions = [
       "--single-instance"
     ];
+
   };
+
 }
