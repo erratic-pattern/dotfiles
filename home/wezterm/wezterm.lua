@@ -15,13 +15,12 @@ config.animation_fps = 30
 -- fonts
 config.font = wezterm.font_with_fallback {
     {
-        family = 'MonaspiceXe Nerd Font Mono',
-        weight = 'Light',
+        family = 'Monaspace Argon',
         -- enable texture healing & ligatures
         harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
     },
     {
-        family = 'FiraCode Nerd Font',
+        family = 'Fira Code',
         -- disable alt glyphs and ligatures
         harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
     }
@@ -38,7 +37,6 @@ config.tab_max_width = 64
 config.term = 'wezterm'
 config.set_environment_variables = {
     TERMINFO_DIRS = '/home/user/.nix-profile/share/terminfo',
-    WSLENV = 'TERMINFO_DIRS',
 }
 
 -- Escape all regex special characters in string
