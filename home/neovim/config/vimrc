@@ -9,7 +9,9 @@ set timeoutlen=3000
 " search options
 set incsearch
 set nohlsearch
-set inccommand=split
+if exists('&inccommand')
+    set inccommand=split
+endif
 set cmdwinheight=20
 
 " vim directories
