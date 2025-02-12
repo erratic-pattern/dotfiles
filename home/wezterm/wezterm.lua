@@ -12,6 +12,9 @@ config.webgpu_power_preference = 'HighPerformance'
 config.max_fps = 240
 config.animation_fps = 30
 
+-- scrollback history
+config.scrollback_lines = 10000
+
 -- fonts
 config.font = wezterm.font_with_fallback {
     {
