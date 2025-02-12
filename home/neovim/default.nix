@@ -67,11 +67,17 @@
         ### Telescope dependencies
         ripgrep
         fd
+
+        ### dependencies for image-nvim
+        # imagemagick # ImageMagick CLI
       ]
       ++ lib.optionals stdenv.hostPlatform.isDarwin [
         ### obsidian-nvim dependencies on MacOS
         pngpaste
       ];
+
+    # magick Lua rock for image-nvim
+    extraLuaPackages = ps: with ps; [ magick ];
 
     plugins = with pkgs.vimPlugins; [
 
@@ -109,6 +115,9 @@
 
       # Obsidian Integration
       obsidian-nvim
+
+      # Display images
+      image-nvim
 
       # Vim Learning tools
       precognition-nvim
