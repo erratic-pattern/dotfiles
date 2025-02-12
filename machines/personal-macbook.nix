@@ -20,8 +20,8 @@
           ../home/rust
           ../home/shell
           ../home/wezterm
-          ../home/directories.nix
-          ../home/syncthing.nix
+          ../home/directories
+          ../home/syncthing
           ../home/kitty
         ];
       };
