@@ -4,7 +4,8 @@ filetype plugin indent on
 set encoding=utf-8
 
 " key sequence timeout
-set timeoutlen=3000
+set timeoutlen=500
+set ttimeoutlen=10
 
 " search options
 set incsearch
