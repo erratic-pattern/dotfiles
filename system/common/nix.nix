@@ -14,7 +14,6 @@
     };
 
     gc = {
-      user = "root";
       automatic = true;
       interval = {
         Weekday = 0;
@@ -29,9 +28,6 @@
       build-max-jobs = auto
     '';
   };
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
 
   # system.checks.verifyNixPath = false;
 }
