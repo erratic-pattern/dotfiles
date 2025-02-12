@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
     runtime syntax/tt.vim
     setlocal indentkeys-=0#
     setlocal commentstring=#nop\ %s
+    setlocal nospell
     inoremap <buffer> # X#
   ]],
 })
