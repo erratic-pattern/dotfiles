@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 let
   inherit (pkgs) skhd;
 in
@@ -8,8 +8,8 @@ in
     package = skhd;
   };
 
-  system.activationScripts.postUserActivation.text = ''
+  system.activationScripts.postActivation.text = ''
     echo 'restarting skhd...'
-    ${skhd}/bin/skhd -r
+    su - ${user} -c '${skhd}/bin/skhd -r'
   '';
 }
