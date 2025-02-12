@@ -14,7 +14,7 @@
       {
         imports = [
           ../home/influx
-          ../home/neovim
+          ../home/nvim
           ../home/rust
           ../home/shell
           ../home/wezterm

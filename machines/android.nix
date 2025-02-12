@@ -9,7 +9,7 @@
       imports = [
         ../home/influx
         ../home/mud
-        ../home/neovim
+        ../home/nvim
         ../home/shell
         ../home/directories.nix
       ];
