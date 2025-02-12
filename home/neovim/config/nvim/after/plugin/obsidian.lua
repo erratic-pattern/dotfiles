@@ -12,7 +12,7 @@ local function dayOfWeek(day)
   return current_day + offset
 end
 
--- set conceallevel=2 on markdown to allow ui support
+-- set conceallevel on markdown to allow obsidian-nvim ui features
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
@@ -109,7 +109,7 @@ require "obsidian".setup({
   ---@param title string|?
   ---@return string
   note_id_func = function(title)
-      -- Create note IDs in a Zettelkasten format with a timestamp and an optional title suffix.
+    -- Create note IDs in a Zettelkasten format with a timestamp and an optional title suffix.
     if title then
       return os.time() .. "-" .. title
     else
@@ -329,7 +329,7 @@ require "obsidian".setup({
     ---@return string
     img_name_func = function()
       -- Prefix image names with timestamp.
-      return string.format("%s-", os.time())
+      return string.format("%s", os.time())
     end,
 
     -- A function that determines the text to insert in the note when pasting an image.
