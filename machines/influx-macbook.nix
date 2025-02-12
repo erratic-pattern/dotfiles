@@ -20,6 +20,7 @@
           ../home/wezterm
           ../home/directories.nix
           ../home/syncthing.nix
+          ../home/kitty
         ];
       };
   };
@@ -31,6 +32,7 @@
     "/Applications/zoom.us.app/"
     "/Applications/Nix Apps/Notion.app/"
     "${pkgs.obsidian}/Applications/Obsidian.app/"
+    "${pkgs.kitty}/Applications/Kitty.app/"
     "${pkgs.wezterm}/Applications/Wezterm.app/"
     "/Applications/1Password.app/"
     "${pkgs.spotify}/Applications/Spotify.app/"
