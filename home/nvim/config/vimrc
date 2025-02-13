@@ -1,26 +1,29 @@
+" Setup for Vim. This is all default behavior in NeoVim
 set nocompatible
 syntax on
 filetype plugin indent on
 set encoding=utf-8
 
-" key sequence timeout
+" key sequence timeouts
 set timeoutlen=500
 set ttimeoutlen=10
 
-" search options
+" search highlight options
 set incsearch
 set nohlsearch
-if exists('&inccommand')
+if exists('&inccommand') " not supported in all versions
     set inccommand=split
 endif
 set cmdwinheight=20
 
-" vim directories
-" set noswapfile
+" swap/backup/undo directories
+set backup
 set backupdir=~/.vim/backup//
+set swapfile
 set dir=~/.vim/swap//
+set undofile
 set undodir=~/.vim/undo//
-set updatetime=500
+set updatetime=100
 
 " autoread from filesystem
 set autoread
@@ -38,7 +41,7 @@ set shiftround
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set smartindent
+set smartindent " Neovim turns this off in init.lua and uses treesitter instead
 
 " wrap options
 set nowrap
