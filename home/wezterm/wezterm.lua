@@ -16,17 +16,10 @@ config.animation_fps = 30
 config.scrollback_lines = 10000
 
 -- fonts
-config.font = wezterm.font_with_fallback {
-    {
-        family = 'Monaspace Argon',
-        -- enable texture healing & ligatures
-        harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
-    },
-    {
-        family = 'Fira Code',
-        -- disable alt glyphs and ligatures
-        harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
-    }
+config.font = wezterm.font {
+    family = 'Monaspace Argon',
+    -- enable texture healing & ligatures
+    harfbuzz_features = { 'calt', 'liga' },
 }
 config.font_size = 14
 
