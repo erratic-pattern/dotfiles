@@ -35,6 +35,9 @@ config.set_environment_variables = {
     TERMINFO_DIRS = '/home/user/.nix-profile/share/terminfo',
 }
 
+-- keyboard
+config.enable_kitty_keyboard = true
+
 -- Escape all regex special characters in string
 local function regexEscape(str)
     return str:gsub("[%(%)%.%%%+%-%*%?%[%^%$%]]", "%%%1")
