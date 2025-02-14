@@ -7,7 +7,8 @@
   ...
 }:
 let
-  brewShellEnv = ''eval "$(/opt/homebrew/bin/brew shellenv)"'';
+  brewShellEnv = # sh
+    ''eval "$(/opt/homebrew/bin/brew shellenv)"'';
 in
 {
   imports = [
@@ -25,11 +26,6 @@ in
     autoMigrate = true;
   };
 
-  programs.zsh = {
-    shellInit = brewShellEnv;
-  };
+  environment.shellInit = brewShellEnv;
 
-  programs.bash = {
-    interactiveShellInit = brewShellEnv;
-  };
 }
