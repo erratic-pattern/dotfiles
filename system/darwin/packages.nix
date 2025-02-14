@@ -5,6 +5,7 @@
     slack
     spotify
     wezterm
+    kitty
   ];
 
   homebrew = {
