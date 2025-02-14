@@ -23,6 +23,7 @@
           ../home/directories
           ../home/syncthing
           ../home/kitty
+          ../home/fzf
         ];
       };
   };
