@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  ttAlias = # sh
+    "alias tt='tt++ ~/.tintin/init.tt'";
+in
 {
   home.packages = with pkgs; [
     tintin
@@ -13,8 +17,10 @@
 
   # quick alias to load tintin with config
   programs.zsh = {
-    initExtra = ''
-      alias tt='tt++ ~/.tintin/init.tt'
-    '';
+    initExtra = ttAlias;
+  };
+
+  programs.bash = {
+    initExtra = ttAlias;
   };
 }
