@@ -1,6 +1,12 @@
 { pkgs, user, ... }:
 let
-  inherit (pkgs) skhd wezterm kitty slack spotify;
+  inherit (pkgs)
+    skhd
+    wezterm
+    kitty
+    slack
+    spotify
+    ;
 in
 {
   services.skhd = {
