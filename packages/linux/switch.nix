@@ -9,8 +9,6 @@ writeShellApplication {
   name = "switch";
   runtimeInputs = [ nix-on-droid.packages.${system}.nix-on-droid ];
   text = ''
-    #!/bin/sh -e
-
     case "$(uname -r)" in
         *android*)
             PLATFORM='android'

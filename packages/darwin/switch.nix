@@ -12,7 +12,6 @@ writeShellApplication {
     darwin.packages.${system}.darwin-rebuild
   ];
   text = ''
-    #!/bin/sh -e
     if [ -n "''${1-}" ]; then
         NAME="$1"
         shift
