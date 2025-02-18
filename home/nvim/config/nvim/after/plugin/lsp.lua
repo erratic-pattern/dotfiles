@@ -134,6 +134,25 @@ local language_servers = {
                     privateEditable = { enable = true },
                 },
             }
+        },
+        commands = {
+            ExpandMacro = {
+                function()
+                    local client = vim.lsp.get_clients({ name = "rust_analyzer" })[1]
+                    if not client then error("rust_analyzer not found") end
+                    client.request("rust-analyzer/expandMacro",
+                        vim.lsp.util.make_position_params(),
+                        function(err, result)
+                            if err then
+                                error(string.format("%s - %s", err.code, err.message))
+                            end
+                            local lines = vim.split(result.expansion, "\n")
+                            local buf = vim.api.nvim_create_buf(true, true)
+                            vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+                            vim.api.nvim_open_win(buf, false, { win = 0, split = "right" })
+                        end)
+                end
+            }
         }
     },
 }
