@@ -1,3 +1,5 @@
+local obsidian = require "obsidian"
+
 --- Returns the given day of the current week as Unix time
 --- @param day integer A day specifier in the range 1-7 with 1 representing Sunday
 --- @return integer dayOfWeek the day as Unix time
@@ -12,13 +14,12 @@ local function dayOfWeek(day)
   return current_day + offset
 end
 
--- set conceallevel on markdown to allow obsidian-nvim ui features
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("filetype", {
   pattern = "markdown",
-  callback = function()
+  callback = function(event)
+    -- set conceallevel on markdown to allow obsidian-nvim ui features
     vim.opt_local.conceallevel = 2
   end
-
 })
 
 -- Global keybinds
@@ -36,47 +37,15 @@ vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<cr>", { noremap = true });
 vim.keymap.set("v", "<leader>ne", ":ObsidianExtractNote<cr>", { noremap = true });
 
 
-require "obsidian".setup({
+obsidian.setup({
   workspaces = {
     {
       name = "vault",
       path = "~/Notes",
     },
   },
-  --
-  -- Keymappings for when buffer is a workspace markdown file.
-  mappings = {
-    -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-    ["gf"] = {
-      action = function()
-        if require("obsidian").util.cursor_on_markdown_link() then
-          return "<cmd>ObsidianFollowLink<CR>"
-        else
-          return "gf"
-        end
-      end,
-      opts = { noremap = false, expr = true, buffer = true },
-    },
-    -- Smart action depending on context, either follow link or toggle checkbox.
-    ["<CR>"] = {
-      action = function()
-        return require("obsidian").util.smart_action()
-      end,
-      opts = { noremap = false, buffer = true, expr = true },
-    },
-    -- Toggle checkbox
-    ["<leader>nc"] = {
-      action = function()
-        return "<cmd>ObsidianToggleCheckbox<CR>"
-      end,
-      opts = { noremap = true, buffer = true, expr = true },
-    },
-    -- Show backlinks
-    ["<leader>nb"] = {
-      action = "<cmd>ObsidianBacklinks<cr>",
-      opts = { noremap = true, buffer = true }
-    },
-  },
+  -- mappings defined in enter_note callback
+  mappings = {},
 
   log_level = vim.log.levels.INFO,
 
@@ -190,10 +159,10 @@ require "obsidian".setup({
   ---@param url string
   follow_url_func = function(url)
     -- Open the URL in the default web browser.
-    vim.fn.jobstart({ "open", url }) -- Mac OS
+    -- vim.fn.jobstart({ "open", url }) -- Mac OS
     -- vim.fn.jobstart({"xdg-open", url})  -- linux
     -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
-    -- vim.ui.open(url) -- need Neovim 0.10.0+
+    vim.ui.open(url) -- need Neovim 0.10.0+
   end,
 
   -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
@@ -255,7 +224,34 @@ require "obsidian".setup({
     -- Runs anytime you enter the buffer for a note.
     ---@param client obsidian.Client
     ---@param note obsidian.Note
-    enter_note = function(client, note) end,
+    enter_note = function(client, note)
+      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+      vim.keymap.set("n", "gf", function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gf"
+        end
+      end, { noremap = false, expr = true, buffer = true })
+
+      -- Smart action depending on context, either follow link or toggle checkbox.
+      vim.keymap.set("n", "<cr>", function()
+        return require("obsidian").util.smart_action()
+      end, { noremap = false, buffer = true, expr = true })
+
+      -- Toggle checkbox
+      vim.keymap.set("n", "<leader>nc", function()
+        return "<cmd>ObsidianToggleCheckbox<cr>"
+      end, { noremap = true, buffer = true, expr = true })
+
+      -- Toggle checkbox (visual mode)
+      vim.keymap.set("v", "<leader>nc", function()
+        return ":g//:ObsidianToggleCheckbox<cr>"
+      end, { noremap = true, buffer = true, expr = true })
+
+      -- Show backlinks
+      vim.keymap.set("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", { noremap = true, buffer = true })
+    end,
 
     -- Runs anytime you leave the buffer for a note.
     ---@param client obsidian.Client
