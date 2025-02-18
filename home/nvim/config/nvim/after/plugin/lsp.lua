@@ -131,6 +131,7 @@ local language_servers = {
                 },
                 completion = {
                     fullFunctionSignatures = { enable = true },
+                    privateEditable = { enable = true },
                 },
             }
         }
