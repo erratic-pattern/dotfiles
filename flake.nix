@@ -135,7 +135,7 @@
           user = config.defaultUser;
           system = "aarch64-linux";
           pkgs = importNixPkgsFor system {
-            overlays = overlays.common ++ overlays.android;
+            overlays = overlays.android;
           };
           pkgs-stable = importNixPkgsStableFor system;
           extraSpecialArgs = (
