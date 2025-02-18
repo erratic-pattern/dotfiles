@@ -100,3 +100,6 @@ packadd cfilter
 packadd justify
 packadd matchit
 
+" Change hotkey to edit in command mode
+set cedit=\<C-E>
+
