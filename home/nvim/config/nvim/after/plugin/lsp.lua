@@ -44,6 +44,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         bind("n", "<leader>cf", "Run LSP formatting on current bufer", vim.lsp.buf.format)
         bind("n", "]d", "Go to next diagnostic", vim.diagnostic.goto_next)
         bind("n", "[d", "Go to previous diagnostic", vim.diagnostic.goto_prev)
+
+        -- enable native LSP completion features (ex autoimport)
+        -- vim.lsp.completion.enable(true, event.data.client_id, event.buf, {autotrigger = false})
     end
 })
 
