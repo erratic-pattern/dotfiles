@@ -89,9 +89,7 @@ local language_servers = {
                 -- Make server aware of NeoVim runtime
                 workspace = {
                     checkThirdParty = false,
-                    library = {
-                        vim.env.VIMRUNTIME
-                    },
+                    library = vim.api.nvim_list_runtime_paths(),
                 }
             }
         }
