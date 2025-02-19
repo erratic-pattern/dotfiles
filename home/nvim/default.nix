@@ -119,6 +119,9 @@
       # Display images
       image-nvim
 
+      # Notifications / Progress Messages
+      fidget-nvim
+
       # Vim Learning tools
       precognition-nvim
 
