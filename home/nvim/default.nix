@@ -56,6 +56,7 @@
         jsonnet-language-server # Jsonnet
         gopls # Go
         buf # Protobuf
+        perl540Packages.PLS # Perl
         # Bash
         shellcheck
         nodePackages.bash-language-server
