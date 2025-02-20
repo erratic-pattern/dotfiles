@@ -56,6 +56,7 @@ local default_lsp = {
 }
 
 local language_servers = {
+    marksman = {},
     bashls = {},
     taplo = {},
     ts_ls = {},

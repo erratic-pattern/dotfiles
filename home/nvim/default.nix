@@ -46,6 +46,7 @@
       with pkgs;
       [
         ### LSP servers
+        marksman # Markdown
         taplo-lsp # TOML
         yaml-language-server # YAML
         nodePackages.typescript-language-server # Typescript/Javascript
