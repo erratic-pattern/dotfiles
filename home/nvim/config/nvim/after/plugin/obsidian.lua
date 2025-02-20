@@ -80,6 +80,7 @@ obsidian.setup({
   note_id_func = function(title)
     -- Create note IDs in a Zettelkasten format with a timestamp and an optional title suffix.
     if title then
+      title = title:gsub("[ _/]", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
       return os.time() .. "-" .. title
     else
       return tostring(os.time())
