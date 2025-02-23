@@ -11,6 +11,7 @@
         "@admin"
         user
       ];
+      sandbox = if pkgs.stdenv.isDarwin then "relaxed" else true;
     };
 
     gc = {
