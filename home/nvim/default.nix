@@ -188,6 +188,7 @@
             tree-sitter-markdown
             tree-sitter-markdown-inline
             tree-sitter-nix
+            tree-sitter-promql
             tree-sitter-proto
             tree-sitter-python
             tree-sitter-query
