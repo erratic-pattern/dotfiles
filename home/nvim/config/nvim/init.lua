@@ -28,5 +28,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
+-- highlight on yank
+vim.cmd [[
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup='Visual', timeout=150}
+]]
+
 -- load tintin setup
 require('tintin')
