@@ -7,8 +7,9 @@ end
 
 
 -- graphics settings
-config.front_end = "WebGpu"
-config.webgpu_power_preference = 'HighPerformance'
+config.front_end = "OpenGL"
+-- config.front_end = "WebGpu"
+-- config.webgpu_power_preference = 'HighPerformance'
 config.max_fps = 240
 config.animation_fps = 30
 
