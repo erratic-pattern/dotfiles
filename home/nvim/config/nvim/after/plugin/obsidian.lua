@@ -3,10 +3,11 @@ local obsidian = require "obsidian"
 --- Returns the given day of the current week as Unix time
 --- @param day integer A day specifier in the range 1-7 with 1 representing Sunday
 --- @return integer dayOfWeek the day as Unix time
-local function dayOfWeek(day)
+local function dayOfWeek(day, time)
+  time = time or os.time()
   if day < 1 or day > 7 then error("Day must be within range 1-7") end
   -- Current time as a table
-  local current_time = os.date("*t", os.time())
+  local current_time = os.date("*t", time)
   -- Truncate to midnight of current day as Unix time
   local current_day = os.time { year = current_time.year, month = current_time.month, day = current_time.day }
   -- Roll back/forward to Monday
@@ -150,6 +151,18 @@ obsidian.setup({
       end,
       end_of_week = function()
         return os.date("%Y-%m-%d", dayOfWeek(6)) -- Roll back/forward to Friday
+      end,
+      start_of_next_week = function()
+        return os.date("%Y-%m-%d", dayOfWeek(2, os.time() + 604800)) -- Roll back to Monday of next week
+      end,
+      end_of_next_week = function()
+        return os.date("%Y-%m-%d", dayOfWeek(6, os.time() + 604800)) -- Roll back to Friday of next week
+      end,
+      start_of_last_week = function()
+        return os.date("%Y-%m-%d", dayOfWeek(2, os.time() - 604800)) -- Roll back to Monday of last week
+      end,
+      end_of_last_week = function()
+        return os.date("%Y-%m-%d", dayOfWeek(6, os.time() - 604800)) -- Roll back to Friday of last week
       end
     },
 
