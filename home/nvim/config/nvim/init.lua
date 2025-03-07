@@ -12,14 +12,14 @@ vim.opt.showmode = false
 vim.opt.smartindent = false
 vim.treesitter.indent = true
 
--- Quickfix Open/Close mappings
-vim.keymap.set('n', '<leader>q', '<cmd>belowright copen<CR>', { desc = 'Open Quickfix Window' })
-vim.keymap.set('n', '<leader>Q', '<cmd>belowright cclose<CR>', { desc = 'Close Quickfix Window' })
-
 -- Toggle relative line numbers
 vim.keymap.set('n', '<leader>ln', '<cmd>set invrelativenumber<CR>', { desc = "Toggle relative line numbers" })
 
--- quickfix keybindings
+-- Quickfix mappings
+vim.keymap.set('n', '<leader>qo', '<cmd>belowright copen<CR>', { desc = 'Open Quickfix Window' })
+vim.keymap.set('n', '<leader>qc', '<cmd>belowright cclose<CR>', { desc = 'Close Quickfix Window' })
+vim.keymap.set('n', '<leader>qn', '<cmd>cnext<CR>', { desc = 'Next Quickfix Item' })
+vim.keymap.set('n', '<leader>qp', '<cmd>cprev<CR>', { desc = 'Previous Quickfix Item' })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
   callback = function(args)
