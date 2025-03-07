@@ -28,6 +28,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
+-- Move visual selection up/down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- highlight on yank
 vim.cmd [[
   autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup='Visual', timeout=150}
