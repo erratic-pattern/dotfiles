@@ -12,9 +12,6 @@ vim.opt.showmode = false
 vim.opt.smartindent = false
 vim.treesitter.indent = true
 
--- Toggle relative line numbers
-vim.keymap.set('n', '<leader>ln', '<cmd>set invrelativenumber<CR>', { desc = "Toggle relative line numbers" })
-
 -- Quickfix mappings
 vim.keymap.set('n', '<leader>qo', '<cmd>belowright copen<CR>', { desc = 'Open Quickfix Window' })
 vim.keymap.set('n', '<leader>qc', '<cmd>belowright cclose<CR>', { desc = 'Close Quickfix Window' })
