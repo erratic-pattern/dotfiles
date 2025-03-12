@@ -29,6 +29,9 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Sane terminal mode escape
+vim.keymap.set("t", "<ESC><ESC>", "<C-\\><C-N>", { desc = "Escape Terminal Mode" })
+
 -- highlight on yank
 vim.cmd [[
   autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup='Visual', timeout=150}
