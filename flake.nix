@@ -67,7 +67,6 @@
       ...
     }:
     let
-      config = import ./config.nix inputs;
       lib = import ./lib.nix inputs;
       overlays = import ./overlays inputs;
       inherit (lib)
@@ -96,8 +95,8 @@
         let
           darwinConfiguration =
             {
-              user ? config.defaultUser,
-              system ? config.defaultDarwinSystem,
+              user ? lib.defaultUser,
+              system ? "aarch64-darwin",
               extraOverlays ? [ ],
               modules ? [ ],
             }:
@@ -137,7 +136,7 @@
 
       nixOnDroidConfigurations.default =
         let
-          user = config.defaultUser;
+          user = lib.defaultUser;
           system = "aarch64-linux";
           pkgs = importNixPkgs nixpkgs system {
             overlays = overlays.android;

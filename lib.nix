@@ -1,24 +1,45 @@
-inputs@{ nixpkgs, ... }:
+{ nixpkgs, ... }:
 let
-  config = import ./config.nix inputs;
-  inherit (nixpkgs.lib.attrsets) genAttrs recursiveUpdate;
-  inherit (nixpkgs.lib.lists) foldl;
+  inherit (nixpkgs) lib;
+  inherit (lib.attrsets) genAttrs recursiveUpdate;
+  inherit (lib.lists) foldl;
+
 in
- {
+rec {
+
+  # default home user for system configurations
+  defaultUser = "adam";
+
+  # use a function from system string -> attrset to build an attrset that
+  # contains an entry for each system
+  forAllSystems = genAttrs lib.platforms.all;
+
+  # recursively merge a list of attrsets
+  mergeAttrList = foldl recursiveUpdate { };
+
+  # shorthand to make flake apps
+  app = args: args // { type = "app"; };
+
+  # default configuration when importing nixpkgs
+  defaultNixPkgsConfig = {
+    allowUnfree = true;
+    # cudaSupport = true;
+    # cudaCapabilities = ["8.0"];
+    allowBroken = true;
+    allowInsecure = false;
+    allowUnsupportedSystem = true;
+  };
+
+  # import nixpkgs from the given nixpkgs flake, for the given system, with the
+  # default config plus any extra options provided
   importNixPkgs =
     nixpkgs: system: extraArgs:
     import nixpkgs (
       {
         inherit system;
-        config = config.defaultNixPkgsConfig;
+        config = defaultNixPkgsConfig;
       }
       // extraArgs
     );
-  app = args: args // { type = "app"; };
-  forAllDarwinSystems = genAttrs config.darwinSystems;
-  forAllAndroidSystems = genAttrs config.androidSystems;
-  forAllNixOsSystems = genAttrs config.nixOsSystems;
-  forAllLinuxSystems = genAttrs config.linuxSystems;
-  forAllSystems = genAttrs config.systems;
-  mergeAttrList = foldl recursiveUpdate { };
+
 }
