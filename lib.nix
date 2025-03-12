@@ -1,11 +1,11 @@
-inputs@{ nixpkgs, nixpkgs-stable, ... }:
+inputs@{ nixpkgs, ... }:
 let
   config = import ./config.nix inputs;
   inherit (nixpkgs.lib.attrsets) genAttrs recursiveUpdate;
   inherit (nixpkgs.lib.lists) foldl;
 in
-rec {
-  importNixPkgsCustom =
+ {
+  importNixPkgs =
     nixpkgs: system: extraArgs:
     import nixpkgs (
       {
@@ -14,8 +14,6 @@ rec {
       }
       // extraArgs
     );
-  importNixPkgsFor = importNixPkgsCustom nixpkgs;
-  importNixPkgsStableFor = importNixPkgsCustom nixpkgs-stable;
   app = args: args // { type = "app"; };
   forAllDarwinSystems = genAttrs config.darwinSystems;
   forAllAndroidSystems = genAttrs config.androidSystems;

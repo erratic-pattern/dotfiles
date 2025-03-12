@@ -2,6 +2,7 @@
   description = "Nix System Configuration Files";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     home-manager = {
@@ -59,6 +60,8 @@
   outputs =
     inputs@{
       nixpkgs,
+      nixpkgs-unstable,
+      nixpkgs-stable,
       darwin,
       nix-on-droid,
       ...
@@ -70,8 +73,7 @@
       inherit (lib)
         app
         forAllSystems
-        importNixPkgsFor
-        importNixPkgsStableFor
+        importNixPkgs
         ;
     in
     {
@@ -100,14 +102,17 @@
               modules ? [ ],
             }:
             let
-              pkgs = importNixPkgsFor system {
+              pkgs = importNixPkgs nixpkgs system {
                 overlays = overlays.darwin ++ extraOverlays;
               };
-              pkgs-stable = importNixPkgsStableFor system { };
+              pkgs-unstable = importNixPkgs nixpkgs-unstable system {
+                overlays = overlays.darwin ++ extraOverlays;
+              };
+              pkgs-stable = importNixPkgs nixpkgs-stable system { };
               specialArgs = (
                 inputs
                 // {
-                  inherit user pkgs-stable;
+                  inherit user pkgs-unstable pkgs-stable;
                   flake-inputs = inputs;
                 }
               );
@@ -134,14 +139,22 @@
         let
           user = config.defaultUser;
           system = "aarch64-linux";
-          pkgs = importNixPkgsFor system {
+          pkgs = importNixPkgs nixpkgs system {
             overlays = overlays.android;
           };
-          pkgs-stable = importNixPkgsStableFor system;
+          pkgs-unstable = importNixPkgs nixpkgs-unstable system {
+            overlays = overlays.android;
+          };
+          pkgs-stable = importNixPkgs nixpkgs-stable system;
           extraSpecialArgs = (
             inputs
             // {
-              inherit user system pkgs-stable;
+              inherit
+                user
+                system
+                pkgs-unstable
+                pkgs-stable
+                ;
               flake-inputs = inputs;
             }
           );

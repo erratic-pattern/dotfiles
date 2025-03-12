@@ -1,6 +1,7 @@
 {
   flake-inputs,
   user,
+  pkgs-unstable,
   pkgs-stable,
   ...
 }:
@@ -9,7 +10,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = flake-inputs // {
-      inherit user pkgs-stable;
+      inherit user pkgs-unstable pkgs-stable;
     };
     config = {
       # home.enableNixpkgsReleaseCheck = false;

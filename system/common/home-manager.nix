@@ -1,6 +1,7 @@
 {
   flake-inputs,
   user,
+  pkgs-unstable,
   pkgs-stable,
   ...
 }:
@@ -10,7 +11,7 @@
     useUserPackages = true;
     backupFileExtension = "backup";
     extraSpecialArgs = flake-inputs // {
-      inherit user pkgs-stable;
+      inherit user pkgs-unstable pkgs-stable;
     };
     users.${user} =
       { ... }:
