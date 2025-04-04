@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   ttAlias = # sh
-    "alias tt='tt++ ~/.tintin/init.tt'";
+    "alias -- tt='tt++ ~/.tintin/init.tt'";
 in
 {
   home.packages = with pkgs; [

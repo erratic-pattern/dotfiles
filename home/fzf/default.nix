@@ -78,7 +78,7 @@ in
   };
   programs.bash = {
     initExtra = ''
-      alias switch-session='${switch-tmux-session}'
+      alias -- switch-session='${switch-tmux-session}'
       bind -x '"\C-f": ${fzf-tmux-session-switcher}'
     '';
   };
