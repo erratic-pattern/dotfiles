@@ -33,7 +33,7 @@ config.tab_max_width = 64
 -- terminfo settings
 config.term = 'wezterm'
 config.set_environment_variables = {
-    TERMINFO_DIRS = '/home/user/.nix-profile/share/terminfo',
+    TERMINFO_DIRS = '/etc/profiles/per-user/' .. os.getenv("USER") .. '/share/terminfo',
 }
 
 -- keyboard
