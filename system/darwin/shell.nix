@@ -11,5 +11,8 @@
     completion.enable = true;
   };
 
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [
+    "/share/zsh"
+    "/share/bash"
+  ];
 }
