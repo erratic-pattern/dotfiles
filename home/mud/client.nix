@@ -17,7 +17,7 @@ in
 
   # quick alias to load tintin with config
   programs.zsh = {
-    initExtra = ttAlias;
+    initContent = ttAlias;
   };
 
   programs.bash = {

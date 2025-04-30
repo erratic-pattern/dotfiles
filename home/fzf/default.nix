@@ -53,7 +53,7 @@ in
   };
 
   programs.zsh = {
-    initExtra =
+    initContent =
       # sh
       ''
         alias switch-session='${switch-tmux-session}'

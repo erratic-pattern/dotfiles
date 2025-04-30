@@ -36,7 +36,7 @@ in
       # Make Vi mode transitions faster (in hundredths of a second)
       KEYTIMEOUT = 1;
     };
-    initExtra = concatConfigFiles ./config/zsh;
+    initContent = concatConfigFiles ./config/zsh;
   };
 
   programs.readline = {
