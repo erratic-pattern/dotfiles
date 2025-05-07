@@ -31,7 +31,7 @@ let
         exec ${switch-tmux-session} "$selected"
       '';
 
-  session-switcher-cmd = ''run-shell "tmux split-window -v -l '35%' -e 'FZF_TMUX_SWITCHER_HEIGHT=100%' ${fzf-tmux-session-switcher}"'';
+  session-switcher-cmd = ''split-window -v -l '35%' -e 'FZF_TMUX_SWITCHER_HEIGHT=100%' ${fzf-tmux-session-switcher}'';
 in
 {
   programs.fzf = {
