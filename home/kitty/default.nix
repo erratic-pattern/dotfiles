@@ -22,10 +22,8 @@ in
     enable = true;
 
     extraConfig = ''
-      font_family family="Monaspace Argon Var" variable_name=MonaspaceArgonVar style=Regular wght=300 wdth=100 slnt=0 features="+calt +liga"
+      font_family family="Monaspace Argon Var" variable_name=MonaspaceArgonVar features="+calt +liga"
       font_size 14
-      # https://github.com/githubnext/monaspace/issues/37#issuecomment-1806715309
-      modify_font baseline -2
 
       env WEZTERM_SHELL_SKIP_ALL=1
       env TERMINFO_DIRS=${pkgs.kitty.terminfo.outPath}/share/terminfo
