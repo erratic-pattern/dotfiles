@@ -14,7 +14,7 @@ in
     package = skhd;
     skhdConfig = ''
       hyper - t : open -a '${wezterm}/Applications/Wezterm.app'
-      hyper - n : open -a '${kitty}/Applications/Kitty.app'
+      hyper - n : ${kitty}/bin/kitty --single-instance --session ${../../home/kitty/notes-session.conf}
       hyper - b : open -a '/Applications/Google Chrome.app'
       hyper - s : open -a '${slack}/Applications/Slack.app'
       hyper - z : open -a '/Applications/zoom.us.app/'
@@ -26,6 +26,7 @@ in
 
   system.activationScripts.postActivation.text = ''
     echo 'restarting skhd...'
-    su - ${user} -c '${skhd}/bin/skhd -r'
+    su - ${user} -c 'launchctl unload ~/Library/LaunchAgents/org.nixos.skhd.plist'
+    su - ${user} -c 'launchctl load ~/Library/LaunchAgents/org.nixos.skhd.plist'
   '';
 }
