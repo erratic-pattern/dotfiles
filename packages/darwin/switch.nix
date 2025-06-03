@@ -18,6 +18,6 @@ writeShellApplication {
     else
         NAME="$(scutil --get LocalHostName)"
     fi
-    darwin-rebuild switch --flake "${self}#$NAME" "$@"
+    sudo darwin-rebuild switch --flake "${self}#$NAME" "$@"
   '';
 }
