@@ -30,8 +30,6 @@ let
         selected="$(${fzf-directories})"
         exec ${switch-tmux-session} "$selected"
       '';
-
-  session-switcher-cmd = ''split-window -v -l '35%' -e 'FZF_TMUX_SWITCHER_HEIGHT=100%' ${fzf-tmux-session-switcher}'';
 in
 {
   programs.fzf = {
@@ -41,15 +39,24 @@ in
   };
 
   home.sessionVariables = {
-    FZF_DEFAULT_OPTS = "--height=50% --min-height +15";
+    FZF_DEFAULT_OPTS = "--height=33% --min-height +15 --smart-case --style=full --border=rounded --tmux=center";
+    # Options for path completion (e.g. vim **<TAB>)
+    FZF_COMPLETION_PATH_OPTS = ''--walker file,dir,follow,hidden'';
+    # Options for directory completion (e.g. cd **<TAB>)
+    FZF_COMPLETION_DIR_OPTS = ''--walker dir,follow,hidden'';
   };
 
   programs.tmux = {
-    extraConfig = ''
-      bind-key f ${session-switcher-cmd}
-      bind-key C-f ${session-switcher-cmd}
-      bind-key -T root C-f ${session-switcher-cmd}
-    '';
+    extraConfig =
+      let
+        session-switcher-cmd = ''run-shell ${fzf-tmux-session-switcher}'';
+      in
+      #sh 
+      ''
+        bind-key f ${session-switcher-cmd}
+        bind-key C-f ${session-switcher-cmd}
+        bind-key -T root C-f ${session-switcher-cmd}
+      '';
   };
 
   programs.zsh = {
@@ -77,9 +84,11 @@ in
       '';
   };
   programs.bash = {
-    initExtra = ''
-      alias -- switch-session='${switch-tmux-session}'
-      bind -x '"\C-f": ${fzf-tmux-session-switcher}'
-    '';
+    initExtra =
+      # sh
+      ''
+        alias -- switch-session='${switch-tmux-session}'
+        bind -x '"\C-f": ${fzf-tmux-session-switcher}'
+      '';
   };
 }
