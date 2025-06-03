@@ -6,5 +6,6 @@
     libiconv
     go
     vault
+    grafana-loki
   ];
 }
