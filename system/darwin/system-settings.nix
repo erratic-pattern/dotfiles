@@ -1,5 +1,11 @@
 { ... }:
 {
+  # Enable MacOS firewall
+  networking.applicationFirewall = {
+    enable = true;
+    blockAllIncoming = false;
+  };
+
   system = {
     stateVersion = 4;
 
@@ -8,9 +14,6 @@
       LaunchServices = {
         LSQuarantine = false;
       };
-
-      # Enable firewall
-      alf.globalstate = 1;
 
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
