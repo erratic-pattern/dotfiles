@@ -3,7 +3,7 @@
   home.packages = (
     with pkgs;
     [
-      python311
+      python313
       poetry
       ruff
     ]
