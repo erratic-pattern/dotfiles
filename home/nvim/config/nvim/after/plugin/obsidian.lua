@@ -45,8 +45,6 @@ obsidian.setup({
       path = "~/Notes",
     },
   },
-  -- mappings defined in enter_note callback
-  mappings = {},
 
   log_level = vim.log.levels.INFO,
 
@@ -187,13 +185,6 @@ obsidian.setup({
     -- vim.fn.jobstart({"xdg-open", url})  -- linux
     -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
   end,
-
-  -- Optional, set to true if you use the Obsidian Advanced URI plugin.
-  -- https://github.com/Vinzent03/obsidian-advanced-uri
-  use_advanced_uri = false,
-
-  -- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
-  open_app_foreground = false,
 
   picker = {
     -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
