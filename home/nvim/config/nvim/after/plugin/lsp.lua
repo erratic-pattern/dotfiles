@@ -47,6 +47,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- enable native LSP completion features (ex autoimport)
         -- vim.lsp.completion.enable(true, event.data.client_id, event.buf, {autotrigger = false})
+
+        -- format buffer on save
+        local client = vim.lsp.get_client_by_id(event.data.client_id);
+        if client and client:supports_method("textDocument/formatting", event.buf) then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = event.buf,
+                callback = function()
+                    vim.lsp.buf.format { async = false, id = event.data.client_id }
+                end,
+            })
+        end
     end
 })
 
