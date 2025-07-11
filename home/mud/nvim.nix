@@ -6,8 +6,8 @@
   };
 
   # add nvim config directory
-  xdg.configFile."nvim/lua/tintin.lua" = {
-    source = ./config/nvim/lua/tintin.lua;
+  xdg.configFile."nvim/after/plugin/tintin.lua" = {
+    source = ./config/nvim/after/plugin/tintin.lua;
     recursive = true;
   };
 }

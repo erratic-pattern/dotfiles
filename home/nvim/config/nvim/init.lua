@@ -37,5 +37,3 @@ vim.cmd [[
   autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup='Visual', timeout=150}
 ]]
 
--- load tintin setup
-require('tintin')
