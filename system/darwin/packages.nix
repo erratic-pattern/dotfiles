@@ -30,6 +30,7 @@
       "google-chrome"
       "google-drive"
       "notion"
+      "libreoffice"
     ];
   };
 
