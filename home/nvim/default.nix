@@ -57,7 +57,6 @@
         gopls # Go
         buf # Protobuf
         perl540Packages.PLS # Perl
-        sqls # SQL
 
         # Bash
         shellcheck

@@ -77,7 +77,6 @@ local language_servers = {
     -- protobuf LSP using the beta buf CLI
     buf_ls = {},
     perlpls = {},
-    sqls = {},
 
     -- JSON
     jsonls = {
