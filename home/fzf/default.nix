@@ -18,7 +18,7 @@ let
         if [ -z "$TMUX" ]; then
           exec tmux new-session -A -s "$session" -c "$selected"
         fi
-        if ! tmux has-session -t "$session" 2>/dev/null; then
+        if ! tmux has-session -t "=$session" 2>/dev/null; then
           tmux new-session -d -s "$session" -c "$selected"
         fi
         exec tmux switch-client -t "$session"
@@ -51,7 +51,7 @@ in
       let
         session-switcher-cmd = ''run-shell ${fzf-tmux-session-switcher}'';
       in
-      #sh 
+      #sh
       ''
         bind-key f ${session-switcher-cmd}
         bind-key C-f ${session-switcher-cmd}
