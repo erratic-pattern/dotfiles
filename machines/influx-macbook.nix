@@ -22,6 +22,7 @@
           ../home/syncthing
           ../home/kitty
           ../home/fzf
+          ../home/firefox.nix
         ];
       };
   };

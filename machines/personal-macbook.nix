@@ -25,6 +25,7 @@
           ../home/kitty
           ../home/fzf
           ../home/finance
+          ../home/firefox.nix
         ];
       };
   };
@@ -32,6 +33,7 @@
   system.defaults.dock.persistent-apps = [
     "/System/Applications/System Settings.app/"
     "/Applications/Google Chrome.app/"
+    "${pkgs.firefox}/Applications/Firefox.app/"
     "${pkgs.slack}/Applications/Slack.app/"
     "/Applications/zoom.us.app/"
     "/Applications/Notion.app/"
