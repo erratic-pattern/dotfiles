@@ -8,6 +8,8 @@
     kitty
   ];
 
+  programs._1password-gui.enable = true;
+
   homebrew = {
     enable = true;
 
@@ -23,7 +25,6 @@
     };
 
     casks = [
-      "1password"
       "docker"
       "dropbox"
       "expressvpn"
