@@ -6,6 +6,11 @@
     spotify
     wezterm
     kitty
+    podman
+    podman-tui
+    podman-desktop
+    podman-bootc
+    podman-compose
   ];
 
   programs._1password-gui.enable = true;
@@ -25,7 +30,6 @@
     };
 
     casks = [
-      "docker"
       "dropbox"
       "expressvpn"
       "google-chrome"
