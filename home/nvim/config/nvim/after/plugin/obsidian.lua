@@ -24,18 +24,18 @@ vim.api.nvim_create_autocmd("filetype", {
 })
 
 -- Global keybinds
-vim.keymap.set("n", "<leader>nn", "<cmd>ObsidianNew<cr>", { noremap = true });
-vim.keymap.set("v", "<leader>nn", "<cmd>ObsidianLinkNew<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nd", "<cmd>ObsidianToday<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nD", "<cmd>ObsidianTomorrow<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>ny", "<cmd>ObsidianYesterday<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianNewFromTemplate<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nT", "<cmd>ObsidianTags<cr>", { noremap = true });
-vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nn", "<cmd>Obsidian new<cr>", { noremap = true });
+vim.keymap.set("v", "<leader>nn", "<cmd>Obsidian link_new<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nd", "<cmd>Obsidian today<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nD", "<cmd>Obsidian tomorrow<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>ny", "<cmd>Obsidian yesterday<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nf", "<cmd>Obsidian quick_switch<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nt", "<cmd>Obsidian new_from_template<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nT", "<cmd>Obsidian tags<cr>", { noremap = true });
+vim.keymap.set("n", "<leader>nl", "<cmd>Obsidian links<cr>", { noremap = true });
 -- note: issue with using <cmd>
 -- see https://github.com/epwalsh/obsidian.nvim/issues/454
-vim.keymap.set("v", "<leader>ne", ":ObsidianExtractNote<cr>", { noremap = true });
+vim.keymap.set("v", "<leader>ne", ":Obsidian extract_note<cr>", { noremap = true });
 
 
 obsidian.setup({
@@ -166,7 +166,7 @@ obsidian.setup({
 
   },
 
-  -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
+  -- Optional, by default when you use `:Obsidian follow_link` on a link to an external
   -- URL it will be ignored but you can customize this behavior here.
   ---@param url string
   follow_url_func = function(url)
@@ -177,7 +177,7 @@ obsidian.setup({
     vim.ui.open(url) -- need Neovim 0.10.0+
   end,
 
-  -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
+  -- Optional, by default when you use `:Obsidian follow_link` on a link to an image
   -- file it will be ignored but you can customize this behavior here.
   ---@param img string
   follow_img_func = function(img)
@@ -207,7 +207,7 @@ obsidian.setup({
 
   -- Optional, sort search results by "path", "modified", "accessed", or "created".
   -- The recommend value is "modified" and `true` for `sort_reversed`, which means, for example,
-  -- that `:ObsidianQuickSwitch` will show the notes sorted by latest modified time
+  -- that `:Obsidian quick_switch` will show the notes sorted by latest modified time
   sort_by = "modified",
   sort_reversed = true,
 
@@ -233,7 +233,7 @@ obsidian.setup({
       -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
       vim.keymap.set("n", "gf", function()
         if require("obsidian").util.cursor_on_markdown_link() then
-          return "<cmd>ObsidianFollowLink<CR>"
+          return "<cmd>Obsidian follow_link<CR>"
         else
           return "gf"
         end
@@ -246,16 +246,16 @@ obsidian.setup({
 
       -- Toggle checkbox
       vim.keymap.set("n", "<leader>nc", function()
-        return "<cmd>ObsidianToggleCheckbox<cr>"
+        return "<cmd>Obsidian toggle_checkbox<cr>"
       end, { noremap = true, buffer = true, expr = true })
 
       -- Toggle checkbox (visual mode)
       vim.keymap.set("v", "<leader>nc", function()
-        return ":g//:ObsidianToggleCheckbox<cr>"
+        return ":g//:Obsidian toggle_checkbox<cr>"
       end, { noremap = true, buffer = true, expr = true })
 
       -- Show backlinks
-      vim.keymap.set("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", { noremap = true, buffer = true })
+      vim.keymap.set("n", "<leader>nb", "<cmd>Obsidian backlinks<cr>", { noremap = true, buffer = true })
     end,
 
     -- Runs anytime you leave the buffer for a note.
@@ -281,19 +281,19 @@ obsidian.setup({
     update_debounce = 200,  -- update delay after a text change (in milliseconds)
     max_file_length = 5000, -- disable UI features for files with more than this many lines
     -- Define how various check-boxes are displayed
-    checkboxes = {
-      -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-      [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-      ["x"] = { char = "", hl_group = "ObsidianDone" },
-      [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-      ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-      ["!"] = { char = "", hl_group = "ObsidianImportant" },
-      -- Replace the above with this if you don't have a patched font:
-      -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-      -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
+    -- checkboxes = {
+    -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
+    -- [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+    -- ["x"] = { char = "", hl_group = "ObsidianDone" },
+    -- [">"] = { char = "", hl_group = "ObsidianRightArrow" },
+    -- ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+    -- ["!"] = { char = "", hl_group = "ObsidianImportant" },
+    -- Replace the above with this if you don't have a patched font:
+    -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
+    -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
 
-      -- You can also add more custom ones...
-    },
+    -- You can also add more custom ones...
+    -- },
     -- Use bullet marks for non-checkbox lists.
     bullets = { char = "•", hl_group = "ObsidianBullet" },
     external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
@@ -326,7 +326,7 @@ obsidian.setup({
     -- You can always override this per image by passing a full path to the command instead of just a filename.
     img_folder = "assets/imgs", -- This is the default
 
-    -- Optional, customize the default name or prefix when pasting images via `:ObsidianPasteImg`.
+    -- Optional, customize the default name or prefix when pasting images via `:Obsidian paste_img`.
     ---@return string
     img_name_func = function()
       -- Prefix image names with timestamp.
@@ -344,4 +344,5 @@ obsidian.setup({
       return string.format("![%s](%s)", path.name, path)
     end,
   },
+  legacy_commands = false,
 })
