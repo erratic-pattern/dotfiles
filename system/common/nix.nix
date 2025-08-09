@@ -12,6 +12,12 @@
         user
       ];
       sandbox = if pkgs.stdenv.isDarwin then "relaxed" else true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      cores = 0;
+      max-jobs = "auto";
     };
 
     gc = {
@@ -23,11 +29,6 @@
       };
       options = "--delete-older-than 14d";
     };
-
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      build-max-jobs = auto
-    '';
   };
 
   # system.checks.verifyNixPath = false;
