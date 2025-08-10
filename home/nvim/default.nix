@@ -129,7 +129,7 @@
       precognition-nvim
 
       # AI Overlords
-      copilot-vim
+      codecompanion-nvim
 
       # Color Schemes
       nightfox-nvim

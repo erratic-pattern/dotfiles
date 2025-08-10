@@ -13,16 +13,17 @@
       { ... }:
       {
         imports = [
+          ../home/claude.nix
+          ../home/directories
+          ../home/firefox.nix
+          ../home/fzf
           ../home/influx
+          ../home/kitty
           ../home/nvim
           ../home/rust
           ../home/shell
-          ../home/wezterm
-          ../home/directories
           ../home/syncthing
-          ../home/kitty
-          ../home/fzf
-          ../home/firefox.nix
+          ../home/wezterm
         ];
       };
   };

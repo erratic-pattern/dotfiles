@@ -14,18 +14,19 @@
       { ... }:
       {
         imports = [
+          ../home/claude.nix
+          ../home/directories
+          ../home/finance
+          ../home/firefox.nix
+          ../home/fzf
           ../home/influx
+          ../home/kitty
           ../home/mud
           ../home/nvim
           ../home/rust
           ../home/shell
-          ../home/wezterm
-          ../home/directories
           ../home/syncthing
-          ../home/kitty
-          ../home/fzf
-          ../home/finance
-          ../home/firefox.nix
+          ../home/wezterm
         ];
       };
   };
