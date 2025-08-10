@@ -1,4 +1,8 @@
-{ kubelogin, homebrew-garden, ... }:
+{
+  kubelogin,
+  homebrew-garden,
+  ...
+}:
 {
 
   imports = [
