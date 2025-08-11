@@ -128,9 +128,6 @@
       # Vim Learning tools
       precognition-nvim
 
-      # AI Overlords
-      codecompanion-nvim
-
       # Color Schemes
       nightfox-nvim
       oceanic-next

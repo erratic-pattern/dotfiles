@@ -4,11 +4,13 @@ args@{
   callPackage,
   vimUtils,
   neovimUtils,
+  rustPlatform,
   ...
 }:
 let
   inherit (vimUtils) buildVimPlugin;
   inherit (neovimUtils) buildNeovimPlugin;
+  inherit (rustPlatform) buildRustPackage;
   systemPackages =
     if stdenv.isLinux then
       callPackage ./linux args
@@ -20,6 +22,7 @@ let
 in
 systemPackages
 // {
+  influxdb3-core = callPackage ./influxdb3-core.nix args;
   vimPlugins = callPackage ./vim-plugins.nix (
     args
     // {

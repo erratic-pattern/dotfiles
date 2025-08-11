@@ -163,6 +163,8 @@
           ];
         };
 
+      packages = forAllSystems (system: nixpkgs.legacyPackages.${system}.callPackage ./packages inputs);
+
       legacyPackages = forAllSystems (
         system: nixpkgs.legacyPackages.${system}.callPackage ./packages inputs
       );
