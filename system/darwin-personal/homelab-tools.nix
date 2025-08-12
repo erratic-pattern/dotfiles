@@ -16,12 +16,11 @@
       virtualisation = {
         darwin-builder = {
           diskSize = 40 * 1024;
-          memorySize = 8 * 1024;
+          memorySize = 40 * 1024;
         };
-        cores = 6;
+        cores = 16;
       };
     };
     package = pkgs.darwin.linux-builder-x86_64;
-
   };
 }
