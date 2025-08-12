@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   home.activation.directories = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    mkdir -p "$HOME/Code"
-    mkdir -p "$HOME/Notes"
+    run mkdir -p "$HOME/Code"
+    run mkdir -p "$HOME/Notes"
   '';
 }

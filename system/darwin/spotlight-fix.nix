@@ -70,10 +70,10 @@
                 nix_apps="$HOME/Applications/Home Manager Apps Aliases"
 
                   # Delete the directory to remove old links
-                  $DRY_RUN_CMD rm -rf "$nix_apps"
-                  $DRY_RUN_CMD mkdir -p "$nix_apps"
+                  run rm -rf "$nix_apps"
+                  run mkdir -p "$nix_apps"
 
-                  $DRY_RUN_CMD find ${apps}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+                  run find ${apps}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
                   while read src; do
                           # Spotlight does not recognize symlinks, it will ignore directory we link to the applications folder.
                           # It does understand MacOS aliases though, a unique filesystem feature. Sadly they cannot be created
