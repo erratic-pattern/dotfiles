@@ -22,6 +22,7 @@ let
 in
 systemPackages
 // {
+  claude-monitor = callPackage ./claude-monitor.nix args;
   influxdb3-core = callPackage ./influxdb3-core.nix args;
   vimPlugins = callPackage ./vim-plugins.nix (
     args
