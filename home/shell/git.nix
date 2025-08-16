@@ -11,6 +11,29 @@ in
     lfs = {
       enable = true;
     };
+    ignores = [
+      # Claude Code files
+      "CLAUDE.md"
+      ".claude/"
+
+      # Nix build artifacts
+      "result"
+      "result-*"
+
+      # direnv
+      ".direnv/"
+      ".envrc.local"
+
+      # macOS
+      ".DS_Store"
+
+      # debugging logs
+      "out.log"
+      "debug.log"
+
+      # tmux crash files
+      "server exited unexpectedly"
+    ];
     extraConfig = {
       init.defaultBranch = "main";
       # commit.gpgsign = true;
