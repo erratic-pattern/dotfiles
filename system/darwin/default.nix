@@ -5,6 +5,7 @@
     ./fonts.nix
     ./homebrew.nix
     ./packages.nix
+    ./podman
     ./raycast.nix
     ./shell.nix
     ./skhd.nix

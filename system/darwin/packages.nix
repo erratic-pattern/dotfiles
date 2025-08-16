@@ -6,11 +6,6 @@
     spotify
     wezterm
     kitty
-    podman
-    podman-tui
-    podman-desktop
-    podman-bootc
-    podman-compose
   ];
 
   programs._1password-gui.enable = true;
@@ -37,10 +32,6 @@
       "notion"
       "libreoffice"
     ];
-  };
-
-  environment.variables = {
-    DOCKER_BUILDKIT = "1";
   };
 
 }
