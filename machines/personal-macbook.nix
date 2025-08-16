@@ -14,6 +14,7 @@
       { ... }:
       {
         imports = [
+          ../home/1password.nix
           ../home/claude.nix
           ../home/directories
           ../home/finance

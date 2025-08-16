@@ -2,7 +2,6 @@
 {
   imports = [
     home-manager.darwinModules.home-manager
-    ./1password.nix
     ./fonts.nix
     ./homebrew.nix
     ./packages.nix
