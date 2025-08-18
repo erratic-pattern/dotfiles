@@ -13,7 +13,7 @@ in
     };
     ignores = [
       # Claude Code files
-      "CLAUDE.md"
+      "CLAUDE.local.md"
       ".claude/"
 
       # Nix build artifacts
