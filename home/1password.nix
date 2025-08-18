@@ -16,15 +16,20 @@ in
     '';
   };
 
-  # Create 1Password askpass helper script  
+  # Create 1Password askpass helper script
   home.file.".local/bin/1password-askpass" = {
     text = ''
       #!/bin/bash
-      # 1Password askpass helper for sudo authentication
-      ${pkgs._1password-cli}/bin/op read "op://Dev/Adams-MacBook/password" 2>/dev/null
+      ${pkgs._1password-cli}/bin/op read "op://Personal/Adams-MacBook/password" 2>/dev/null
     '';
     executable = true;
   };
+
+  # 1Password SSH agent configuration
+  xdg.configFile."1password/ssh/agent.toml".text = ''
+    [[ssh-keys]]
+    vault = "Keys"
+  '';
 
   home.sessionVariables = {
     # Set 1Password as askpass helper for GUI sudo prompts
