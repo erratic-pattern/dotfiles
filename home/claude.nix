@@ -54,13 +54,13 @@
   #   executable = true;
   # };
 
-  # Declaratively manage editorMode in ~/.claude.json
-  home.activation.setClaudeVimMode = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  # Declaratively manage settings in ~/.claude.json
+  home.activation.claudeJson = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     if [[ -f ~/.claude.json ]]; then
-      run ${pkgs.jq}/bin/jq '.editorMode = "vim"' ~/.claude.json > ~/.claude.json.tmp
+      run ${pkgs.jq}/bin/jq '.editorMode = "vim" | .autoCompactEnabled = false' ~/.claude.json > ~/.claude.json.tmp
       run mv ~/.claude.json.tmp ~/.claude.json
     else
-      run echo '{"editorMode": "vim"}' > ~/.claude.json
+      run echo '{"editorMode": "vim", "autoCompactEnabled": false}' > ~/.claude.json
     fi
   '';
 
