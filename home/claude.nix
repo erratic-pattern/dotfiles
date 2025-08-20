@@ -1,12 +1,13 @@
 {
   pkgs,
   lib,
-  user,
+  localPkgs,
   ...
 }:
 {
   home.packages = with pkgs; [
     claude-code
+    localPkgs.claude-monitor
   ];
 
   home.file.".claude/settings.json" = {

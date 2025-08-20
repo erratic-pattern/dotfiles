@@ -99,6 +99,7 @@
               modules ? [ ],
             }:
             let
+              localPkgs = pkgs.callPackage ./packages inputs;
               pkgs = importNixPkgs nixpkgs system {
                 overlays = overlays.darwin ++ extraOverlays;
               };
@@ -109,7 +110,12 @@
               specialArgs = (
                 inputs
                 // {
-                  inherit user pkgs-unstable pkgs-stable;
+                  inherit
+                    user
+                    pkgs-unstable
+                    pkgs-stable
+                    localPkgs
+                    ;
                   flake-inputs = inputs;
                 }
               );
