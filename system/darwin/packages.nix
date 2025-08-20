@@ -30,6 +30,7 @@
       "google-drive"
       "notion"
       "libreoffice"
+      "tailscale"
     ];
   };
 

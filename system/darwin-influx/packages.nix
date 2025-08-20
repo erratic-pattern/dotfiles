@@ -27,7 +27,7 @@
 
     masApps = {
       # VPN
-      "tailscale" = 1475387142;
+      # "tailscale" = 1475387142;
     };
 
     casks = [
