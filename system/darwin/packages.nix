@@ -26,7 +26,6 @@
 
     casks = [
       "dropbox"
-      "expressvpn"
       "google-chrome"
       "google-drive"
       "notion"

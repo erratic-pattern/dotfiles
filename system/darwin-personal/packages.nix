@@ -27,6 +27,7 @@
     casks = [
       "steam"
       "qflipper" # broken on darwin in nixpkgs
+      "protonvpn"
     ];
   };
 }
