@@ -11,7 +11,6 @@
 
   nix-homebrew = {
     taps = {
-      "int128/kubelogin" = kubelogin;
       "garden-io/garden-homebrew" = homebrew-garden;
     };
   };

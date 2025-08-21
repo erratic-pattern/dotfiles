@@ -45,11 +45,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    kubelogin = {
-      url = "github:int128/kubelogin";
-      flake = false;
-    };
-
     vim-tintin = {
       url = "github:LokiChaos/vim-tintin";
       flake = false;

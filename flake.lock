@@ -122,22 +122,6 @@
         "type": "github"
       }
     },
-    "kubelogin": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1755299362,
-        "narHash": "sha256-zAIiNpzYr4aVR4O93y9S9aiGUgeg9xlj7wFn4vh43zY=",
-        "owner": "int128",
-        "repo": "kubelogin",
-        "rev": "d88e7f087546bb1426ab5e0161ddb26a84dc032e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "int128",
-        "repo": "kubelogin",
-        "type": "github"
-      }
-    },
     "nix-formatter-pack": {
       "inputs": {
         "nixpkgs": [
@@ -349,7 +333,6 @@
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
         "homebrew-garden": "homebrew-garden",
-        "kubelogin": "kubelogin",
         "nix-homebrew": "nix-homebrew",
         "nix-on-droid": "nix-on-droid",
         "nixpkgs": "nixpkgs",
